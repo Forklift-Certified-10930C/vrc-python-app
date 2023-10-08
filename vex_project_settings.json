@@ -1,0 +1,18 @@
+{
+	"extension": {
+		"version": "0.5.0",
+		"json": 2
+	},
+	"project": {
+		"name": "app.py",
+		"description": "See README.md",
+		"creationDate": "9/24/2023, 11:08:52 AM",
+		"platform": "V5",
+		"language": "python",
+		"slot": 1,
+		"sdkVersion": "V5_1_0_1_15",
+		"python": {
+			"main": "src/main.py"
+		}
+	}
+}
