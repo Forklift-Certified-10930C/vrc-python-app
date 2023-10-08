@@ -49,7 +49,7 @@ Our robot has four diffrent routines depending on where they are on the game are
 
 ### Blue Alliance
 
-- **Blue Side**:
+- **Blue Side**: Lauch pre-loaded game element into red net
 
 - **Red Side**:
 
@@ -57,7 +57,7 @@ Our robot has four diffrent routines depending on where they are on the game are
 
 - **Blue Side**:
 
-- **Red Side**:
+- **Red Side**: Lauch pre-loaded game element into blue net
 
 ## License
 Copyright <2023> <vx_clutch>
