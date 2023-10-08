@@ -33,12 +33,17 @@ def motor1(rpm):
 def motor2(rpm):
     motor_2.spin(vex.DirectionType.FORWARD, rpm, vex.VelocityUnits.RPM)
 
+def get_pos():
+    
+
+
 # Main
 
 brain.screen.print('Initialized...')
 
 # Autonomous routine
 
+field_pos = get_pos()
 
 
 # Driver
