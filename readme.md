@@ -47,13 +47,13 @@ In the `main.py` file, you will find the code that controls the robot's movement
 ## Autonomous routine
 Our robot has four diffrent routines depending on where they are on the game area. Two of them are for when the robot is the one Blue alliance and the other two are for the red allince.
 
-# Blue Alliance
+### Blue Alliance
 
 - **Blue Side**:
 
 - **Red Side**:
 
-# Red Alliance
+### Red Alliance
 
 - **Blue Side**:
 
