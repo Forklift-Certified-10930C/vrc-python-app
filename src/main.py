@@ -42,7 +42,6 @@ def get_pos():
         elif is_Left_pressed:
             return -2
 
-
 # Main
 brain.screen.print('Initialized...')
 brain.screen.new_line()
