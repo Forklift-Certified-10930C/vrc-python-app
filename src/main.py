@@ -25,11 +25,11 @@ is_Right_pressed = controller.buttonRight.pressing()
 field_pos = None
 
 # Functions
-def motor1(rpm):
-    motor_1.spin(vex.DirectionType.FORWARD, rpm, vex.VelocityUnits.RPM)
+def motor1(vel):
+    motor_1.spin(vex.DirectionType.FORWARD, vel, vex.VelocityUnits.RPM)
 
-def motor2(rpm):
-    motor_2.spin(vex.DirectionType.FORWARD, rpm, vex.VelocityUnits.RPM)
+def motor2(vel):
+    motor_2.spin(vex.DirectionType.FORWARD, vel, vex.VelocityUnits.RPM)
 
 def get_pos():
        while field_pos == None:
