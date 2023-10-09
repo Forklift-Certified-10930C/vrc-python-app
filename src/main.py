@@ -47,8 +47,8 @@ brain.screen.print('Initialized...')
 brain.screen.new_line()
 
 # Autonomous routine
-field_pos = get_pos()
-brain.screen.print(field_pos)
+# field_pos = get_pos()
+# brain.screen.print(field_pos)
 
 if field_pos == 1:
     pass
