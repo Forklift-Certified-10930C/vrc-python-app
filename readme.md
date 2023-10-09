@@ -19,10 +19,10 @@ Here's a brief overview of the controls for our robot:
 - A []
 - B []
 - Y []
-- D-PAD Up []
-- D-PAD Down []
-- D-PAD Left []
-- D-PAD Right []
+- D-PAD Up [Select1]
+- D-PAD Down [Select2]
+- D-PAD Left [Select-1]
+- D-PAD Right [Select-2]
 - Axis 1 []
 - Axis 2 [LEFT/RIGHT]
 - Axis 3 [FORWARD/BACKWARD]
@@ -44,8 +44,8 @@ Our robot, labeled 10930C, is equipped with the following components:
 ## Application Details
 In the `main.py` file, you will find the code that controls the robot's movements, runs autonomous routines, and manages other important functions for the VEX Over Under competition.
 
-## Autonomous routine
-Our robot has four diffrent routines depending on where they are on the game area. Two of them are for when the robot is the one Blue alliance and the other two are for the red allince. In main.py, the blue side is represented by positive integers, while the red side is represented by negative integers. This convention helps distinguish between the two sides and makes the code more visually intuitive.
+## Autonomous Routine
+Our robot has four diffrent routines depending on where they are on the game area. Two of them are for when the robot is the one Blue alliance and the other two are for the red allince. In main.py, the blue side is represented by positive integers, while the red side is represented by negative integers. As well as Left being represented as 1 and right being represented as 2.
 
 ### Blue Alliance
 
