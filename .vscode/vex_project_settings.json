@@ -5,7 +5,7 @@
 	},
 	"project": {
 		"name": "app.py",
-		"description": "See README.md",
+		"description": "vrc-python-app",
 		"creationDate": "9/24/2023, 11:08:52 AM",
 		"platform": "V5",
 		"language": "python",
