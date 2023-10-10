@@ -7,7 +7,7 @@ from vex import *
 brain = vex.Brain()
 controller = vex.Controller()
 motor_1 = vex.Motor(vex.Ports.PORT1, vex.GearSetting.RATIO_18_1, False)
-motor_2 = vex.Motor(vex.Ports.PORT2, vex.GearSetting.RATIO_18_1, False)
+motor_2 = vex.Motor(vex.Ports.PORT10, vex.GearSetting.RATIO_18_1, False)
 
 # Variables
 right_stick_x = controller.axis1.position()
