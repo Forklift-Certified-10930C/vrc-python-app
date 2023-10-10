@@ -23,6 +23,10 @@ is_Right_pressed = controller.buttonRight.pressing()
 field_pos = None
 
 # Functions
+def print_brain(msg):
+    brain.screen.print(msg)
+    brain.screen.new_line()
+
 def motor1(vel):
     motor_1.spin(vex.DirectionType.FORWARD, vel, vex.VelocityUnits.PERCENT)
 
@@ -41,9 +45,7 @@ def get_pos():
             return -2
 
 # Main
-brain.screen.print('Initialized...')
-brain.screen.new_line()
-
+print_brain('Initialized..')
 # Autonomous routine
 # field_pos = get_pos()
 # brain.screen.print(field_pos)
