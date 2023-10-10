@@ -39,7 +39,7 @@ Our robot, labeled 10930C, is equipped with the following components:
 
 - **Catapult Launcher**: Our robot utilizes a catapult launching system that stores energy using a ratchet system. This stored energy can be released quickly to launch the tri-ball. The catapult launcher is powered by one motor.
 
-- **Fly-Wheel Intake System**: The fly-wheel intake system employs a set of spinning gears with rubber bands connecting them together. It is responsible for efficiently handling and collecting game elements. This system also uses one motor.
+- **Fly-Wheel Intake System**: The fly-wheel intake system employs a set of arms with spinning wheels. It is responsible for efficiently handling and collecting game elements. This system also uses one motor.
 
 ## Application Details
 In the `main.py` file, you will find the code that controls the robot's movements, runs autonomous routines, and manages other important functions for the VEX Over Under competition.
