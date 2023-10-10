@@ -8,8 +8,8 @@ from vex import *
 # Parts
 brain = vex.Brain()
 controller = vex.Controller()
-motor_1 = vex.Motor(vex.Ports.PORT1, vex.GearSetting.RATIO_36_1, False)
-motor_2 = vex.Motor(vex.Ports.PORT2, vex.GearSetting.RATIO_36_1, False)
+motor_1 = vex.Motor(vex.Ports.PORT1, vex.GearSetting.RATIO_18_1, False)
+motor_2 = vex.Motor(vex.Ports.PORT2, vex.GearSetting.RATIO_18_1, False)
 
 # Variables
 right_stick_x = controller.axis1.position()
@@ -26,10 +26,10 @@ field_pos = None
 
 # Functions
 def motor1(vel):
-    motor_1.spin(vex.DirectionType.FORWARD, vel, vex.VelocityUnits.RPM)
+    motor_1.spin(vex.DirectionType.FORWARD, vel, vex.VelocityUnits.PERCENT)
 
 def motor2(vel):
-    motor_2.spin(vex.DirectionType.FORWARD, vel, vex.VelocityUnits.RPM)
+    motor_2.spin(vex.DirectionType.FORWARD, vel, vex.VelocityUnits.PERCENT)
 
 def get_pos():
        while field_pos == None:
@@ -50,14 +50,14 @@ brain.screen.new_line()
 # field_pos = get_pos()
 # brain.screen.print(field_pos)
 
-if field_pos == 1:
-    pass
-if field_pos == 2:
-    pass
-if field_pos == -1:
-    pass
-if field_pos == -2:
-    pass
+# if field_pos == 1:
+#     pass
+# if field_pos == 2:
+#     pass
+# if field_pos == -1:
+#     pass
+# if field_pos == -2:
+#     pass
 
 # Driver
 while True:
