@@ -7,7 +7,8 @@ from vex import *
 brain = vex.Brain()
 controller = vex.Controller()
 motor_1 = vex.Motor(vex.Ports.PORT1, vex.GearSetting.RATIO_18_1, False)
-motor_2 = vex.Motor(vex.Ports.PORT10, vex.GearSetting.RATIO_18_1, False)
+motor_2 = vex.Motor(vex.Ports.PORT10, vex.GearSetting.RATIO_18_1, True)
+drivetrain1 = Drivetrain(motor_1,motor_2)
 
 # Variables
 right_stick_x = controller.axis1.position()
@@ -27,40 +28,11 @@ def print_brain(msg):
     brain.screen.print(msg)
     brain.screen.new_line()
 
-def motor1(vel):
-    motor_1.spin(vex.DirectionType.FORWARD, vel, vex.VelocityUnits.PERCENT)
-
-def motor2(vel):
-    motor_2.spin(vex.DirectionType.FORWARD, vel, vex.VelocityUnits.PERCENT)
-
-def get_pos():
-       while field_pos == None:
-        if is_Up_pressed:
-            return 1
-        elif is_Right_pressed:
-            return 2
-        elif is_Down_pressed:
-            return -1
-        elif is_Left_pressed:
-            return -2
+def drive_forward(vel):
+    drivetrain1(FORWARD, vel, )
 
 # Main
 print_brain('Initialized..')
 # Autonomous routine
-# field_pos = get_pos()
-# brain.screen.print(field_pos)
-
-# if field_pos == 1:
-#     pass
-# if field_pos == 2:
-#     pass
-# if field_pos == -1:
-#     pass
-# if field_pos == -2:
-#     pass
 
 # Driver
-while True:
-
-    motor1(left_stick_y)
-    motor2(right_stick_x)
