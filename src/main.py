@@ -18,9 +18,9 @@ def print_brain(msg):
     brain.screen.print(msg)
     brain.screen.new_line()
 
-# Driver
+# Main
 def Main():
     print_brain('Initialized..')
-    
 
+# Inits
 Main()
