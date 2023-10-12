@@ -19,7 +19,10 @@ def print_brain(msg):
     brain.screen.new_line()
 
 # Autonomous routine
+def Autonomous():
+    pass
 
+Autonomous()
 # Driver
 def Main():
     print_brain('Initialized..')
