@@ -1,5 +1,4 @@
 # Imports
-import time
 import vex
 from vex import *
 
