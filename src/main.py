@@ -1,12 +1,12 @@
 # Imports
-from vex import *
+import vex
 
 # Parts
-brain = Brain()
-controller = Controller()
-motor_1 = Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
-motor_2 = Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
-drivetrain = Drivetrain(motor_1,motor_2)
+brain = vex.Brain()
+controller = vex.Controller()
+motor_1 = vex.Motor(vex.Ports.PORT1, vex.GearSetting.RATIO_18_1, False)
+motor_2 = vex.Motor(vex.Ports.PORT10, vex.GearSetting.RATIO_18_1, True)
+drivetrain = vex.Drivetrain(motor_1,motor_2)
 
 # Variables
 drivercontrol = False
@@ -19,10 +19,16 @@ def print_brain(msg):
 # Main
 def Main():
     print_brain('Initialized..')
-
+    
     while drivercontrol:
-        drivetrain.drive(FORWARD, controller.axis3.position(), PERCENT)
-        drivetrain.turn(RIGHT, controller.axis4.position(), PERCENT)
+        left_stick_y = controller.axis2.position()
+        right_stick_x = controller.axis1.position()
+
+        left_speed = left_stick_y + right_stick_x
+        right_speed = left_stick_y - right_stick_x
+
+        drivetrain.set_drive_velocity(left_speed, vex.VelocityUnits.PERCENT)
+        drivetrain.set_turn_velocity(right_speed, vex.VelocityUnits.PERCENT)
 
 # Inits
 Main()
