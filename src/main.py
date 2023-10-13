@@ -14,32 +14,52 @@ drivercontrol = False
 field_pos = None
 
 # Functions
-def print_brain(msg, color):
-    brain.screen.set_font_color(color)
-    brain.screen.print(msg)
-    brain.screen.set_font_color(255, 255, 255)
-    brain.screen.new_line()
+def print_brain(msg):
+    if '[RUNNING]' in msg:
+        brain.screen.set_font_color(vex.colors.YELLOW)
+        brain.screen.print(msg)
+        brain.screen.set_font_color(255, 255, 255)
+        brain.screen.new_line()
+    elif '[OKAY]' in msg:
+        brain.screen.set_font_color(vex.colors.GREEN)
+        brain.screen.print(msg)
+        brain.screen.set_font_color(255, 255, 255)
+        brain.screen.new_line()
+    elif '[FAILED]' in msg:
+        brain.screen.set_font_color(vex.colors.RED)
+        brain.screen.print(msg)
+        brain.screen.set_font_color(255, 255, 255)
+        brain.screen.new_line()
+    else:
+        brain.screen.print(msg)
+        brain.screen.set_font_color(255, 255, 255)
+        brain.screen.new_line()
 
 # Main
 def Main():
-    print_brain('Initialized [RUNNING]', vex.colors.YELLOW)
-    print_brain('Initialized [OKAY]', vex.colors.GREEN)
-    print_brain('Autonomous Routine [RUNNING]', vex.colors.YELLOW)
+    print_brain('Initialized [RUNNING]')
+    print_brain('Initialized [OKAY]')
 
     async def Autonomous():
-        if field_pos == 1:
-            pass
-        elif field_pos == 2:
-            pass
-        elif field_pos == -1:
-            pass
-        elif field_pos == -2:
-            pass
-        elif field_pos == None:
-            print_brain(f'Autonomous Routine [FAILED]: Because of {field_pos} value', vex.colors.RED)
-        else:
-            print_brain('Autonomous Routine [FAILED]: Because of Unknown Error')
-        print_brain('Autonomous Routine [OKAY]', vex.colors.GREEN)
+        print_brain('Autonomous Routine [RUNNING]')
+        try:
+            if field_pos == 1:
+                pass
+            elif field_pos == 2:
+                pass
+            elif field_pos == -1:
+                pass
+            elif field_pos == -2:
+                pass
+            elif field_pos is None:
+                raise ValueError(f'Autonomous Routine [FAILED]: Because of {field_pos} value')
+            else:
+                raise ValueError('Autonomous Routine [FAILED]: Because of Unknown Error')
+            print_brain('Autonomous Routine [OKAY]')
+        except Exception as e:
+            print_brain(str(e))
+        drivercontrol = True
+
     Autonomous()
 
     while drivercontrol:
@@ -48,5 +68,5 @@ def Main():
 
         drivetrain.drive(left_stick_y, right_stick_x)
 
-# Initalize
+# Initialize
 Main()
