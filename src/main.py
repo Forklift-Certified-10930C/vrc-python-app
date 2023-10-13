@@ -32,6 +32,7 @@ def Main():
             pass
         elif field_pos == -2:
             pass
+        print_brain('Autonomous Routine [OKAY]')
     Autonomous()
     
     while drivercontrol:
