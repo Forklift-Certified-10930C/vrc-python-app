@@ -12,16 +12,19 @@ drivetrain = vex.Drivetrain(leftmotor, rightmotor, gear_setting=vex.GEAR_RATIO_1
 # Variables
 drivercontrol = False
 field_pos = None
+
 # Functions
-def print_brain(msg):
+def print_brain(msg, color):
+    brain.screen.set_font_color(color)
     brain.screen.print(msg)
+    brain.screen.set_font_color(255, 255, 255)
     brain.screen.new_line()
 
 # Main
 def Main():
-    print_brain('Initialized [RUNNING]')
-    print_brain('Initialized [OKAY]')
-    print_brain('Starting Autonomous Routine [RUNNING]')
+    print_brain('Initialized [RUNNING]', vex.colors.YELLOW)
+    print_brain('Initialized [OKAY]', vex.colors.GREEN)
+    print_brain('Starting Autonomous Routine [RUNNING]', vex.colors.YELLOW)
     
     async def Autonomous():
         if field_pos == 1:
@@ -33,8 +36,8 @@ def Main():
         elif field_pos == -2:
             pass
         else:
-            print_brain('Autonomous Routine [FAILED]')
-        print_brain('Autonomous Routine [OKAY]')
+            print_brain('Autonomous Routine [FAILED]', vex.colors.RED)
+        print_brain('Autonomous Routine [OKAY]', vex.colors.GREEN)
     Autonomous()
     
     while drivercontrol:
