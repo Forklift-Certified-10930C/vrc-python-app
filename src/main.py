@@ -24,8 +24,8 @@ def print_brain(msg, color):
 def Main():
     print_brain('Initialized [RUNNING]', vex.colors.YELLOW)
     print_brain('Initialized [OKAY]', vex.colors.GREEN)
-    print_brain('Starting Autonomous Routine [RUNNING]', vex.colors.YELLOW)
-    
+    print_brain('Autonomous Routine [RUNNING]', vex.colors.YELLOW)
+
     async def Autonomous():
         if field_pos == 1:
             pass
@@ -35,11 +35,13 @@ def Main():
             pass
         elif field_pos == -2:
             pass
+        elif field_pos == None:
+            print_brain(f'Autonomous Routine [FAILED]: Because of {field_pos} value', vex.colors.RED)
         else:
-            print_brain('Autonomous Routine [FAILED]', vex.colors.RED)
+            print_brain('Autonomous Routine [FAILED]: Because of Unknown Error')
         print_brain('Autonomous Routine [OKAY]', vex.colors.GREEN)
     Autonomous()
-    
+
     while drivercontrol:
         left_stick_y = controller.axis3.position()
         right_stick_x = controller.axis2.position()
