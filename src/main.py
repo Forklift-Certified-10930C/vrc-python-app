@@ -22,8 +22,8 @@ def Main():
     print_brain('Initialized..')
     
     while drivercontrol:
-        left_stick_y = controller.axis2.position()
-        right_stick_x = controller.axis1.position()
+        left_stick_y = controller.axis3.position()
+        right_stick_x = controller.axis2.position()
 
         drive.drive(left_stick_y, right_stick_x)
 
