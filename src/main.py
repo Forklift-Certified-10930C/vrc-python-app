@@ -32,6 +32,8 @@ def Main():
             pass
         elif field_pos == -2:
             pass
+        else:
+            print_brain('Autonomous Routine [FAILED]')
         print_brain('Autonomous Routine [OKAY]')
     Autonomous()
     
