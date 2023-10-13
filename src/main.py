@@ -19,7 +19,13 @@ def print_brain(msg):
 
 # Main
 def Main():
-    print_brain('Initialized..')
+    print_brain('Initialized [RUNNING]')
+    print_brain('Initialized [OKAY]')
+    print_brain('Starting Autonomous Routine [RUNNING]')
+    
+    async def Autonomous():
+        pass
+    Autonomous()
     
     while drivercontrol:
         left_stick_y = controller.axis3.position()
@@ -27,5 +33,5 @@ def Main():
 
         drive.drive(left_stick_y, right_stick_x)
 
-# Inits
+# Initalize
 Main()
