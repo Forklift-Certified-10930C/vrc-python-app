@@ -7,11 +7,11 @@ brain = vex.Brain()
 controller = vex.Controller()
 leftmotor = vex.Motor(vex.Ports.PORT1, vex.GearSetting.RATIO_18_1, False)
 rightmotor = vex.Motor(vex.Ports.PORT10, vex.GearSetting.RATIO_18_1, True)
-drive = vex.Drivetrain(leftmotor, rightmotor, gear_setting=vex.GEAR_RATIO_18, wheel_diameter=4.0, distance_units=vex.DIST_IN)
+drivetrain = vex.Drivetrain(leftmotor, rightmotor, gear_setting=vex.GEAR_RATIO_18, wheel_diameter=4.0, distance_units=vex.DIST_IN)
 
 # Variables
 drivercontrol = False
-
+field_pos = None
 # Functions
 def print_brain(msg):
     brain.screen.print(msg)
@@ -24,14 +24,21 @@ def Main():
     print_brain('Starting Autonomous Routine [RUNNING]')
     
     async def Autonomous():
-        pass
+        if field_pos == 1:
+            pass
+        elif field_pos == 2:
+            pass
+        elif field_pos == -1:
+            pass
+        elif field_pos == -2:
+            pass
     Autonomous()
     
     while drivercontrol:
         left_stick_y = controller.axis3.position()
         right_stick_x = controller.axis2.position()
 
-        drive.drive(left_stick_y, right_stick_x)
+        drivetrain.drive(left_stick_y, right_stick_x)
 
 # Initalize
 Main()
