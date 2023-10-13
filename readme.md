@@ -42,10 +42,10 @@ Our robot, labeled 10930C, is equipped with the following components:
 - **Fly-Wheel Intake System**: The fly-wheel intake system employs a set of arms with spinning wheels. It is responsible for efficiently handling and collecting game elements. This system also uses one motor.
 
 ## Application Details
-In the `main.py` file, you will find the code that controls the robot's movements, runs autonomous routines, and manages other important functions for the VEX Over Under competition.
+In the `main.py` file, you will find the code that controls the robot's movements, runs autonomous routines, and manages other important functions for the VEX Over Under competition. Us `git clone https://github.com/vx-clutch/vrc-python-app.git` to clone the repository with git
 
 ## Autonomous Routine
-Our robot has four diffrent routines depending on where they are on the game area. Two of them are for when the robot is the one Blue alliance and the other two are for the red allince. In main.py, the blue side is represented by positive integers, while the red side is represented by negative integers. As well as Left being represented as 1 and right being represented as 2.
+The autonomous routine for our robot is field position dependant. The following list shows the differnt stratagys for the 15 second autonomous period.  
 
 ### Blue Alliance
 
