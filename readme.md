@@ -2,6 +2,8 @@
 
 # 10930C
 
+[](#gh-dark-mode-only)
+
 ## Table Of Contents
  - [Introduction](#Introduction)
  - [Controls](#Controls)
