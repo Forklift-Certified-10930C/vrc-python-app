@@ -1,12 +1,13 @@
 # Imports
 import vex
+from vex import *
 
 # Parts
 brain = vex.Brain()
 controller = vex.Controller()
-motor_1 = vex.Motor(vex.Ports.PORT1, vex.GearSetting.RATIO_18_1, False)
-motor_2 = vex.Motor(vex.Ports.PORT10, vex.GearSetting.RATIO_18_1, True)
-drivetrain = vex.Drivetrain(motor_1,motor_2)
+leftmotor = vex.Motor(vex.Ports.PORT1, vex.GearSetting.RATIO_18_1, False)
+rightmotor = vex.Motor(vex.Ports.PORT10, vex.GearSetting.RATIO_18_1, True)
+drive = vex.Drivetrain(leftmotor, rightmotor, gear_setting=vex.GEAR_RATIO_18, wheel_diameter=4.0, distance_units=vex.DIST_IN)
 
 # Variables
 drivercontrol = False
@@ -24,11 +25,7 @@ def Main():
         left_stick_y = controller.axis2.position()
         right_stick_x = controller.axis1.position()
 
-        left_speed = left_stick_y + right_stick_x
-        right_speed = left_stick_y - right_stick_x
-
-        drivetrain.set_drive_velocity(left_speed, vex.VelocityUnits.PERCENT)
-        drivetrain.set_turn_velocity(right_speed, vex.VelocityUnits.PERCENT)
+        drive.drive(left_stick_y, right_stick_x)
 
 # Inits
 Main()
