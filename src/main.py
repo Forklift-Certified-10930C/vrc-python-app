@@ -23,7 +23,7 @@ def Main():
         print_brain('Autonomous Routine [RUNNING]')
         try:
             BLUE_RIGHT = 1
-            elif field_position == BLUE_RIGHT:
+            if field_position == BLUE_RIGHT:
                 print_brain('Autonomous Routine [OKAY]')
             BLUE_LEFT = 2
             elif field_position == BLUE_LEFT:
