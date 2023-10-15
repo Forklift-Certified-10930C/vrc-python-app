@@ -23,18 +23,17 @@ def Main():
         print_brain('Autonomous Routine [RUNNING]')
         try:
             if field_position == 1:
-                pass
+                print_brain('Autonomous Routine [OKAY]')
             elif field_position == 2:
-                pass
+                print_brain('Autonomous Routine [OKAY]')
             elif field_position == -1:
-                pass
+                print_brain('Autonomous Routine [OKAY]')
             elif field_position == -2:
-                pass
+                print_brain('Autonomous Routine [OKAY]')
             elif field_position is None:
                 raise ValueError(f'Autonomous Routine [FAILED]: Because of {field_position} value')
             else:
                 raise ValueError('Autonomous Routine [FAILED]: Because of Unknown Error')
-            print_brain('Autonomous Routine [OKAY]')
         except Exception as e:
             print_brain(str(e))
     drivercontrol = True
