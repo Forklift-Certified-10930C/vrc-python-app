@@ -51,6 +51,6 @@ def Main():
         left_stick_y = controller.axis3.position()
         right_stick_x = controller.axis2.position()
 
-        drivetrain.drive(FORWARD, left_stick_y, PERCENT)
+        drivetrain.drive(vex.DirectionType.FWD, left_stick_y, vex.VelocityUnits.PCT)
 
 Main()
