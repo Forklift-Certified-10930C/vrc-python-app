@@ -20,22 +20,27 @@ def Main():
 
     async def Autonomous():
         print_brain('Autonomous Routine [RUNNING]')
+        print_brain('Autonomous Routine [RUNNING]')
         try:
-            if field_position == 1:
+            BLUE_RIGHT = 1
+            if field_position == BLUE_RIGHT:
                 print_brain('Autonomous Routine [OKAY]')
-            elif field_position == 2:
+            BLUE_LEFT = 2
+            if field_position == BLUE_LEFT:
                 print_brain('Autonomous Routine [OKAY]')
-            elif field_position == -1:
+            RED_RIGHT = -1
+            if field_position == RED_RIGHT:
                 print_brain('Autonomous Routine [OKAY]')
-            elif field_position == -2:
+            RED_LEFT = -2
+            if field_position == RED_LEFT:
                 print_brain('Autonomous Routine [OKAY]')
             elif field_position is None:
                 raise ValueError(f'Autonomous Routine [FAILED]: Because of {field_position} value')
             else:
                 raise ValueError('Autonomous Routine [FAILED]: Because of Unknown Error')
         except Exception as e:
-            print_brain(str(e))
-    drivercontrol = True
+            print_brain(f'Autonomous Rountine [FAILED]: Because {str(e)}')
+        drivercontrol = True
 
     Autonomous()
 
@@ -43,5 +48,5 @@ def Main():
         left_stick_y = controller.axis3.position()
         right_stick_x = controller.axis2.position()
 
-        drivetrain.drive(left_stick_y, right_stick_x)
+        drivetrain.drive(FORWARD, left_stick_y, PERCENT)
 Main()
