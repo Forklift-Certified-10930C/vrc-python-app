@@ -14,7 +14,6 @@ def print_brain(msg):
         brain.screen.print(msg)
         brain.screen.new_line()
 
-
 def Main():
     print_brain('Initialized [RUNNING]')
     print_brain('Initialized [OKAY]')
