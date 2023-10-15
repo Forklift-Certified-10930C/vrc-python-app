@@ -26,15 +26,15 @@ def Main():
             if field_position == BLUE_RIGHT:
                 print_brain('Autonomous Routine [OKAY]')
             BLUE_LEFT = 2
-            else if field_position == BLUE_LEFT:
+            elif field_position == BLUE_LEFT:
                 print_brain('Autonomous Routine [OKAY]')
             RED_RIGHT = -1
-            else if field_position == RED_RIGHT:
+            elif field_position == RED_RIGHT:
                 print_brain('Autonomous Routine [OKAY]')
             RED_LEFT = -2
-            else if field_position == RED_LEFT:
+            elif field_position == RED_LEFT:
                 print_brain('Autonomous Routine [OKAY]')
-            else if field_position is None:
+            elif field_position is None:
                 raise ValueError(f'Autonomous Routine [FAILED]: Because of {field_position} value')
             else:
                 raise ValueError('Autonomous Routine [FAILED]: Because of Unknown Error')
