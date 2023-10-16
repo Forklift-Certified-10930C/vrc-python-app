@@ -20,7 +20,7 @@ def Main():
 
 async def Autonomous():
     print_brain('Autonomous Routine [RUNNING]')
-    
+
     class Positions:
         BLUE_RIGHT = 1
         BLUE_LEFT = 2
@@ -36,8 +36,11 @@ async def Autonomous():
             print_brain('Autonomous Routine [OKAY]')
         case Positions.RED_LEFT:
             print_brain('Autonomous Routine [OKAY]')
-        case _:
+        case None:
             print_brain('Autonomous Routine [FAILED]: None Variable')
+        case _:
+            print_brain('Autonomous Routine [FAILED]: Unkown Error')
+
 
 
 try:
