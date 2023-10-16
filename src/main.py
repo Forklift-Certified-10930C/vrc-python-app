@@ -21,23 +21,15 @@ def Main():
 async def Autonomous():
     print_brain('Autonomous Routine [RUNNING]')
     
-    # match field_position:
     BLUE_RIGHT = 1
-    if field_position == BLUE_RIGHT:
-        print_brain('Autonomous Routine [OKAY]')
-        BLUE_LEFT = 2
-    elif field_position == BLUE_LEFT:
-        print_brain('Autonomous Routine [OKAY]')
-    elif field_position == RED_RIGHT:
-        print_brain('Autonomous Routine [OKAY]')
-        RED_RIGHT = -1
-    elif field_position == RED_LEFT:
-        print_brain('Autonomous Routine [OKAY]')
-        RED_LEFT = -2
-    elif field_position is None:
-        raise ValueError(f'Autonomous Routine [FAILED]: None Value')
-    else:
-        raise ValueError('Autonomous Routine [FAILED]: Unknown Error')
+    BLUE_LEFT = 2
+    RED_RIGHT = -1
+    RED_LEFT = -2
+
+    match field_position:
+        case BLUE_RIGHT:
+            print_brain('Autonomous Routine [OKAY]')
+
 
 try:
     drivercontrol = True
