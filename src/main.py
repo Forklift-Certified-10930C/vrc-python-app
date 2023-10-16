@@ -30,18 +30,22 @@ async def Autonomous():
     match field_position:
         case Positions.BLUE_RIGHT:
             print_brain('Autonomous Routine [OKAY]')
+
         case Positions.BLUE_LEFT:
             print_brain('Autonomous Routine [OKAY]')
+
         case Positions.RED_RIGHT:
+            drivetrain.drive_for(FORWARD, 1066, vex.DistanceUnits.MM)
+            drivetrain.turn(RIGHT, 90, vex.RotationUnits.DEG)
             print_brain('Autonomous Routine [OKAY]')
+
         case Positions.RED_LEFT:
             print_brain('Autonomous Routine [OKAY]')
+
         case None:
-            print_brain('Autonomous Routine [FAILED]: None Variable')
+            print_brain('Autonomous Routine [FAILED]: None Variable Value')
         case _:
-            print_brain('Autonomous Routine [FAILED]: Unkown Error')
-
-
+            print_brain('Autonomous Routine [FAILED]: Unknown Error')
 
 try:
     drivercontrol = True
@@ -54,5 +58,6 @@ try:
         drivetrain.drive(vex.DirectionType.FWD, left_stick_y, vex.VelocityUnits.PCT)
 except Exception as e:
     print_brain(f'Driver Control [FAILED]: {str(e)}')
+
 
 Main()
