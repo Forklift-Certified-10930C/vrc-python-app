@@ -5,7 +5,7 @@ brain = vex.Brain()
 controller = vex.Controller()
 leftmotor = vex.Motor(vex.Ports.PORT1, vex.GearSetting.RATIO_18_1, False)
 rightmotor = vex.Motor(vex.Ports.PORT10, vex.GearSetting.RATIO_18_1, True)
-drivetrain = vex.Drivetrain(leftmotor, rightmotor)
+drivetrain = vex.DriveTrain(leftmotor, rightmotor)
 
 drivercontrol = False
 field_position = None
@@ -18,7 +18,7 @@ def Main():
     print_brain('Initialized [RUNNING]')
     print_brain('Initialized [OKAY]')
 
-async def Autonomous():
+def Autonomous():
     print_brain('Autonomous Routine [RUNNING]')
 
     class Positions:
@@ -36,7 +36,7 @@ async def Autonomous():
 
         case Positions.RED_RIGHT:
             drivetrain.drive_for(FORWARD, 1066, vex.DistanceUnits.MM)
-            drivetrain.turn(RIGHT, 90, vex.RotationUnits.DEG)
+            drivetrain.turn(RIGHT, 100, vex.VelocityUnits.PERCENT)
             print_brain('Autonomous Routine [OKAY]')
 
         case Positions.RED_LEFT:
@@ -47,7 +47,6 @@ async def Autonomous():
         case _:
             print_brain('Autonomous Routine [FAILED]: Unknown Error')
 
-try:
     drivercontrol = True
     Autonomous()
 
@@ -55,9 +54,7 @@ try:
         left_stick_y = controller.axis3.position()
         right_stick_x = controller.axis2.position()
 
-        drivetrain.drive(vex.DirectionType.FWD, left_stick_y, vex.VelocityUnits.PCT)
-except Exception as e:
-    print_brain(f'Driver Control [FAILED]: {str(e)}')
-
+        drivetrain.drive(vex.DirectionType.FORWARD, left_stick_y, vex.VelocityUnits.PERCENT)
+        drivetrain.turn(vex.TurnType.RIGHT, right_stick_x, vex.VelocityUnits.PERCENT)
 
 Main()
