@@ -20,23 +20,23 @@ def Main():
 
 async def Autonomous():
     print_brain('Autonomous Routine [RUNNING]')
-    
-    BLUE_RIGHT = 1
-    BLUE_LEFT = 2
-    RED_RIGHT = -1
-    RED_LEFT = -2
+    class Positions:
+        BLUE_RIGHT = 1
+        BLUE_LEFT = 2
+        RED_RIGHT = -1
+        RED_LEFT = -2
 
     match field_position:
-        case BLUE_RIGHT:
+        case Positions.BLUE_RIGHT:
             print_brain('Autonomous Routine [OKAY]')
-        case BLUE_LEFT:
+        case Positions.BLUE_LEFT:
             print_brain('Autonomous Routine [OKAY]')
-        case RED_RIGHT:
+        case Positions.RED_RIGHT:
             print_brain('Autonomous Routine [OKAY]')
-        case RED_LEFT:
+        case Positions.RED_LEFT:
             print_brain('Autonomous Routine [OKAY]')
-        case _ :
-            print_brain('Autonomous Routine [FAILED]')
+        case _:
+            print_brain('Autonomous Routine [FAILED]: None Variable')
 
 
 try:
