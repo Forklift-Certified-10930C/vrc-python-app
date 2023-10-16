@@ -29,6 +29,12 @@ async def Autonomous():
     match field_position:
         case BLUE_RIGHT:
             print_brain('Autonomous Routine [OKAY]')
+        case BLUE_LEFT:
+            print_brain('Autonomous Routine [OKAY]')
+        case RED_RIGHT:
+            print_brain('Autonomous Routine [OKAY]')
+        case RED_LEFT:
+            print_brain('Autonomous Routine [OKAY]')         
 
 
 try:
