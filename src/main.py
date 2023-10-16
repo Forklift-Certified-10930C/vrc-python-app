@@ -21,6 +21,7 @@ def Main():
 async def Autonomous():
     print_brain('Autonomous Routine [RUNNING]')
     
+    # match field_position:
     BLUE_RIGHT = 1
     if field_position == BLUE_RIGHT:
         print_brain('Autonomous Routine [OKAY]')
