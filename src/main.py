@@ -20,6 +20,7 @@ def Main():
 
 async def Autonomous():
     print_brain('Autonomous Routine [RUNNING]')
+    
     BLUE_RIGHT = 1
     if field_position == BLUE_RIGHT:
         print_brain('Autonomous Routine [OKAY]')
@@ -33,9 +34,9 @@ async def Autonomous():
         print_brain('Autonomous Routine [OKAY]')
         RED_LEFT = -2
     elif field_position is None:
-        raise ValueError(f'Autonomous Routine [FAILED]: Because of {field_position} value')
+        raise ValueError(f'Autonomous Routine [FAILED]: None Value')
     else:
-        raise ValueError('Autonomous Routine [FAILED]: Because of Unknown Error')
+        raise ValueError('Autonomous Routine [FAILED]: Unknown Error')
 
 try:
     drivercontrol = True
@@ -47,6 +48,6 @@ try:
 
         drivetrain.drive(vex.DirectionType.FWD, left_stick_y, vex.VelocityUnits.PCT)
 except Exception as e:
-    print_brain(f'Error: {str(e)}')
+    print_brain(f'Driver Control [FAILED]: {str(e)}')
 
 Main()
