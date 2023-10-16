@@ -34,7 +34,9 @@ async def Autonomous():
         case RED_RIGHT:
             print_brain('Autonomous Routine [OKAY]')
         case RED_LEFT:
-            print_brain('Autonomous Routine [OKAY]')         
+            print_brain('Autonomous Routine [OKAY]')
+        case _ :
+            print_brain('Autonomous Routine [FAILED]')
 
 
 try:
