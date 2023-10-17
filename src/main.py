@@ -1,11 +1,10 @@
 import vex
-from vex import *
 
-brain = Brain()
-controller = Controller()
-leftmotor = Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
-rightmotor = Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
-drivetrain = DriveTrain(leftmotor, rightmotor)
+brain = vex.Brain()
+controller = vex.Controller()
+leftmotor = vex.Motor(vex.Ports.PORT1, vex.GearSetting.RATIO18_1, False)
+rightmotor = vex.Motor(vex.Ports.PORT10, vex.GearSetting.RATIO18_1, True)
+drivetrain = vex.Drivetrain(leftmotor, rightmotor, vex.DistanceUnits.MM)
 
 drivercontrol = False
 field_position = None
@@ -27,6 +26,7 @@ def Autonomous():
         RED_RIGHT = -1
         RED_LEFT = -2
 
+    global field_position
     match field_position:
         case Positions.BLUE_RIGHT:
             print_brain('Autonomous Routine [OKAY]')
@@ -35,8 +35,8 @@ def Autonomous():
             print_brain('Autonomous Routine [OKAY]')
 
         case Positions.RED_RIGHT:
-            drivetrain.drive_for(FORWARD, 1066, DistanceUnits.MM)
-            drivetrain.turn(RIGHT, 100, VelocityUnits.PERCENT)
+            drivetrain.drive(vex.DirectionType.FORWARD, 1066, vex.DistanceUnits.MM)
+            drivetrain.turn(vex.TurnType.RIGHT, 100, vex.VelocityUnits.PERCENT)
             print_brain('Autonomous Routine [OKAY]')
 
         case Positions.RED_LEFT:
@@ -54,7 +54,7 @@ def Autonomous():
         left_stick_y = controller.axis3.position()
         right_stick_x = controller.axis2.position()
 
-        drivetrain.drive(DirectionType.FORWARD, left_stick_y, VelocityUnits.PERCENT)
-        drivetrain.turn(TurnType.RIGHT, right_stick_x, VelocityUnits.PERCENT)
+        drivetrain.drive(vex.DirectionType.FORWARD, left_stick_y, vex.VelocityUnits.PERCENT)
+        drivetrain.turn(vex.TurnType.RIGHT, right_stick_x, vex.VelocityUnits.PERCENT)
 
 Main()
