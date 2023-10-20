@@ -57,8 +57,10 @@ def Autonomous():
 
         if left_stick_y > 0 or left_stick_y < 0:
             drivetrain.drive(vex.DirectionType.FORWARD, left_stick_y, vex.VelocityUnits.PERCENT)
-        elif right_stick_x > 0 or right_stick_x < 0:
+        elif right_stick_x > 0:
             drivetrain.turn(vex.TurnType.RIGHT, right_stick_x, vex.VelocityUnits.PERCENT)
+        elif right_stick_x < 0:
+            drivetrain.turn(vex.TurnType.LEFT, right_stick_x, vex.VelocityUnits.PERCENT)
         else:
             drivetrain.stop()
 
