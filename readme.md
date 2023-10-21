@@ -23,8 +23,8 @@ Here's a brief overview of the controls for our robot:
 - D-PAD Down []
 - D-PAD Left []
 - D-PAD Right []
-- Axis 1 []
-- Axis 2 [LEFT/RIGHT]
+- Axis 1 [LEFT/RIGHT]
+- Axis 2 []
 - Axis 3 [FORWARD/BACKWARD]
 - Axis 4 []
 - RB []
@@ -47,17 +47,16 @@ In the `main.py` file, you will find the code that controls the robot's movement
 ## Autonomous Routine
 The autonomous routine for our robot is field position dependant. The following list shows the differnt stratagys for the 15 second autonomous period.  
 
-### Blue Alliance
+### Routines
 
-- **Blue Side**: Lauch pre-loaded game element into red net
+- **Blue Right**:
 
-- **Red Side**:
+- **Blue Left**:
 
-### Red Alliance
+- **Red Right**:
 
-- **Blue Side**:
+- **Red Left**:
 
-- **Red Side**: Lauch pre-loaded game element into blue net
 
 ## License
 Copyright <2023> <vx-clutch>
