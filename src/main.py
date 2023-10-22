@@ -51,8 +51,12 @@ def Main():
     Autonomous()
 
     print_brain('Driver Control [RUNNING]')
-    if drivercontrol != True:
+    if drivercontrol == False:
+        print_brain(f'Driver Control [FAILED]: Driver Control is set to {drivercontrol}')
+    elif drivercontrol == True:
         print_brain('Driver Control [OKAY]')
+    else:
+        print_brain(f'Driver Control [FAILED]: Driver Control is set to {drivercontrol}')
     while drivercontrol:
         left_stick_y = controller.axis3.position()
         right_stick_x = controller.axis1.position()
