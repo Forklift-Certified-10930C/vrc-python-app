@@ -63,6 +63,13 @@ Our robot, labeled 10930C, is equipped with the following components:
 - Port18 []
 - Port19 []
 - Port20 []
+- PortA []
+- PortB []
+- PortC []
+- PortD []
+- PortE []
+- PortF []
+- PortG []
 
 ## Application Details
 In the `main.py` file, you will find the code that controls the robot's movements, runs autonomous routines, and manages other important functions for the VEX Over Under competition. Use `git clone https://github.com/vx-clutch/vrc-python-app.git` to clone the repository with git
