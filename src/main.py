@@ -5,7 +5,7 @@ brain = vex.Brain()
 controller = vex.Controller()
 left_drive_motor = vex.Motor(vex.Ports.PORT1, vex.GearSetting.RATIO_18_1, False)
 right_drive_motor = vex.Motor(vex.Ports.PORT10, vex.GearSetting.RATIO_18_1, True)
-arm_swing_motor = None
+arm_swing_motor = vex.Motor(vex.Ports.PORT11, vex.GearSetting.RATIO_18_1, False)
 drivetrain = DriveTrain(left_drive_motor, right_drive_motor)
 
 driver_control = False
