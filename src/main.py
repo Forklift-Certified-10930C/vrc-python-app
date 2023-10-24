@@ -16,7 +16,8 @@ def print_brain(msg):
     brain.screen.new_line()
 
 def launchElement():
-    pass
+    arm_swing_motor.spin_for(vex.DirectionType.FORWARD, 90, vex.RotationUnits.DEG)
+    arm_swing_motor.spin_for(vex.DirectionType.REVERSE, 90, vex.RotationUnits.DEG)
 
 def handelElementUp():
     pass
@@ -45,7 +46,7 @@ def Main():
 
         elif Positions.RED_RIGHT == field_position:
             drivetrain.drive_for(vex.DirectionType.FORWARD, 1066, vex.DistanceUnits.MM)
-            drivetrain.turn_for(vex.TurnType.RIGHT, 100, vex.RotationUnits.DEG)
+            drivetrain.turn_for(vex.TurnType.RIGHT, 90, vex.RotationUnits.DEG)
             print_brain('Autonomous Routine [OKAY]')
 
         elif Positions.RED_LEFT == field_position:
@@ -61,7 +62,7 @@ def Main():
     Autonomous()
 
     print_brain('Driver Control [RUNNING]')
-    if bool(driver_control):
+    if driver_control == False:
         print_brain(f'Driver Control [FAILED]: Error {driver_control} Variable Value')
     elif driver_control:
         print_brain('Driver Control [OKAY]')
