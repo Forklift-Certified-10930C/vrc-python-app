@@ -41,6 +41,29 @@ Our robot, labeled 10930C, is equipped with the following components:
 
 - **Fly-Wheel Intake System**: The fly-wheel intake system employs a set of arms with spinning wheels. It is responsible for efficiently handling and collecting game elements. This system also uses one motor.
 
+### Ports List
+
+- Port1 [left_drive_motor]
+- Port2 []
+- Port3 []
+- Port4 []
+- Port5 []
+- Port6 [radio]
+- Port7 []
+- Port8 []
+- Port9 []
+- Port10 [right_drive_motor]
+- Port11 [arm_swing_motor]
+- Port12 []
+- Port13 []
+- Port14 []
+- Port15 []
+- Port16 []
+- Port17 []
+- Port18 []
+- Port19 []
+- Port20 []
+
 ## Application Details
 In the `main.py` file, you will find the code that controls the robot's movements, runs autonomous routines, and manages other important functions for the VEX Over Under competition. Use `git clone https://github.com/vx-clutch/vrc-python-app.git` to clone the repository with git
 
