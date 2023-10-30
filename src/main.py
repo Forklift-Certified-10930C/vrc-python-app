@@ -16,8 +16,9 @@ def print_brain(msg):
     brain.screen.new_line()
 
 def launchElement():
-    arm_swing_motor.spin_for(vex.DirectionType.FORWARD, 90, vex.RotationUnits.DEG)
-    arm_swing_motor.spin_for(vex.DirectionType.REVERSE, 90, vex.RotationUnits.DEG)
+    controller.rumble('-')
+    arm_swing_motor.spin_for(vex.DirectionType.FORWARD, 5, vex.RotationUnits.DEG)
+    arm_swing_motor.spin_for(vex.DirectionType.REVERSE, 5, vex.RotationUnits.DEG)
 
 def handelElementUp():
     pass
@@ -86,12 +87,6 @@ def Main():
         else:
             left_drive_motor.stop()
             right_drive_motor.stop()
-
-# while field_position == None:
-#     up = controller.buttonUp.pressing()
-#     down = controller.buttonDown.pressing()
-#     left = controller.buttonLeft.pressing()
-#     right = controller.buttonRight.pressing()
-
+        vex.wait(15)
 
 Main()
