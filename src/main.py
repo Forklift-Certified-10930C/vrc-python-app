@@ -40,6 +40,9 @@ def Main():
             RED_LEFT = -2
 
         if Positions.BLUE_RIGHT == field_position:
+            drivetrain.drive_for(vex.DirectionType.FORWARD, 1066, vex.DistanceUnits.MM)
+            drivetrain.turn_for(vex.TurnType.LEFT, 90, vex.RotationUnits.DEG)
+            launchElement()
             print_brain('Autonomous Routine [OKAY]: 1')
 
         elif Positions.BLUE_LEFT == field_position:
@@ -49,10 +52,13 @@ def Main():
 
         elif Positions.RED_RIGHT == field_position:
             drivetrain.drive_for(vex.DirectionType.FORWARD, 1066, vex.DistanceUnits.MM)
-            drivetrain.turn_for(vex.TurnType.RIGHT, 90, vex.RotationUnits.DEG)
+            drivetrain.turn_for(vex.TurnType.LEFT, 90, vex.RotationUnits.DEG)
             print_brain('Autonomous Routine [OKAY]: -1')
 
         elif Positions.RED_LEFT == field_position:
+            drivetrain.drive_for(vex.DirectionType.FORWARD, 1066, vex.DistanceUnits.MM)
+            drivetrain.turn_for(vex.TurnType.LEFT, 90, vex.RotationUnits.DEG)
+            launchElement()
             print_brain('Autonomous Routine [OKAY]: -2')
 
         elif None == field_position:
