@@ -79,20 +79,32 @@ def Main():
     while driver_control:
         left_stick_y = controller.axis3.position()
         right_stick_x = controller.axis1.position()
-        up = controller.buttonUp.pressing()
-        down = controller.buttonDown.pressing()
-        left = controller.buttonLeft.pressing()
-        right = controller.buttonRight.pressing()
+        a = controller.buttonA.pressing()
+        b = controller.buttonB.pressing()
+        x = controller.buttonX.pressing()
+        y = controller.buttonY.pressing()
 
         if left_stick_y != 0:
             left_drive_motor.spin(vex.DirectionType.FORWARD, left_stick_y, vex.VelocityUnits.PERCENT)
             right_drive_motor.spin(vex.DirectionType.FORWARD, left_stick_y, vex.VelocityUnits.PERCENT)
-        elif right_stick_x != 0:
+        else:
+            left_drive_motor.stop()
+            right_drive_motor.stop()
+
+        if right_stick_x != 0:
             left_drive_motor.spin(vex.DirectionType.FORWARD, right_stick_x, vex.VelocityUnits.PERCENT)
             right_drive_motor.spin(vex.DirectionType.REVERSE, right_stick_x, vex.VelocityUnits.PERCENT)
         else:
             left_drive_motor.stop()
             right_drive_motor.stop()
+        
+        if a:
+            launchElement()
+        else:
+            left_drive_motor.stop()
+            right_drive_motor.stop()
+
+
         vex.wait(15)
 
 Main()
