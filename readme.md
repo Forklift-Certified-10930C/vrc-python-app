@@ -16,7 +16,7 @@ Welcome to our VRC Python Project! This document serves as a comprehensive guide
 Here's a brief overview of the controls for our robot:
 
 - X []
-- A []
+- A [launchGameElemnt]
 - B []
 - Y []
 - D-PAD Up []
