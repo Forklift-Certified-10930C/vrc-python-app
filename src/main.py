@@ -97,20 +97,14 @@ def Main():
         else:
             left_drive_motor.stop()
             right_drive_motor.stop()
-
         if right_stick_x != 0:
             left_drive_motor.spin(vex.DirectionType.FORWARD, right_stick_x, vex.VelocityUnits.PERCENT)
             right_drive_motor.spin(vex.DirectionType.REVERSE, right_stick_x, vex.VelocityUnits.PERCENT)
         else:
             left_drive_motor.stop()
             right_drive_motor.stop()
-        
         if a:
             launchElement()
-        else:
-            left_drive_motor.stop()
-            right_drive_motor.stop()
-
 
         vex.wait(15)
 
