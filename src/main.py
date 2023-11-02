@@ -11,7 +11,7 @@ drivetrain = DriveTrain(left_drive_motor, right_drive_motor)
 driver_control = False
 field_position = None
 
-def print_brain(process, msg='', typeIn):
+def print_brain(typeIn, process, msg='',):
     type = ''
     if typeIn.lower() == run:
         type = '[RUNNING]'
@@ -34,11 +34,11 @@ def handelElementDown():
     pass
 
 def Main():
-    print_brain('Initialized',run,)
-    print_brain('Initialized [OKAY]')
+    print_brain('run', 'Initialized')
+    print_brain('OKAY', 'Initialized')
 
     def Autonomous():
-        print_brain('Autonomous Routine [RUNNING]')
+        print_brain('RUNNING', 'Autonomous Routine')
 
         class Positions:
             BLUE_RIGHT = 1
@@ -50,7 +50,7 @@ def Main():
             drivetrain.drive_for(vex.DirectionType.FORWARD, 1066, vex.DistanceUnits.MM)
             drivetrain.turn_for(vex.TurnType.LEFT, 90, vex.RotationUnits.DEG)
             launchElement()
-            print_brain('Autonomous Routine [OKAY]: 1')
+            print_brain('okay', 'Autonomous Routine', '1')
 
         elif Positions.BLUE_LEFT == field_position:
             drivetrain.drive_for(vex.DirectionType.FORWARD, 1066, vex.DistanceUnits.MM)
