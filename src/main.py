@@ -25,6 +25,7 @@ def print_brain(typeIn, process, msg='',):
 def launchElement():
     controller.rumble('.')
     arm_swing_motor.spin_for(vex.DirectionType.FORWARD, 5, vex.RotationUnits.DEG)
+    vex.wait(1)
     arm_swing_motor.spin_for(vex.DirectionType.REVERSE, 5, vex.RotationUnits.DEG)
 
 def handelElementUp():
