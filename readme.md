@@ -79,13 +79,13 @@ The autonomous routine for our robot is field position-dependent. The following 
 
 ### Routines
 
-- **Blue Right**:
+- **Blue Right**: Launch Pre-Load into opposing field.
 
-- **Blue Left**:
+- **Blue Left**: Push Pre-Load in to opposing net.
 
-- **Red Right**:
+- **Red Right**: Push Pre-Load in to opposing net.
 
-- **Red Left**:
+- **Red Left**: Launch Pre-Load into opposing field.
 
 
 ## License
