@@ -106,6 +106,12 @@ def Main():
             right_drive_motor.stop()
         if a:
             launchElement()
+        if b:
+            pass
+        if x:
+            pass
+        if y:
+            pass
 
         vex.wait(15)
 
