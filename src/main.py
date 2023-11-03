@@ -23,7 +23,7 @@ def print_brain(typeIn, process, msg='',):
     brain.screen.new_line()
 
 def launchElement():
-    controller.rumble('-')
+    controller.rumble('.')
     arm_swing_motor.spin_for(vex.DirectionType.FORWARD, 5, vex.RotationUnits.DEG)
     arm_swing_motor.spin_for(vex.DirectionType.REVERSE, 5, vex.RotationUnits.DEG)
 
