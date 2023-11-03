@@ -34,7 +34,7 @@ def handelElementUp():
 def handelElementDown():
     pass
 
-def Main():
+def int():
     print_brain('run', 'Initialized')
     print_brain('OKAY', 'Initialized')
 
@@ -115,4 +115,4 @@ def Main():
 
         vex.wait(15)
 
-Main()
+int()
