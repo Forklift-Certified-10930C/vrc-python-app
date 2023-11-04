@@ -11,15 +11,18 @@ drivetrain = DriveTrain(left_drive_motor, right_drive_motor)
 driver_control = False
 field_position = None
 
-def print_brain(typeIn, process, msg='',):
-    type = ''
-    if typeIn.lower() == run:
-        type = '[RUNNING]'
-    if typeIn.lower() == fail:
-        type = '[FAILED]'
-    if typeIN.lower() == okay:
-        type = '[OKAY]'
-    brain.screen.print(STR(process.lower()).capitalize() + f' {type}: ' + msg.upper())
+def print_brain(typeIn: str, process: str, msg='',):
+    if not all(isinstance(i, str) for i in [typeIn, process, msg]):
+        raise ValueError("ERR_NO_STR")
+
+    type_str = ''
+    if typeIn.lower() == 'run':
+        type_str = '[RUNNING]'
+    if typeIn.lower() == 'fail':
+        type_str = '[FAILED]'
+    if typeIn.lower() == 'okay':
+        type_str = '[OKAY]'
+    brain.screen.print(process.lower().capitalize() + type_str + ': ' + msg.upper())
     brain.screen.new_line()
 
 def launchElement():
@@ -34,7 +37,7 @@ def handelElementUp():
 def handelElementDown():
     pass
 
-def int():
+def main():
     print_brain('run', 'Initialized')
     print_brain('OKAY', 'Initialized')
 
@@ -115,4 +118,4 @@ def int():
 
         vex.wait(15)
 
-int()
+main()
