@@ -16,7 +16,7 @@ Welcome to our VRC Python Project! This document serves as a comprehensive guide
 Here's a brief overview of the controls for our robot:
 
 - X []
-- A [launchGameElemnt]
+- A [LAUNCH]
 - B []
 - Y []
 - D-PAD Up []
@@ -53,7 +53,7 @@ Our robot, labeled 10930C, is equipped with the following components:
 - Port8 []
 - Port9 []
 - Port10 [right_drive_motor]
-- Port11 [arm_swing_motor]
+- Port11 []
 - Port12 []
 - Port13 []
 - Port14 []
