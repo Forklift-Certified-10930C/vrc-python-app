@@ -5,37 +5,35 @@ brain = vex.Brain()
 controller = vex.Controller()
 left_drive_motor = vex.Motor(vex.Ports.PORT1, vex.GearSetting.RATIO_18_1, False)
 right_drive_motor = vex.Motor(vex.Ports.PORT10, vex.GearSetting.RATIO_18_1, True)
-arm_swing_motor = vex.Motor(vex.Ports.PORT11, vex.GearSetting.RATIO_18_1, False)
 drivetrain = DriveTrain(left_drive_motor, right_drive_motor)
 
 driver_control = False
+HoldingItem = False
 field_position = None
 
-def print_brain(typeIn: str, process: str, msg='',):
-    if not all(isinstance(i, str) for i in [typeIn, process, msg]):
-        raise ValueError("ERR_NO_STR")
+def print_brain(typeIn: str, process: str, ErrorMessage=': ',):
 
-    type_str = ''
+    LogType = ''
     if typeIn.lower() == 'run':
-        type_str = '[RUNNING]'
+        LogType = '[RUNNING]'
     if typeIn.lower() == 'fail':
-        type_str = '[FAILED]'
+        LogType = '[FAILED]'
     if typeIn.lower() == 'okay':
-        type_str = '[OKAY]'
-    brain.screen.print(process.lower().capitalize() + type_str + ': ' + msg.upper())
+        LogType = '[OKAY]'
+
+    printItem = (process.lower()).capitalize() + LogType + ErrorMessage.upper()
+
+    brain.screen.print(printItem)
     brain.screen.new_line()
 
 def launchElement():
     controller.rumble('.')
-    arm_swing_motor.spin_for(vex.DirectionType.FORWARD, 5, vex.RotationUnits.DEG)
-    vex.wait(1)
-    arm_swing_motor.spin_for(vex.DirectionType.REVERSE, 5, vex.RotationUnits.DEG)
 
 def handelElementUp():
-    pass
+    HoldingItem = True
 
 def handelElementDown():
-    pass
+    HoldingItem = False
 
 def main():
     print_brain('run', 'Initialized')
@@ -107,15 +105,18 @@ def main():
         else:
             left_drive_motor.stop()
             right_drive_motor.stop()
+
         if a:
             launchElement()
         if b:
-            pass
+            if HoldingItem:
+                handelElementDown()
+            else:
+                handelElementUp()
         if x:
             pass
         if y:
             pass
 
         vex.wait(15)
-
 main()
