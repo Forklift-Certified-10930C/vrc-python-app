@@ -87,6 +87,9 @@ The autonomous routine for our robot is field position-dependent. The following 
 
 - **Red Left**: Launch Pre-Load into opposing field.
 
+## Contributors
+
+- [vx_clutch](https://github.com/vx-clutch)
 
 ## License
 Copyright <2023> <vx-clutch>
