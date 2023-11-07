@@ -18,7 +18,7 @@ def print_brain(typeIn: str, process: str, ErrorMessage=': ',):
         LogType = '[RUNNING]'
     if typeIn.lower() == 'fail':
         LogType = '[FAILED]'
-    if typeIn.lower() == 'okay':
+    if typeIn.lower() == 'okay' or "ok":
         LogType = '[OKAY]'
 
     printItem = (process.lower()).capitalize() + LogType + ErrorMessage.upper()
