@@ -118,17 +118,35 @@ left_drive_motor = Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
 right_drive_motor = Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
 drivetrain = DriveTrain(left_drive_motor, right_drive_motor)
 
-starting_position = []
+starting_positions = {
+   "Blue": {
+       "Right": 1,
+       "Left": 2
+   },
+   "Red": {
+       "Right": 1,
+       "Left": 2
+   }
+}
+selected_position = None
 haveObject = True
 runTime = time.time()
 
 def printToBrain(err):
-    message = '[ ' + str(runTime) + ' ]'  + STR(err)
-
-    brain.screen.print(message)
-    brain.screen.new_line()
+   message = '[ ' + str(runTime) + ' ]' + str(err)
+   brain.screen.print(message)
+   brain.screen.new_line()
 
 def autonomous():
-    return 0
+   if starting_positions['Blue']['Right'] == selected_position:
+       return 0
+   if starting_positions['Blue']['Left'] == selected_position:
+       return 0
+   if starting_positions['Red']['Right'] == selected_position:
+       return 0
+   if starting_positions['Red']['Left'] == selected_position:
+       return 0
+    else:
+        return 1
 
 printToBrain(autonomous())
