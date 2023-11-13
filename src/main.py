@@ -122,13 +122,13 @@ starting_position = []
 haveObject = True
 runTime = time.time()
 
-def printToBrain(err,extra=''):
-    extra_data = extra
-    if extra != '':
-        extra_data = ': ' + extra
-
-
-    message = '[ ' + str(runTime) + ' ]'  + '"' + STR(extra_data) + '"' + STR(err)
+def printToBrain(err):
+    message = '[ ' + str(runTime) + ' ]'  + STR(err)
 
     brain.screen.print(message)
     brain.screen.new_line()
+
+def autonomous():
+    return 0
+
+printToBrain(autonomous())
