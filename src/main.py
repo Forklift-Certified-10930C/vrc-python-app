@@ -130,7 +130,7 @@ def printToBrain(err,extra=''):
         extra_data = ': ' + extra
 
 
-    message = '[' + str(runTime) + ']' + '"' + err + '"' 
+    message = '[' + str(runTime) + ']' + '"' + err + '"' + extra_data
 
     brain.screen.print(message)
     brain.screen.new_line()
