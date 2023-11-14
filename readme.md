@@ -74,6 +74,12 @@ Our robot, labeled 10930C, is equipped with the following components:
 ## Application Details
 In the `main.py` file, you will find the code that controls the robot's movements, runs autonomous routines, and manages other important functions for the VEX Over Under competition. Use `git clone https://github.com/vx-clutch/vrc-python-app.git` to clone the repository with git
 
+#### How to Read the Console
+
+- -1; No Errors
+- 0; Unknown Error
+- 1; None Value
+
 ## Autonomous Routine
 The autonomous routine for our robot is field position-dependent. The following list shows the different strategies for the 15-second autonomous period.  
 
