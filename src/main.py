@@ -125,8 +125,8 @@ starting_positions = {
        "Left": 2
    },
    "Red": {
-       "Right": 1,
-       "Left": 2
+       "Right": 3,
+       "Left": 4
    }
 }
 selected_position = None
