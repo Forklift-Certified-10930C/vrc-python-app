@@ -42,7 +42,6 @@ def autonomous():
         return -1
 
 def main():
-    return 0
+    pass
 
 printToBrain(autonomous())
-printToBrain(main())
