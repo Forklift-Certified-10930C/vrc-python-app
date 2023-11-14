@@ -78,20 +78,20 @@ In the `main.py` file, you will find the code that controls the robot's movement
 
 - 0: No Errors
 - -1: Unknown Error
-- 1: None Value
+- 1: Unexpected Value
 
 ## Autonomous Routine
 The autonomous routine for our robot is field position-dependent. The following list shows the different strategies for the 15-second autonomous period.  
 
 ### Routines
 
-- **Blue Right**: Launch Pre-Load into opposing field.
+- **Blue Right**: Launch Pre-Load into the opposing field.
 
-- **Blue Left**: Push Pre-Load in to opposing net.
+- **Blue Left**: Push Pre-Load into the opposing net.
 
-- **Red Right**: Push Pre-Load in to opposing net.
+- **Red Right**: Push Pre-Load into the opposing net.
 
-- **Red Left**: Launch Pre-Load into opposing field.
+- **Red Left**: Launch Pre-Load into the opposing field.
 
 ## Contributors
 
