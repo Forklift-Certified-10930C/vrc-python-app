@@ -1,4 +1,5 @@
 if False:
+    pass
     # def print_brain(typeIn: str, process: str, ErrorMessage=': ',):
 
     #     LogType = ''
@@ -109,7 +110,7 @@ if False:
     #         vex.wait(15)
     # main()
 
-import * from vex
+from vex import *
 import time
 
 brain = Brain()
@@ -146,7 +147,7 @@ def autonomous():
        return 0
    if starting_positions['Red']['Left'] == selected_position:
        return 0
-    else:
+   else:
         return 1
 
 printToBrain(autonomous())
