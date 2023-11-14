@@ -134,7 +134,7 @@ haveObject = True
 runTime = time.time()
 
 def printToBrain(err):
-   message = '[ ' + str(runTime) + ' ]' + str(err)
+   message = '[ ' + str(runTime) + ' ] ' + str(err)
    brain.screen.print(message)
    brain.screen.new_line()
 
