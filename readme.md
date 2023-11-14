@@ -76,8 +76,8 @@ In the `main.py` file, you will find the code that controls the robot's movement
 
 #### How to Read the Console
 
-- -1; No Errors
-- 0; Unknown Error
+- 0; No Errors
+- -1; Unknown Error
 - 1; None Value
 
 ## Autonomous Routine

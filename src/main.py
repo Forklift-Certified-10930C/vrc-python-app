@@ -141,13 +141,15 @@ def printToBrain(err):
 def autonomous():
    if starting_positions['Blue']['Right'] == selected_position:
        return 0
-   if starting_positions['Blue']['Left'] == selected_position:
+   elif starting_positions['Blue']['Left'] == selected_position:
        return 0
-   if starting_positions['Red']['Right'] == selected_position:
+   elif starting_positions['Red']['Right'] == selected_position:
        return 0
-   if starting_positions['Red']['Left'] == selected_position:
+   elif starting_positions['Red']['Left'] == selected_position:
        return 0
+   elif selected_position == None:
+       return 1
    else:
-        return 1
+        return -1
 
 printToBrain(autonomous())
