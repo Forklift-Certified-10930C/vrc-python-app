@@ -78,7 +78,7 @@ In the `main.py` file, you will find the code that controls the robot's movement
 
 - 0: No Errors
 - -1: Unknown Error
-- 1: None Value
+- 1: Unexpected Value
 
 ## Autonomous Routine
 The autonomous routine for our robot is field position-dependent. The following list shows the different strategies for the 15-second autonomous period.  
