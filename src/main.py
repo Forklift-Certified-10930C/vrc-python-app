@@ -23,8 +23,7 @@ haveObject=True
 runTime=time.time()
 
 def printToBrain(err):
-   message='[ ' + str(runTime) + ' ] ' + str(err)
-   brain.screen.print(message)
+   brain.screen.print('[ '+str(runTime) + ' ] '+str(err))
    brain.screen.new_line()
 
 def autonomous():
