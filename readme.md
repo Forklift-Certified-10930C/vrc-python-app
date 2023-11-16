@@ -83,16 +83,6 @@ In the `main.py` file, you will find the code that controls the robot's movement
 ## Autonomous Routine
 The autonomous routine for our robot is field position-dependent. The following list shows the different strategies for the 15-second autonomous period.  
 
-### Routines
-
-- **Blue Right**: Launch Pre-Load into the opposing field.
-
-- **Blue Left**: Push Pre-Load into the opposing net.
-
-- **Red Right**: Push Pre-Load into the opposing net.
-
-- **Red Left**: Launch Pre-Load into the opposing field.
-
 ## Contributors
 
 - [vx_clutch](https://github.com/vx-clutch)
