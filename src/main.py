@@ -2,28 +2,37 @@ from vex import *
 
 brain=Brain()
 controller=Controller()
-motorA=Motor(Ports.PORT1,GearSetting.RATIO_18_1,False)
-motorB=Motor(Ports.PORT10,GearSetting.RATIO_18_1,True)
-drivetrain=DriveTrain(motorA,motorB)
+motorL=Motor(Ports.PORT1,GearSetting.RATIO_18_1,False)
+motorR=Motor(Ports.PORT10,GearSetting.RATIO_18_1,True)
 
-selectedPosition=None
-haveObject=True
-startTime=time.time()
-deadZone=10
+motorGroupL=MotorGroup(motorL)
+motorGroupR=MotorGroup(motorR)
+
+driveTrain=DriveTrain(motorGroupL,motorGroupR)
+
+selectedPosition: bool=None
+haveObject: bool=True
+deadZone: int=10
 
 def printToBrain(err):
    brain.screen.print('[ ' + str(brain.timer.time(TimeUnits.MSEC)) + ' ] ' + str(err))
    brain.screen.new_line()
 
-def team_choosing():
+def chooseTeam():
    pass
 
 def autonomous():
    pass
 
-def driver_control():
+def driverControl():
    global selectedPosition, haveObject, selectedPosition, deadZone
+   
+   if controller.buttonA.pressing():
+      pass
+   else:
+      if motorGroupR.is_spinning == False or motorGroupL.is_spining == False:
+         driveTrain.stop()
 
-selectedPosition = team_choosing()
+selectedPosition=chooseTeam()
 
-competition = Competition(driver_control, autonomous)
+competition=Competition(driverControl, autonomous)
