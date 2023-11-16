@@ -2,28 +2,28 @@ from vex import *
 
 brain=Brain()
 controller=Controller()
-left_drive_motor=Motor(Ports.PORT1,GearSetting.RATIO_18_1,False)
-right_drive_motor=Motor(Ports.PORT10,GearSetting.RATIO_18_1,True)
-drivetrain=DriveTrain(left_drive_motor,right_drive_motor)
+motorA=Motor(Ports.PORT1,GearSetting.RATIO_18_1,False)
+motorB=Motor(Ports.PORT10,GearSetting.RATIO_18_1,True)
+drivetrain=DriveTrain(motorA,motorB)
 
-selected_position=None
+selectedPosition=None
 haveObject=True
-start_time=time.time()
+startTime=time.time()
+deadZone=10
 
 def printToBrain(err):
    brain.screen.print('[ ' + str(brain.timer.time(TimeUnits.MSEC)) + ' ] ' + str(err))
    brain.screen.new_line()
 
 def team_choosing():
-    pass
+   pass
 
 def autonomous():
    pass
 
 def driver_control():
-    global selected_position, haveObject, selected_position
-    pass
+   global selectedPosition, haveObject, selectedPosition, deadZone
 
-selected_position = team_choosing()
+selectedPosition = team_choosing()
 
 competition = Competition(driver_control, autonomous)
