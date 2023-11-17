@@ -27,11 +27,6 @@ def autonomous():
 
 def driverControl():
    global selectedPosition, hasObject, selectedPosition, deadZone, inMotion
-   
-   
-
-   
-
 
 selectedPosition=team_choosing()
 
