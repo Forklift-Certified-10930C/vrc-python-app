@@ -8,31 +8,31 @@ motorR=Motor(Ports.PORT10,GearSetting.RATIO_18_1,True)
 motorGroupL=MotorGroup(motorL)
 motorGroupR=MotorGroup(motorR)
 
-driveTrain=DriveTrain(motorGroupL,motorGroupR)
+drivetrain=DriveTrain(motorGroupL,motorGroupR)
 
 selectedPosition: bool=None
-haveObject: bool=True
+hasObject: bool=True
 deadZone: int=10
+inMotion: bool=False
 
 def printToBrain(err):
    brain.screen.print('[ ' + str(brain.timer.time(TimeUnits.MSEC)) + ' ] ' + str(err))
    brain.screen.new_line()
 
-def chooseTeam():
+def team_choosing():
    pass
 
 def autonomous():
-   pass
+   drivetrain.set_stopping(BRAKE)
 
 def driverControl():
-   global selectedPosition, haveObject, selectedPosition, deadZone
+   global selectedPosition, hasObject, selectedPosition, deadZone, inMotion
    
-   if controller.buttonA.pressing():
-      pass
-   else:
-      if motorGroupR.is_spinning == False or motorGroupL.is_spining == False:
-         driveTrain.stop()
+   
 
-selectedPosition=chooseTeam()
+   
+
+
+selectedPosition=team_choosing()
 
 competition=Competition(driverControl, autonomous)

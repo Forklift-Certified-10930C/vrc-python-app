@@ -16,21 +16,21 @@ Welcome to our VRC Python Project! This document serves as a comprehensive guide
 Here's a brief overview of the controls for our robot:
 
 - X []
-- A [LAUNCH]
+- A [BRAKE]
 - B []
 - Y []
-- D-PAD Up []
-- D-PAD Down []
+- D-PAD Up [COAST]
+- D-PAD Down [BRAKE]
 - D-PAD Left []
 - D-PAD Right []
 - Axis 1 [LEFT/RIGHT]
 - Axis 2 []
 - Axis 3 [FORWARD/BACKWARD]
 - Axis 4 []
-- RB []
-- LB []
-- RT []
-- LT []
+- RB [CHOOSE RED OFFENCE]
+- LB [CHOOSE BLUE OFFENCE]
+- RT [CHOOSE RED DEFENCE]
+- LT [CHOOSE BLUE DEFENCE]
 
 ## Robot Details
 Our robot, labeled 10930C, is equipped with the following components:
