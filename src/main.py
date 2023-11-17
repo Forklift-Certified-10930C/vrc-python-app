@@ -28,6 +28,15 @@ def autonomous():
 def driverControl():
    global selectedPosition, hasObject, selectedPosition, deadZone, inMotion
 
+   while True:
+      leftSpeed = controller.axis3.position() + 65*(0.007*sin(controller.axis3.position()))
+      rightSpeed = controller.axis3.position() - 65*(0.007*sin(controller.axis3.position()))
+
+      if leftSpeed < 3 and rightSpeed < -3:
+         drivetrain.stop()
+         inMotion = False
+      else:
+         inMotion = True
 selectedPosition=team_choosing()
 
 competition=Competition(driverControl, autonomous)
