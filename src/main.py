@@ -1,4 +1,5 @@
 from vex import *
+import math
 
 brain=Brain()
 controller=Controller()
@@ -29,8 +30,8 @@ def driverControl():
    global selectedPosition, hasObject, selectedPosition, deadZone, inMotion
 
    while True:
-      leftSpeed = controller.axis3.position() + 65*(0.007*sin(controller.axis3.position()))
-      rightSpeed = controller.axis3.position() - 65*(0.007*sin(controller.axis3.position()))
+      leftSpeed = 65*math.sin(0.007*controller.axis4.position())
+      rightSpeed = 65*math.sin(0.007*controller.axis4.position())
 
       if leftSpeed < 3 and rightSpeed < -3:
          drivetrain.stop()
