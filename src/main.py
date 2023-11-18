@@ -57,17 +57,20 @@ def driverControl():
    global selectedPosition, hasObject, selectedPosition, deadZone, inMotion
 
    while True:
-      leftSpeed, rightSpeed, = controller.axis3.position(), controller.axis3.position()
-
-      if leftSpeed < 3 and rightSpeed < -3:
-         drivetrain.stop()
-         inMotion = False
-      else:
+      if inMotion != 0:
          inMotion = True
       if controller.buttonUp.pressing():
          drivetrain.set_stopping(COAST)
       if controller.buttonDown.pressing():
          drivetrain.set_stopping(BRAKE)
+      if controller.buttonA.pressing():
+         drivetrain.stop()
+         inMotion = False
+      if controller.axis3.position != 0:
+         drivetrain.drive(FORWARD, controller.axis3.position(), PERCENT)
+      if controller.axis1.position != 0:
+         drivetrain.turn(FORWARD, controller.axis1.position(), PERCENT)
+
    
 
 selectedPosition=team_choosing()
