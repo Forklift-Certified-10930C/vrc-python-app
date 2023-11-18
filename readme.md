@@ -27,10 +27,10 @@ Here's a brief overview of the controls for our robot:
 - Axis 2 []
 - Axis 3 [FORWARD/BACKWARD]
 - Axis 4 []
-- RB [CHOOSE RED OFFENCE]
-- LB [CHOOSE BLUE OFFENCE]
-- RT [CHOOSE RED DEFENCE]
-- LT [CHOOSE BLUE DEFENCE]
+- L1 [CHOOSE RED OFFENCE]
+- L2 [CHOOSE Red DEFENCE]
+- R1 [CHOOSE Blue DEFENCE]
+- R2 [CHOOSE BLUE OFFENCE]
 
 ## Robot Details
 Our robot, labeled 10930C, is equipped with the following components:
