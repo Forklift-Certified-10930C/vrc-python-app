@@ -52,18 +52,22 @@ def autonomous():
    if selectedPosition == 'Red Defence' or selectedPosition == 'Blue Defence':
       drivetrain.drive_for(FORWARD, 1000, MM)
       drivetrain.turn_for(RIGHT, 90, DEGREES)
-      
       return 0
 def driverControl():
    global selectedPosition, hasObject, selectedPosition, deadZone, inMotion
 
    while True:
-      leftSpeed = 65*math.sin(0.007*controller.axis4.position())
-      rightSpeed = 65*math.sin(0.007*controller.axis4.position())
+      leftSpeed, rightSpeed, = controller.axis3.position(), controller.axis3.position()
 
       if leftSpeed < 3 and rightSpeed < -3:
          drivetrain.stop()
          inMotion = False
       else:
          inMotion = True
+      if controller.buttonUp.pressing():
+         drivetrain.set_stopping(COAST)
+      if controller.buttonDown.pressing():
+         drivetrain.set_stopping(BRAKE)
+   
+
 selectedPosition=team_choosing()
