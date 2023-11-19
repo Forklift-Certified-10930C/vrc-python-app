@@ -1,37 +1,29 @@
 from vex import *
-
 brain=Brain()
 controller=Controller()
 motorL=Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
 motorR=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
-
 motorGroupL=MotorGroup(motorL)
 motorGroupR=MotorGroup(motorR)
-
 drivetrain=DriveTrain(motorGroupL, motorGroupR)
-
 selectedPosition=None
 hasObject=True
 deadZone=10
 inMotion=False
-
 def printToBrain(err, func):
     error_message = "[ {} ] Error {} at {}".format(brain.timer.time(TimeUnits.MSEC), err, func.capitalize())
     brain.screen.print(error_message)
     brain.screen.new_line()
-
 def handleObject():
     if hasObject:
         return 0, 'handleObject'
     else:
         return 0, 'handleObject'
-
 def throwObject():
     if hasObject:
         return 1
     else:
         return 0, 'throwObject'
-
 def teamChoosing():
     while selectedPosition is None:
         if controller.buttonL1.pressing():
@@ -49,7 +41,6 @@ def teamChoosing():
         wait(20)
     wait(1000)
     brain.screen.clear_screen()
-
 def autonomous():
     global selectedPosition
     drivetrain.set_stopping(BRAKE)
@@ -64,7 +55,6 @@ def autonomous():
         drivetrain.drive_for(FORWARD, 1000, MM)
         drivetrain.turn_for(RIGHT, 90, DEGREES)
         return 0, 'autonomous'
-
 def driverControl():
     global selectedPosition, hasObject, deadZone, inMotion
 
@@ -82,5 +72,4 @@ def driverControl():
             drivetrain.drive(FORWARD, controller.axis3.position(), PERCENT)
         if controller.axis1.position != 0:
             drivetrain.turn(FORWARD, controller.axis1.position(), PERCENT)
-
 selectedPosition = teamChoosing()
