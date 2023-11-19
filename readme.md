@@ -43,16 +43,16 @@ Our robot, labeled 10930C, is equipped with the following components:
 
 ### Ports List
 
-- Port1 [left_drive_motor]
+- Port1 []
 - Port2 []
 - Port3 []
 - Port4 []
 - Port5 []
-- Port6 [radio]
+- Port6 []
 - Port7 []
 - Port8 []
 - Port9 []
-- Port10 [right_drive_motor]
+- Port10 []
 - Port11 []
 - Port12 []
 - Port13 []
@@ -79,9 +79,6 @@ In the `main.py` file, you will find the code that controls the robot's movement
 - 0: No Errors
 - -1: Unknown Error
 - 1: Unexpected Value
-
-## Autonomous Routine
-The autonomous routine for our robot is field position-dependent. The following list shows the different strategies for the 15-second autonomous period.  
 
 ## Contributors
 
