@@ -57,7 +57,6 @@ def autonomous():
         return 0, 'autonomous'
 def driverControl():
     global selectedPosition, hasObject, deadZone, inMotion
-
     while True:
         if inMotion != 0:
             inMotion = True
