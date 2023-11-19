@@ -28,16 +28,16 @@ def teamChoosing():
     while selectedPosition is None:
         if controller.buttonL1.pressing():
             brain.screen.draw_image_from_file("red_offence.png", 0, 0)
-            return 0, 'teamChoosing'
+            return 0, 'teamChoosing', "red_offence"
         if controller.buttonL2.pressing():
             brain.screen.draw_image_from_file("red_defence.png", 0, 0)
-            return 0, 'teamChoosing'
+            return 0, 'teamChoosing', "red_defence"
         if controller.buttonR1.pressing():
             brain.screen.draw_image_from_file("blue_offence.png", 0, 0)
-            return 0, 'teamChoosing'
+            return 0, 'teamChoosing', "blue_offence"
         if controller.buttonR2.pressing():
             brain.screen.draw_image_from_file("blue_defence.png", 0, 0)
-            return 0, 'teamChoosing'
+            return 0, 'teamChoosing', "blue_defence"
         wait(20)
     wait(1000)
     brain.screen.clear_screen()
@@ -73,5 +73,5 @@ def driverControl():
             drivetrain.drive(FORWARD, controller.axis3.position(), PERCENT)
         if controller.axis1.position != 0:
             drivetrain.turn(FORWARD, controller.axis1.position(), PERCENT)
-selectedPosition = teamChoosing()
+result, functionName, selectedPosition=teamChoosing()
 competition = Competition(driverControl(), autonomous())
