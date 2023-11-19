@@ -54,6 +54,8 @@ def autonomous():
     if selectedPosition == 'Red Defence' or selectedPosition == 'Blue Defence':
         drivetrain.drive_for(FORWARD, 1000, MM)
         drivetrain.turn_for(RIGHT, 90, DEGREES)
+        result, functionName=throwObject()
+        printToBrain(result, functionName)
         return 0, 'autonomous'
 def driverControl():
     global selectedPosition, hasObject, deadZone, inMotion
