@@ -74,3 +74,4 @@ def driverControl():
         if controller.axis1.position != 0:
             drivetrain.turn(FORWARD, controller.axis1.position(), PERCENT)
 selectedPosition = teamChoosing()
+competition = Competition(driverControl(), autonomous())
