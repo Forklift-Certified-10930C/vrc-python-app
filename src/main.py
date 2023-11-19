@@ -11,7 +11,7 @@ hasObject=True
 deadZone=10
 inMotion=False
 def printToBrain(err, func):
-    error_message = "[ {} ] Error {} at {}".format(brain.timer.time(TimeUnits.MSEC), err, func)
+    error_message = "[ {} ] Error {}:\n at {}".format(brain.timer.time(TimeUnits.MSEC), err, func)
     brain.screen.print(error_message)
     brain.screen.new_line()
 def handleObject():
