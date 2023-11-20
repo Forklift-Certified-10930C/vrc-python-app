@@ -9,23 +9,14 @@ drivetrain=DriveTrain(motorGroupL, motorGroupR)
 selectedPosition=None
 hasObject=True
 deadZone=10
-inMotion=False
 def printToBrain(err, func):
     error_message = "[ {} ] Error {}:\n    at {}".format(brain.timer.time(TimeUnits.MSEC), err, func)
     brain.screen.print(error_message)
     brain.screen.new_line()
-def handleObject():
-    if hasObject:
-        return 0, 'handleObject'
-    else:
-        return 0, 'handleObject'
 def throwObject():
-    if hasObject:
-        return 1
-    else:
-        return 0, 'throwObject'
+    return 0, 'throwObject'
 def teamChoosing():
-    while selectedPosition is None:
+    while True:
         if controller.buttonL1.pressing():
             brain.screen.draw_image_from_file("red_offence.png", 0, 0)
             return 0, 'teamChoosing', "red_offence"
@@ -48,7 +39,7 @@ def autonomous():
         drivetrain.drive_for(FORWARD, 1800, MM)
         drivetrain.turn_for(LEFT, 90, DEGREES)
         drivetrain.drive_for(FORWARD, 500, MM)
-        result, functionName=handleObject()
+        result, functionName=handleObjectDown()
         printToBrain(result, functionName)
         return 0, 'autonomous'
     if selectedPosition == 'Red Defence' or selectedPosition == 'Blue Defence':
@@ -58,20 +49,21 @@ def autonomous():
         printToBrain(result, functionName)
         return 0, 'autonomous'
 def driverControl():
-    global selectedPosition, hasObject, deadZone, inMotion
+    global selectedPosition, hasObject, deadZone
     while True:
-        if inMotion != 0:
-            inMotion = True
         if controller.buttonUp.pressing():
             drivetrain.set_stopping(COAST)
         if controller.buttonDown.pressing():
             drivetrain.set_stopping(BRAKE)
-        if controller.buttonA.pressing():
-            drivetrain.stop()
-            inMotion = False
         if controller.axis3.position != 0:
             drivetrain.drive(FORWARD, controller.axis3.position(), PERCENT)
         if controller.axis1.position != 0:
             drivetrain.turn(FORWARD, controller.axis1.position(), PERCENT)
+        if controller.buttonB.pressing():
+            printToBrain(throwObject())
+            wait(20)
+        if drivetrain.speed:
+            pass
+        wait(20)
 result, functionName, selectedPosition=teamChoosing()
 competition = Competition(driverControl(), autonomous())
