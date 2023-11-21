@@ -55,9 +55,11 @@ def driverControl():
         if controller.buttonDown.pressing():
             drivetrain.set_stopping(BRAKE)
         if controller.axis3.position != 0:
-            drivetrain.drive(FORWARD, controller.axis3.position(), PERCENT)
+            motorGroupL.spin(FORWARD, controller.axis3.position(), PERCENT)
+            motorGroupR.spin(FORWARD, controller.axis3.position(), PERCENT)
         if controller.axis1.position != 0:
-            drivetrain.turn(FORWARD, controller.axis1.position(), PERCENT)
+            motorGroupL.spin(FORWARD, controller.axis1.position(), PERCENT)
+            motorGroupR.spin(FORWARD, -1*(controller.axis1.position()), PERCENT)
         if controller.buttonB.pressing():
             printToBrain(throwObject())
             wait(20)
@@ -65,4 +67,4 @@ def driverControl():
             pass
         wait(20)
 result, functionName, selectedPosition=teamChoosing()
-competition = Competition(driverControl(), autonomous())
+competition=Competition(driverControl(), autonomous())
