@@ -10,10 +10,12 @@ selectedPosition=None
 hasObject=True
 deadZone=10
 def printToBrain(err, func):
-    brain.screen.print("[ {} ] Error {}:\n    at <{}>".format(brain.timer.time(TimeUnits.MSEC), err, func))
+    brain.screen.print("[ {} ] Error {}: at <{}>".format(brain.timer.time(TimeUnits.MSEC), err, func))
     brain.screen.new_line()
 def throwObject():
     return 0, 'throwObject'
+def handleObjectDown():
+    return 0, 'handleObjectDown'
 def teamChoosing():
     while True:
         if controller.buttonL1.pressing():
@@ -67,10 +69,9 @@ def driverControl():
             motorGroupL.spin(FORWARD, controller.axis1.position(), PERCENT)
             motorGroupR.spin(FORWARD, -1*(controller.axis1.position()), PERCENT)
         if controller.buttonB.pressing():
-            printToBrain(throwObject())
+            result, functionName=throwObject()
+            printToBrain(result, functionName)
             wait(20)
-        if drivetrain.speed:
-            pass
         wait(20)
+selectedPosition=teamChoosing()
 result, functionName, selectedPosition=teamChoosing()
-competition=Competition(driverControl(), autonomous())
