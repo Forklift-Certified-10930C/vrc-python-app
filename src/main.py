@@ -73,5 +73,7 @@ def driverControl():
             printToBrain(result, functionName)
             wait(20)
         wait(20)
-selectedPosition=teamChoosing()
+result, functionName, position=teamChoosing()
+printToBrain(result, functionName)
+selectedPosition=position
 result, functionName, selectedPosition=teamChoosing()
