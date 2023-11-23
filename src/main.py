@@ -9,6 +9,7 @@ drivetrain=DriveTrain(motorGroupL, motorGroupR)
 selectedPosition=None
 hasObject=True
 deadZone=10
+inMotion=False
 def printToBrain(err, func):
     brain.screen.print("[ {} ] Error {}: at <{}>".format(brain.timer.time(TimeUnits.MSEC), err, func))
     brain.screen.new_line()
@@ -62,16 +63,22 @@ def driverControl():
             drivetrain.set_stopping(COAST)
         if controller.buttonDown.pressing():
             drivetrain.set_stopping(BRAKE)
-        if controller.axis3.position != 0:
+        if controller.axis3.position() > deadZone:
             motorGroupL.spin(FORWARD, controller.axis3.position(), PERCENT)
             motorGroupR.spin(FORWARD, controller.axis3.position(), PERCENT)
-        if controller.axis1.position != 0:
+            inMotion=True
+        if controller.axis1.position > deadZone:
             motorGroupL.spin(FORWARD, controller.axis1.position(), PERCENT)
             motorGroupR.spin(FORWARD, -1*(controller.axis1.position()), PERCENT)
+            inMotion=True
         if controller.buttonB.pressing():
             result, functionName=throwObject()
             printToBrain(result, functionName)
             wait(20)
+        if controller.axis1 < deadZone and controller.axis3 < deadZone and inMotion:
+            motorGroupL.stop()
+            motorGroupR.stop()
+            inMotion=True
         wait(20)
 result, functionName, position=teamChoosing()
 printToBrain(result, functionName)
