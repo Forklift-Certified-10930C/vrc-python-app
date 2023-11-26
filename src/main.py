@@ -39,6 +39,10 @@ def teamChoosing():
             wait(1000)
             brain.screen.clear_screen()
             return 0, 'teamChoosing', "blue_defence"
+        if controller.buttonA.pressing():
+            brain.screen.draw_image_from_file("skill_confirmed.png")
+            wait(1000)
+            brain.screen.clear_screen()
         wait(20)
 def autonomous():
     global selectedPosition
@@ -63,11 +67,11 @@ def driverControl():
             drivetrain.set_stopping(COAST)
         if controller.buttonDown.pressing():
             drivetrain.set_stopping(BRAKE)
-        if controller.axis3.position() > deadZone:
+        if abs(controller.axis3.position()) > deadZone:
             motorGroupL.spin(FORWARD, controller.axis3.position(), PERCENT)
             motorGroupR.spin(FORWARD, controller.axis3.position(), PERCENT)
             inMotion=True
-        if controller.axis1.position > deadZone:
+        if abs(controller.axis1.position()) > deadZone:
             motorGroupL.spin(FORWARD, controller.axis1.position(), PERCENT)
             motorGroupR.spin(FORWARD, -1*(controller.axis1.position()), PERCENT)
             inMotion=True
@@ -78,7 +82,7 @@ def driverControl():
         if controller.axis1 < deadZone and controller.axis3 < deadZone and inMotion:
             motorGroupL.stop()
             motorGroupR.stop()
-            inMotion=True
+            inMotion=False
         wait(20)
 result, functionName, position=teamChoosing()
 printToBrain(result, functionName)
