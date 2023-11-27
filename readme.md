@@ -4,11 +4,10 @@
 
 ### Table Of Contents
 
-    - [Introduction](#Introduction)
-    - [Controls](#Controls)
-    - [Robot Details](#Robot-Details)
-    - [Application Details](#Application-Details)
-    - [License](#License)
+    - [Introduction](###Introduction)
+    - [Controls](###Controls)
+    - [Robot Details](###Robot-Details)
+    - [Application Details](###Application-Details)
 
 ### Introduction
 
