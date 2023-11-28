@@ -13,7 +13,7 @@
     <a href="https://github.com/vx-clutch/vrc-python-app/wiki"><strong>Explore the docs »</strong></a>
     <br/>
     <br/>
-    <a href="https://github.com/vx-clutch/vrc-python-app">View Demo</a>
+    <a href="https://www.vexrobotics.com">Vist Vex</a>
     .
     <a href="https://github.com/vx-clutch/vrc-python-app/issues">Report Bug</a>
     .
