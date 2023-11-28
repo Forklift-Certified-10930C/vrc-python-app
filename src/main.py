@@ -57,14 +57,14 @@ def autonomous():
     drivetrain.set_stopping(BRAKE)
     if selectedPosition == 'Red Offence' or selectedPosition == 'Blue Offence':
         drivetrain.drive_for(FORWARD, 1800, MM)
-        drivetrain.turn_for(LEFT, 90, DEGREES)
+        drivetrain.turn_for(LEFT, 90/2, DEGREES)
         drivetrain.drive_for(FORWARD, 500, MM)
         result, functionName=handleObjectDown()
         printToBrain(result, functionName)
         return 0, 'autonomous'
     if selectedPosition == 'Red Defence' or selectedPosition == 'Blue Defence':
         drivetrain.drive_for(FORWARD, 1000, MM)
-        drivetrain.turn_for(RIGHT, 90, DEGREES)
+        drivetrain.turn_for(RIGHT, 90/2, DEGREES)
         result, functionName=throwObject()
         printToBrain(result, functionName)
         return 0, 'autonomous'
