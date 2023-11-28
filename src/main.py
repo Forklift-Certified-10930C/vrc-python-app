@@ -21,27 +21,32 @@ def teamChoosing():
     while True:
         if controller.buttonL1.pressing():
             brain.screen.draw_image_from_file("red_offence.png", 0, 0)
-            wait(1000)
+            while controller.buttonL1.pressing():
+                wait(5, MSEC)
             brain.screen.clear_screen()
             return 0, 'teamChoosing', "red_offence"
         if controller.buttonL2.pressing():
             brain.screen.draw_image_from_file("red_defence.png", 0, 0)
-            wait(1000)
+            while controller.buttonL2.pressing():
+                wait(5, MSEC)
             brain.screen.clear_screen()
             return 0, 'teamChoosing', "red_defence"
         if controller.buttonR1.pressing():
             brain.screen.draw_image_from_file("blue_offence.png", 0, 0)
-            wait(1000)
+            while controller.buttonR1.pressing():
+                wait(5, MSEC)
             brain.screen.clear_screen()
             return 0, 'teamChoosing', "blue_offence"
         if controller.buttonR2.pressing():
             brain.screen.draw_image_from_file("blue_defence.png", 0, 0)
-            wait(1000)
+            while controller.buttonR2.pressing():
+                wait(5, MSEC)
             brain.screen.clear_screen()
             return 0, 'teamChoosing', "blue_defence"
         if controller.buttonA.pressing():
-            brain.screen.draw_image_from_file("skill_confirmed.png")
-            wait(1000)
+            brain.screen.draw_image_from_file("skill_confirmed.png", 0, 0)
+            while controller.buttonA.pressing():
+                wait(5, MSEC)
             brain.screen.clear_screen()
         wait(20)
 def autonomous():
@@ -79,7 +84,7 @@ def driverControl():
             result, functionName=throwObject()
             printToBrain(result, functionName)
             wait(20)
-        if controller.axis1 < deadZone and controller.axis3 < deadZone and inMotion:
+        if controller.axis1.position() < deadZone and controller.axis3.position() < deadZone and inMotion:
             motorGroupL.stop()
             motorGroupR.stop()
             inMotion=False
