@@ -1,89 +1,114 @@
-# VRC Python App
+<br/>
+<p align="center">
+  <a href="https://github.com/vx-clutch/vrc-python-app">
+    <img src="" alt="Logo" width="80" height="80">
+  </a>
 
-## 10930C
+  <h3 align="center">VRC Python App</h3>
 
-### Table Of Contents
+  <p align="center">
+    10930C
+    <br/>
+    <br/>
+    <a href="https://github.com/vx-clutch/vrc-python-app"><strong>Explore the docs »</strong></a>
+    <br/>
+    <br/>
+    <a href="https://github.com/vx-clutch/vrc-python-app">View Demo</a>
+    .
+    <a href="https://github.com/vx-clutch/vrc-python-app/issues">Report Bug</a>
+    .
+    <a href="https://github.com/vx-clutch/vrc-python-app/issues">Request Feature</a>
+  </p>
+</p>
 
-    - [Introduction](###Introduction)
-    - [Controls](###Controls)
-    - [Robot Details](###Robot-Details)
-    - [Application Details](###Application-Details)
+![Downloads](https://img.shields.io/github/downloads/vx-clutch/vrc-python-app/total) ![Contributors](https://img.shields.io/github/contributors/vx-clutch/vrc-python-app?color=dark-green) ![Forks](https://img.shields.io/github/forks/vx-clutch/vrc-python-app?style=social) ![Stargazers](https://img.shields.io/github/stars/vx-clutch/vrc-python-app?style=social) ![Issues](https://img.shields.io/github/issues/vx-clutch/vrc-python-app) ![License](https://img.shields.io/github/license/vx-clutch/vrc-python-app) 
 
-### Introduction
+## Table Of Contents
+
+* [About the Project](#about-the-project)
+* [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Usage](#usage)
+* [Roadmap](#roadmap)
+* [Contributing](#contributing)
+* [License](#license)
+* [Authors](#authors)
+* [Acknowledgements](#acknowledgements)
+
+## About The Project
+
+![Screen Shot](images/screenshot.png)
 
 Welcome to our VRC Python Project! This document serves as a comprehensive guide to understanding our project. We've created this file with the aim of explaining how to control the robot as well as how to navigate this project.
 
-### Controls
+## Built With
 
-Here's a brief overview of the controls for our robot:
+This project was made for the VEX  V5 Python system for robotics competitions.
 
-- X []
-- A [BRAKE]
-- B []
-- Y []
-- D-PAD Up [COAST]
-- D-PAD Down [BRAKE]
-- D-PAD Left []
-- D-PAD Right []
-- Axis 1 [LEFT/RIGHT]
-- Axis 2 []
-- Axis 3 [FORWARD/BACKWARD]
-- Axis 4 []
-- L1 [CHOOSE RED OFFENCE]
-- L2 [CHOOSE Red DEFENCE]
-- R1 [CHOOSE Blue DEFENCE]
-- R2 [CHOOSE BLUE OFFENCE]
+## Getting Started
 
-### Robot Details
+To apply this code to your robot you need a vs code editor with the vex extension installed.
 
-Our robot, labeled 10930C, is equipped with the following components:
+### Prerequisites
 
-- **Chassis**: We've chosen the Speedbot chassis, which features rear-wheel drive with omni-wheels in the front and traction wheels in the back. This chassis is powered by two motors.
+* npm
 
-- **Catapult Launcher**: Our robot utilizes a catapult launching system that stores energy using a ratchet system. This stored energy can be released quickly to launch the tri-ball. The catapult launcher is powered by one motor.
+```sh
+npm install npm@latest -g
+```
+* git
 
-- **Fly-Wheel Intake System**: The fly-wheel intake system employs a set of arms with spinning wheels. It is responsible for efficiently handling and collecting game elements. This system also uses one motor.
+```sh
+npm install git
+```
 
-#### Ports List
+### Installation
 
-- Port1 []
-- Port2 []
-- Port3 []
-- Port4 []
-- Port5 []
-- Port6 []
-- Port7 []
-- Port8 []
-- Port9 []
-- Port10 []
-- Port11 []
-- Port12 []
-- Port13 []
-- Port14 []
-- Port15 []
-- Port16 []
-- Port17 []
-- Port18 []
-- Port19 []
-- Port20 []
-- PortA []
-- PortB []
-- PortC []
-- PortD []
-- PortE []
-- PortF []
-- PortG []
+1. Clone the repo
 
-### Application Details
+```sh
+git clone https://github.com/vx-clutch/vrc-python-app.git
+```
+
+2. Use the download and build button at the bottom of the screen to push to the robot.
+
+## Usage
 
 In the `main.py` file, you will find the code that controls the robot's movements, runs autonomous routines, and manages other important functions for the VEX Over Under competition. Use `git clone https://github.com/vx-clutch/vrc-python-app.git` to clone the repository with git
+_For more examples, please refer to the [Documentation](https://example.com)_
 
-#### How to Read the Console
+## Roadmap
 
-- 0: No Errors
-- -1: Unknown Error
-- 1: Unexpected Value
+See the [open issues](https://github.com/vx-clutch/vrc-python-app/issues) for a list of proposed features (and known issues).
 
-### Contributors
+## Contributing
 
-- [vx_clutch](https://github.com/vx-clutch)
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+* If you have suggestions for adding or removing projects, feel free to [open an issue](https://github.com/vx-clutch/vrc-python-app/issues/new) to discuss it, or directly create a pull request after you edit the *README.md* file with necessary changes.
+* Please make sure you check your spelling and grammar.
+* Create individual PR for each suggestion.
+* Please also read through the [Code Of Conduct](https://github.com/vx-clutch/vrc-python-app/blob/main/CODE_OF_CONDUCT.md) before posting your first idea as well.
+
+### Creating A Pull Request
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+Distributed under the MIT License. See [LICENSE](https://github.com/vx-clutch/vrc-python-app/blob/main/LICENSE.md) for more information.
+
+## Authors
+
+* **vx-clutch** - *studnet* - [vx-clutch](https://github.com/vx-clutch/) - *Lead Dev*
+
+## Acknowledgements
+
+* [ShaanCoding](https://github.com/ShaanCoding/)
+* [Othneil Drew](https://github.com/othneildrew/Best-README-Template)
+* [ImgShields](https://shields.io/)
