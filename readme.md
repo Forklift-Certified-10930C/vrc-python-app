@@ -101,7 +101,7 @@ Contributions are what make the open source community such an amazing place to b
 
 ## License
 
-Distributed under the MIT License. See [LICENSE](https://github.com/vx-clutch/vrc-python-app/blob/main/LICENSE.md) for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/vx-clutch/vrc-python-app/blob/main/LICENSE) for more information.
 
 ## Authors
 
@@ -111,5 +111,6 @@ Distributed under the MIT License. See [LICENSE](https://github.com/vx-clutch/vr
 
 ## Acknowledgements
 
-* [vx-clutch](https://github.com/vx-clutch/)
+* [ShannCoding](https://github.com/ShaanCoding/)
+* [othneildrew](https://github.com/othneildrew)
 * [ImgShields](https://shields.io/)
