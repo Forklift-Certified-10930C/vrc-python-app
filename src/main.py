@@ -66,7 +66,7 @@ def autonomous():
         printToBrain(result, functionName)
         return 0, 'autonomous'
 def driverControl():
-    global selectedPosition, hasObject, deadZone
+    global selectedPosition, hasObject, deadZone, inMotion
     while True:
         if controller.buttonUp.pressing():
             drivetrain.set_stopping(COAST)
