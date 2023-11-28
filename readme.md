@@ -109,6 +109,5 @@ Distributed under the MIT License. See [LICENSE](https://github.com/vx-clutch/vr
 
 ## Acknowledgements
 
-* [ShaanCoding](https://github.com/ShaanCoding/)
-* [Othneil Drew](https://github.com/othneildrew/Best-README-Template)
+* [vx-clutch](https://github.com/vx-clutch/)
 * [ImgShields](https://shields.io/)
