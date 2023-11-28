@@ -10,7 +10,7 @@
     10930C
     <br/>
     <br/>
-    <a href="https://github.com/vx-clutch/vrc-python-app"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/vx-clutch/vrc-python-app/wiki"><strong>Explore the docs »</strong></a>
     <br/>
     <br/>
     <a href="https://github.com/vx-clutch/vrc-python-app">View Demo</a>
