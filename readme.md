@@ -106,6 +106,8 @@ Distributed under the MIT License. See [LICENSE](https://github.com/vx-clutch/vr
 ## Authors
 
 * **vx-clutch** - *student* - [vx-clutch](https://github.com/vx-clutch/) - *Lead Dev*
+<br>
+* **TuesdayTCGofficial** - *student* - [TuesdayTCGofficial](https://https://github.com/TuesdayTCGofficial) - *Artist*
 
 ## Acknowledgements
 
