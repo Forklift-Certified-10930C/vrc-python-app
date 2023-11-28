@@ -4,10 +4,10 @@
     <img src="/images/logo.png" alt="Logo" width="1000" height="200">
   </a>
 
-  <h3 align="center">VRC Python App</h3>
+  <h3 align="center">vrc-python-app</h3>
 
   <p align="center">
-    10930C
+    Forklift Certified | 10930C
     <br/>
     <br/>
     <a href="https://github.com/vx-clutch/vrc-python-app/wiki"><strong>Explore the docs »</strong></a>
