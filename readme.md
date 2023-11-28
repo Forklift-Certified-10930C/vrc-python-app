@@ -1,7 +1,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/vx-clutch/vrc-python-app">
-    <img src="/images/logo.png" alt="Logo" width="600" height="200">
+    <img src="/images/logo.png" alt="Logo" width="1000" height="200">
   </a>
 
   <h3 align="center">VRC Python App</h3>
