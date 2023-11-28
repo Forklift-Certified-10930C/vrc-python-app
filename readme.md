@@ -63,7 +63,7 @@ npm install npm@latest -g
 ```sh
 npm install git
 ```
-> For more information goto [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+> For more information go to [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 ### Installation
 
 1. Clone the repo
