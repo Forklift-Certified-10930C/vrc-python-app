@@ -12,8 +12,11 @@ deadZone=10
 inMotion=False
 isSkill=False
 def printToBrain(err, func):
-    brain.screen.print("[ {} ] Error {}: at <{}>".format(brain.timer.time(TimeUnits.MSEC), err, func))
-    brain.screen.new_line()
+    if err == 0:
+        brain.screen.print("[ {} ] No errors throw: at <{}>".format(brain.timer.time(TimeUnits.MSEC), err, func))
+    else:
+        brain.screen.print("[ {} ] Error {}: at <{}>".format(brain.timer.time(TimeUnits.MSEC), err, func))
+        brain.screen.new_line()
 def throwObject():
     return 0, 'throwObject'
 def handleObjectDown():
@@ -58,13 +61,12 @@ def autonomous():
     if selectedPosition == 'Red Offence' or selectedPosition == 'Blue Offence':
         drivetrain.drive_for(FORWARD, 1800, MM)
         drivetrain.turn_for(LEFT, 90/2, DEGREES)
-        drivetrain.drive_for(FORWARD, 500, MM)
         result, functionName=handleObjectDown()
         printToBrain(result, functionName)
         return 0, 'autonomous'
     if selectedPosition == 'Red Defence' or selectedPosition == 'Blue Defence':
-        drivetrain.drive_for(FORWARD, 1000, MM)
-        drivetrain.turn_for(RIGHT, 90/2, DEGREES)
+        drivetrain.drive_for(FORWARD, 1800, MM)
+        drivetrain.turn_for(LEFT, 90/2, DEGREES)
         result, functionName=throwObject()
         printToBrain(result, functionName)
         return 0, 'autonomous'
