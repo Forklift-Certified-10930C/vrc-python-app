@@ -39,9 +39,7 @@
 
 ## About The Project
 
-<div style="width: 1000px; height: 800; overflow: hidden;">
-  <img src="/images/screenshot.png" alt="screen shot" style="width: 1000px; height: 200px; object-fit: cover;">
-</div>
+<img src="/images/screenshot.png" alt="screen shot">
 
 Welcome to our VRC Python Project! This document serves as a comprehensive guide to understanding our project. We've created this file with the aim of explaining how to control the robot as well as how to navigate this project.
 
