@@ -39,7 +39,7 @@
 
 ## About The Project
 
-<div style="width: 1000px; height: 200px; overflow: hidden;">
+<div style="width: 1000px; overflow: hidden;">
   <img src="/images/screenshot.png" alt="screen shot" style="width: 1000px; height: 200px; object-fit: cover;">
 </div>
 
