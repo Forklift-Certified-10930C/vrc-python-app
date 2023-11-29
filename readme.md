@@ -10,10 +10,10 @@
     Forklift Certified | 10930C
     <br/>
     <br/>
-    <a href="https://github.com/vx-clutch/vrc-python-app/wiki"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Forklift-Certified-10930C"><strong>Explore the docs »</strong></a>
     <br/>
     <br/>
-    <a href="https://www.vexrobotics.com">Vist Vex</a>
+    <a href="https://www.vexrobotics.com">Organization</a>
     .
     <a href="https://github.com/vx-clutch/vrc-python-app/issues">Report Bug</a>
     .
