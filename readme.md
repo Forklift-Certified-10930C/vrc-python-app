@@ -108,7 +108,7 @@ Distributed under the MIT License. See [LICENSE](https://github.com/vx-clutch/vr
 ## Authors
 
 * **vx-clutch** - *student* - [vx-clutch](https://github.com/vx-clutch/) - *Lead Dev*
-<br>
+<br/>
 * **Ponkoncoma** - *student* - *Artist*
 
 ## Acknowledgements
