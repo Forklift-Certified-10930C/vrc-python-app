@@ -1,0 +1,7 @@
+name: Bug Report
+description: Report a bug!
+
+body:
+  - type: "markdown"
+    attributes:
+      value: "### Bug Report for VEX V5 Python Robot\n\n#### Description\nProvide a clear and concise description of the bug you encountered.\n\n#### Bug Details\n- **Issue:** [Describe the problem briefly]\n- **Expected Behavior:** [Describe what you expected to happen]\n- **Actual Behavior:** [Describe what actually happened]\n- **Error Message:** [Include any error messages if applicable]\n\n#### Steps to Reproduce\n1. [List the steps to reproduce the bug]\n2. [Include any specific conditions or configurations needed]\n\n#### Additional Context\nProvide any additional context about the environment or situation in which the bug occurred. This could include details about the hardware setup, software versions, or any other relevant information.\n\n#### Screenshots/Logs\nIf applicable, include screenshots or log outputs that help illustrate the problem.\n"
