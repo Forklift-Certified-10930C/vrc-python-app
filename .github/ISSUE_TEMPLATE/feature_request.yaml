@@ -1,7 +1,0 @@
-name: Feature Request
-description: Suggest a new feature or enhancement for the our VEX V5 Python Robot.
-
-body:
-  - type: "markdown"
-    attributes:
-      value: "### Feature Request for VEX V5 Python Robot\n\n#### Description\nProvide a clear and detailed description of the new feature or enhancement you are proposing.\n\n#### Justification\nExplain why you believe this feature would be beneficial and how it aligns with the overall functionality and goals of the VEX V5 Python Robot.\n\n#### Code Example (if applicable)\nIf you have any code snippets or examples that illustrate how the proposed feature could be implemented, please include them here:\n\n```python\n# Example code or description\n```\n\n#### Expected Impact\nDescribe how the new feature will positively impact users and their experience with the VEX V5 Python Robot.\n\n#### Challenges and Considerations\nHighlight any potential challenges or considerations that should be taken into account during the implementation of this feature.\n\n#### Alternatives Considered\nIf you've considered alternative approaches or solutions, please briefly mention them here.\n"
