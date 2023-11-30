@@ -19,10 +19,10 @@ throwToggle=False
 
 def printToBrain(func,err=0):
     if err == 0:
-        brain.screen.print("[ {} ] No errors thrown: at <{}>".format(brain.timer.time(TimeUnits.MSEC), err, func))
+        brainInit.screen.print("[ {} ] No errors thrown: at <{}>".format(brainInit.timer.time(TimeUnits.MSEC), err, func))
     else:
-        brain.screen.print("[ {} ] Error {}: at <{}>".format(brain.timer.time(TimeUnits.MSEC), err, func))
-        brain.screen.new_line()
+        brainInit.screen.print("[ {} ] Error {}: at <{}>".format(brainInit.timer.time(TimeUnits.MSEC), err, func))
+        brainInit.screen.new_line()
 
 class Robot:
     def __init__(self, drivetrain, throwmotors, controller, brain, intakemotors):
@@ -54,63 +54,64 @@ class Robot:
         drivetrain=self.drivetrain
         controller=self.controller
         drivetrain.turn_for(RIGHT, deg, DEGREES)
+    def pickObject(self):
+        pass
 
 robot=Robot(driveTrainInit, throwMotorsInit, controllerInit, brainInit, intakeMotorsInit)
 
 def teamChoosing():
     global isSkill
     while True:
-        if controller.buttonL1.pressing():
-            brain.screen.draw_image_from_file("red_offence.png", 0, 0)
-            while controller.buttonL1.pressing():
+        if controllerInit.buttonL1.pressing():
+            brainInit.screen.draw_image_from_file("red_offence.png", 0, 0)
+            while controllerInit.buttonL1.pressing():
                 wait(5, MSEC)
-            brain.screen.clear_screen()
-            return 0, 'teamChoosing', "Red Offence"
-        if controller.buttonL2.pressing():
-            brain.screen.draw_image_from_file("red_defence.png", 0, 0)
-            while controller.buttonL2.pressing():
+            brainInit.screen.clear_screen()
+            return 'teamChoosing', "Red Offence"
+        if controllerInit.buttonL2.pressing():
+            brainInit.screen.draw_image_from_file("red_defence.png", 0, 0)
+            while controllerInit.buttonL2.pressing():
                 wait(5, MSEC)
-            brain.screen.clear_screen()
-            return 0, 'teamChoosing', "Red Defence"
-        if controller.buttonR1.pressing():
-            brain.screen.draw_image_from_file("blue_offence.png", 0, 0)
-            while controller.buttonR1.pressing():
+            brainInit.screen.clear_screen()
+            return 'teamChoosing', "Red Defence"
+        if controllerInit.buttonR1.pressing():
+            brainInit.screen.draw_image_from_file("blue_offence.png", 0, 0)
+            while controllerInit.buttonR1.pressing():
                 wait(5, MSEC)
-            brain.screen.clear_screen()
-            return 0, 'teamChoosing', "Blue Offence"
-        if controller.buttonR2.pressing():
-            brain.screen.draw_image_from_file("blue_defence.png", 0, 0)
-            while controller.buttonR2.pressing():
+            brainInit.screen.clear_screen()
+            return 'teamChoosing', "Blue Offence"
+        if controllerInit.buttonR2.pressing():
+            brainInit.screen.draw_image_from_file("blue_defence.png", 0, 0)
+            while controllerInit.buttonR2.pressing():
                 wait(5, MSEC)
-            brain.screen.clear_screen()
-            return 0, 'teamChoosing', "Blue Defence"
-        if controller.buttonA.pressing():
-            brain.screen.draw_image_from_file("blue_defence.png", 0, 0)
-            while controller.buttonA.pressing():
+            brainInit.screen.clear_screen()
+            return 'teamChoosing', "Blue Defence"
+        if controllerInit.buttonA.pressing():
+            brainInit.screen.draw_image_from_file("blue_defence.png", 0, 0)
+            while controllerInit.buttonA.pressing():
                 wait(5, MSEC)
-            brain.screen.clear_screen()
+            brainInit.screen.clear_screen()
             isSkill=True
-            return 0, 'teamChoosing', "Skill"
+            return 'teamChoosing', "Skill"
         wait(20)
 
 def autonomous():
     global selectedPosition
-    drivetrain.set_stopping(BRAKE)
+    driveTrainInit.set_stopping(BRAKE)
     if selectedPosition == 'Red Offence' or selectedPosition == 'Blue Offence':
         robot.drivefor(FORWARD, 1800, MM)
         robot.turnfor(RIGHT, 90/2, DEGREES)
-        result, functionName=pickObject()
-        printToBrain(result, functionName)
-        printToBrain(0,'autonomous')
+        printToBrain('autonomous')
     if selectedPosition == 'Red Defence' or selectedPosition == 'Blue Defence':
         robot.drivefor(FORWARD, 1800, MM)
         robot.turnfor(LEFT, 90/2, DEGREES)
-        result, functionName=throwObject()
-        printToBrain(result, functionName)
-        printToBrain(0,'autonomous')
+        robot.throw()
+        printToBrain('autonomous')
     if selectedPosition == 'skill':
-        printToBrain(0,'autonomous')
+        printToBrain('autonomous')
 
 def drivercontrol():
     global deadZone, inMotion, throwToggle
-    
+
+selectedPosition=teamChoosing()
+comp=Competion(drivercontrol, autonomous)
