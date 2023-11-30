@@ -6,11 +6,15 @@ motorR=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
 motorGroupL=MotorGroup(motorL)
 motorGroupR=MotorGroup(motorR)
 drivetrain=DriveTrain(motorGroupL, motorGroupR)
+motorTop=Motor(Ports.PORT5, GearSetting.RATIO_18_1, False)
+motorBottom=Motor(Ports.PORT5, GearSetting.RATIO_18_1, True)
+motorGroupThrow=MotorGroup(motorTop, motorBottom)
 selectedPosition=None
 hasObject=True
 deadZone=10
 inMotion=False
 isSkill=False
+throwToggle=False
 def printToBrain(err, func):
     if err == 0:
         brain.screen.print("[ {} ] No errors throw: at <{}>".format(brain.timer.time(TimeUnits.MSEC), err, func))
@@ -18,8 +22,9 @@ def printToBrain(err, func):
         brain.screen.print("[ {} ] Error {}: at <{}>".format(brain.timer.time(TimeUnits.MSEC), err, func))
         brain.screen.new_line()
 def throwObject():
+    motorGroupThrow.__spin_for_time(FORWARD, 1, SECONDS, 100, PERCENT)
     return 0, 'throwObject'
-def handleObjectDown():
+def pickObject():
     return 0, 'handleObjectDown'
 def teamChoosing():
     global isSkill
@@ -60,42 +65,36 @@ def autonomous():
     drivetrain.set_stopping(BRAKE)
     if selectedPosition == 'Red Offence' or selectedPosition == 'Blue Offence':
         drivetrain.drive_for(FORWARD, 1800, MM)
-        drivetrain.turn_for(LEFT, 90/2, DEGREES)
-        result, functionName=handleObjectDown()
+        drivetrain.turn_for(RIGHT, 90/2, DEGREES)
+        result, functionName=pickObject()
         printToBrain(result, functionName)
-        return 0, 'autonomous'
+        printToBrain(0,'autonomous')
     if selectedPosition == 'Red Defence' or selectedPosition == 'Blue Defence':
         drivetrain.drive_for(FORWARD, 1800, MM)
-        drivetrain.turn_for(LEFT, 90/2, DEGREES)
+        drivetrain.turn_for(RIGHT, 90/2, DEGREES)
         result, functionName=throwObject()
         printToBrain(result, functionName)
-        return 0, 'autonomous'
+        printToBrain(0,'autonomous')
 def driverControl():
-    global selectedPosition, hasObject, deadZone, inMotion, isSkill
-    while True:
-        if controller.buttonUp.pressing():
-            drivetrain.set_stopping(COAST)
-        if controller.buttonDown.pressing():
-            drivetrain.set_stopping(BRAKE)
-        if abs(controller.axis3.position()) > deadZone:
-            motorGroupL.spin(FORWARD, controller.axis3.position(), PERCENT)
-            motorGroupR.spin(FORWARD, controller.axis3.position(), PERCENT)
+    global selectedPosition, hasObject, deadZone, inMotion, isSkill, throwToggle
+    while competition.is_enabled() and competition.is_driver_control():
+        if controller.axis1.position() > deadZone or controller.axis1.position() < -deadZone:
+            drivetrain.drive(RIGHT, controller.axis1.position(), PERCENT)
             inMotion=True
-        if abs(controller.axis1.position()) > deadZone:
-            motorGroupL.spin(FORWARD, controller.axis1.position(), PERCENT)
-            motorGroupR.spin(FORWARD, -1*(controller.axis1.position()), PERCENT)
+        if controller.axis3.position() > deadZone or controller.axis3.position() < -deadZone:
+            drivetrain.drive(FORWARD, controller.axis3.position(), PERCENT)
             inMotion=True
-        if controller.buttonB.pressing():
+        if controller.buttonA.pressing():
             result, functionName=throwObject()
             printToBrain(result, functionName)
-            wait(20)
-        if controller.axis1.position() < deadZone and controller.axis3.position() < deadZone and inMotion:
-            motorGroupL.stop()
-            motorGroupR.stop()
-            inMotion=False
+        if controller.buttonB.pressing():
+            if throwToggle:
+                throwToggle=False
+                motorGroupThrow.stop()
+            else:
+                motorGroupThrow.spin(FORWARD, 100, PERCENT)
         wait(20)
 result, functionName, position=teamChoosing()
 selectedPosition=position
 printToBrain(result, functionName)
-autonomous()
-driverControl()
+competition=Competition(driverControl, autonomous)
