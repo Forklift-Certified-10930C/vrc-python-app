@@ -114,4 +114,4 @@ def drivercontrol():
     global deadZone, inMotion, throwToggle
 
 selectedPosition=teamChoosing()
-comp=Competion(drivercontrol, autonomous)
+competion=Competion(drivercontrol, autonomous)
