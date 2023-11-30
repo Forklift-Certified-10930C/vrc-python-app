@@ -1,4 +1,7 @@
+from vex import *
+
 myVariable = 0
+brain=Brain()
 
 def when_started1():
     global myVariable
@@ -6,10 +9,11 @@ def when_started1():
 
 def ondriver_drivercontrol_0():
     global myVariable
-    pass
+    brain.screen.print("Driver Control Works!")
 
 def onauton_autonomous_0():
     global myVariable
+    brain.screen.print("Auton Works!")
     pass
 
 # create a function for handling the starting and stopping of all autonomous tasks
