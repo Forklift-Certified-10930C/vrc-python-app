@@ -94,7 +94,6 @@ def driverControl():
             else:
                 motorGroupThrow.spin(FORWARD, 100, PERCENT)
         wait(20)
-result, functionName, position=teamChoosing()
-selectedPosition=position
+result, functionName, selectedPosition=teamChoosing()
 printToBrain(result, functionName)
 competition=Competition(driverControl, autonomous)
