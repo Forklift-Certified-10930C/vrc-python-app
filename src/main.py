@@ -1,4 +1,5 @@
 from vex import *
+
 brain=Brain()
 controller=Controller()
 motorL=Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
@@ -6,94 +7,75 @@ motorR=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
 motorGroupL=MotorGroup(motorL)
 motorGroupR=MotorGroup(motorR)
 drivetrain=DriveTrain(motorGroupL, motorGroupR)
-motorTop=Motor(Ports.PORT5, GearSetting.RATIO_18_1, False)
+motorTop=Motor(Ports.PORT7, GearSetting.RATIO_18_1, True)
 motorBottom=Motor(Ports.PORT5, GearSetting.RATIO_18_1, True)
 motorGroupThrow=MotorGroup(motorTop, motorBottom)
+motorFL=Motor(Ports.PORT3, GearSetting.RATIO_18_1, False)
+motorFR=Motor(Ports.PORT8, GearSetting.RATIO_18_1, True)
+frontMotorGroup=MotorGroup(motorFL, motorFR)
 selectedPosition=None
 hasObject=True
 deadZone=10
 inMotion=False
 isSkill=False
 throwToggle=False
-def printToBrain(err, func):
-    if err == 0:
-        brain.screen.print("[ {} ] No errors throw: at <{}>".format(brain.timer.time(TimeUnits.MSEC), err, func))
-    else:
-        brain.screen.print("[ {} ] Error {}: at <{}>".format(brain.timer.time(TimeUnits.MSEC), err, func))
-        brain.screen.new_line()
-def throwObject():
-    motorGroupThrow.__spin_for_time(FORWARD, 1, SECONDS, 100, PERCENT)
-    return 0, 'throwObject'
-def pickObject():
-    return 0, 'handleObjectDown'
-def teamChoosing():
-    global isSkill
-    while True:
-        if controller.buttonL1.pressing():
-            brain.screen.draw_image_from_file("red_offence.png", 0, 0)
-            while controller.buttonL1.pressing():
-                wait(5, MSEC)
-            brain.screen.clear_screen()
-            return 0, 'teamChoosing', "Red Offence"
-        if controller.buttonL2.pressing():
-            brain.screen.draw_image_from_file("red_defence.png", 0, 0)
-            while controller.buttonL2.pressing():
-                wait(5, MSEC)
-            brain.screen.clear_screen()
-            return 0, 'teamChoosing', "Red Defence"
-        if controller.buttonR1.pressing():
-            brain.screen.draw_image_from_file("blue_offence.png", 0, 0)
-            while controller.buttonR1.pressing():
-                wait(5, MSEC)
-            brain.screen.clear_screen()
-            return 0, 'teamChoosing', "Blue Offence"
-        if controller.buttonR2.pressing():
-            brain.screen.draw_image_from_file("blue_defence.png", 0, 0)
-            while controller.buttonR2.pressing():
-                wait(5, MSEC)
-            brain.screen.clear_screen()
-            return 0, 'teamChoosing', "Blue Defence"
-        if controller.buttonA.pressing():
-            brain.screen.draw_image_from_file("skill_confirmed.png", 0, 0)
-            while controller.buttonA.pressing():
-                wait(5, MSEC)
-            isSkill=True
-            brain.screen.clear_screen()
-        wait(20)
-def autonomous():
-    global selectedPosition
-    drivetrain.set_stopping(BRAKE)
-    if selectedPosition == 'Red Offence' or selectedPosition == 'Blue Offence':
-        drivetrain.drive_for(FORWARD, 1800, MM)
-        drivetrain.turn_for(RIGHT, 90/2, DEGREES)
-        result, functionName=pickObject()
-        printToBrain(result, functionName)
-        printToBrain(0,'autonomous')
-    if selectedPosition == 'Red Defence' or selectedPosition == 'Blue Defence':
-        drivetrain.drive_for(FORWARD, 1800, MM)
-        drivetrain.turn_for(RIGHT, 90/2, DEGREES)
-        result, functionName=throwObject()
-        printToBrain(result, functionName)
-        printToBrain(0,'autonomous')
-def driverControl():
-    global selectedPosition, hasObject, deadZone, inMotion, isSkill, throwToggle
-    while competition.is_enabled() and competition.is_driver_control():
+reverse=1
+
+def ondriver_drivercontrol_0():
+    global selectedPosition, hasObject, deadZone, inMotion, isSkill, throwToggle, reverse
+    while competition.is_enabled and competition.is_driver_control:
         if controller.axis1.position() > deadZone or controller.axis1.position() < -deadZone:
-            drivetrain.drive(RIGHT, controller.axis1.position(), PERCENT)
+            drivetrain.turn(RIGHT, controller.axis1.position(), PERCENT)
             inMotion=True
         if controller.axis3.position() > deadZone or controller.axis3.position() < -deadZone:
             drivetrain.drive(FORWARD, controller.axis3.position(), PERCENT)
             inMotion=True
-        if controller.buttonA.pressing():
-            result, functionName=throwObject()
-            printToBrain(result, functionName)
+        if controller.axis3.position() == 0 and controller.axis1.position() == 0 and inMotion:
+            drivetrain.stop()
+            inMotion=False
+        if controller.buttonLeft.pressing():
+            drivetrain.set_stopping(COAST)
+        if controller.buttonRight.pressing():
+            drivetrain.set_stopping(BRAKE)
         if controller.buttonB.pressing():
-            if throwToggle:
-                throwToggle=False
-                motorGroupThrow.stop()
-            else:
-                motorGroupThrow.spin(FORWARD, 100, PERCENT)
+            motorGroupThrow.stop()
+        if controller.buttonA.pressing():
+            motorGroupThrow.spin(FORWARD, 100, PERCENT)
+        if controller.buttonX.pressing():
+            frontMotorGroup.spin(FORWARD, 100*reverse, PERCENT)
+        if controller.buttonY.pressing():
+            frontMotorGroup.stop()
+        if controller.buttonUp.pressing():
+            reverse=-1
+        if controller.buttonDown.pressing():
+            reverse=1
         wait(20)
-result, functionName, selectedPosition=teamChoosing()
-printToBrain(result, functionName)
-competition=Competition(driverControl, autonomous)
+
+def onauton_autonomous_0():
+    printToBrain(0, "auton")
+    pass
+
+def printToBrain(err, func):
+    if err == 0:
+        brain.screen.print("[ {} ] No errors throw: at <{}>".format(brain.timer.time(MSEC), func))
+        brain.screen.new_line()
+    else:
+        brain.screen.print("[ {} ] Error {}: at <{}>".format(brain.timer.time(MSEC), err, func))
+        brain.screen.new_line()
+
+def vexcode_auton_function():
+    auton_task_0 = Thread( onauton_autonomous_0 )
+    while( competition.is_autonomous() and competition.is_enabled() ):
+        wait( 10, MSEC )
+    auton_task_0.stop()
+
+def vexcode_driver_function():
+    driver_control_task_0 = Thread( ondriver_drivercontrol_0 )
+
+    while( competition.is_driver_control() and competition.is_enabled() ):
+        wait( 10, MSEC )
+    driver_control_task_0.stop()
+
+
+# register the competition functions
+competition = Competition( vexcode_driver_function, vexcode_auton_function )
