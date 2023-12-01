@@ -43,9 +43,9 @@ def ondriver_drivercontrol_0():
 
 def onauton_autonomous_0():
     global selectedPosition
-    if selectedPosition == 'Blue Offence' or selectedPosition == 'Red Defence':
+    if selectedPosition == 'blue_offence' or selectedPosition == 'red_offence':
         pass
-    elif selectedPosition == 'Blue Defence' or selectedPosition == 'Red Defence':
+    elif selectedPosition == 'blue_defence' or selectedPosition == 'red_defence':
         pass
     elif selectedPosition == 'skill':
         pass
@@ -59,9 +59,28 @@ def printToBrain(err, func):
         brain.screen.new_line()
 
 def chooseTeam():
-    while selectedPosition:
-        if controller.buttonR1.pressing():
-            pass
+    def team_choosing():
+    while True:
+        if controller_1.buttonL1.pressing():
+            brain.screen.draw_image_from_file( "red_offence.png", 0, 4)
+            while controller_1.buttonL1.pressing():
+                wait(5, MSEC)
+            return "red_offence"
+        elif controller_1.buttonL2.pressing():
+            brain.screen.draw_image_from_file( "red_defence.png", 0, 4)
+            while controller_1.buttonL2.pressing():
+                wait(5, MSEC)
+            return "red_defence"
+        elif controller_1.buttonR1.pressing():
+            brain.screen.draw_image_from_file( "blue_offence.png", 0, 4)
+            while controller_1.buttonR1.pressing():
+                wait(5, MSEC)
+            return "blue_offence"
+        elif controller_1.buttonR2.pressing():
+            brain.screen.draw_image_from_file( "blue_defence.png", 0, 4)
+            while controller_1.buttonR2.pressing():
+                wait(5, MSEC)
+            return "blue_defence"
 
 def vexcode_auton_function():
     auton_task_0 = Thread( onauton_autonomous_0 )
