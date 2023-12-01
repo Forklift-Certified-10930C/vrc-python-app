@@ -13,7 +13,7 @@ motorGroupThrow=MotorGroup(motorTop, motorBottom)
 motorFL=Motor(Ports.PORT3, GearSetting.RATIO_18_1, False)
 motorFR=Motor(Ports.PORT8, GearSetting.RATIO_18_1, True)
 frontMotorGroup=MotorGroup(motorFL, motorFR)
-selectedPosition=None
+selectedPosition=True
 hasObject=True
 deadZone=10
 inMotion=False
@@ -37,23 +37,18 @@ def ondriver_drivercontrol_0():
             drivetrain.set_stopping(COAST)
         if controller.buttonRight.pressing():
             drivetrain.set_stopping(BRAKE)
-        if controller.buttonB.pressing():
-            motorGroupThrow.stop()
-        if controller.buttonA.pressing():
-            motorGroupThrow.spin(FORWARD, 100, PERCENT)
-        if controller.buttonX.pressing():
-            frontMotorGroup.spin(FORWARD, 100*reverse, PERCENT)
-        if controller.buttonY.pressing():
-            frontMotorGroup.stop()
-        if controller.buttonUp.pressing():
-            reverse=-1
-        if controller.buttonDown.pressing():
-            reverse=1
+        if controller.buttonR1.pressing() and True:
+            pass
         wait(20)
 
 def onauton_autonomous_0():
-    printToBrain(0, "auton")
-    pass
+    global selectedPosition
+    if selectedPosition == 'Blue Offence' or selectedPosition == 'Red Defence':
+        pass
+    elif selectedPosition == 'Blue Defence' or selectedPosition == 'Red Defence':
+        pass
+    elif selectedPosition == 'skill':
+        pass
 
 def printToBrain(err, func):
     if err == 0:
@@ -62,6 +57,11 @@ def printToBrain(err, func):
     else:
         brain.screen.print("[ {} ] Error {}: at <{}>".format(brain.timer.time(MSEC), err, func))
         brain.screen.new_line()
+
+def chooseTeam():
+    while selectedPosition:
+        if controller.buttonR1.pressing():
+            pass
 
 def vexcode_auton_function():
     auton_task_0 = Thread( onauton_autonomous_0 )
@@ -78,4 +78,5 @@ def vexcode_driver_function():
 
 
 # register the competition functions
+selectedPosition = chooseTeam()
 competition = Competition( vexcode_driver_function, vexcode_auton_function )
