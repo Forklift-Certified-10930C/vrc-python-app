@@ -9,12 +9,20 @@ def when_started1():
 
 def ondriver_drivercontrol_0():
     global myVariable
-    brain.screen.print("Driver Control Works!")
+    printToBrain(0, "driver")
+    pass
 
 def onauton_autonomous_0():
     global myVariable
-    brain.screen.print("Auton Works!")
+    printToBrain(0, "auton")
     pass
+
+def printToBrain(err, func):
+    if err == 0:
+        brain.screen.print("[ {} ] No errors throw: at <{}>".format(brain.timer.time(MSEC), err, func))
+    else:
+        brain.screen.print("[ {} ] Error {}: at <{}>".format(brain.timer.time(MSEC), err, func))
+        brain.screen.new_line()
 
 # create a function for handling the starting and stopping of all autonomous tasks
 def vexcode_auton_function():
