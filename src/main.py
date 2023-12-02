@@ -18,12 +18,12 @@ hasObject=True
 deadZone=10
 inMotion=False
 isSkill=False
-throwToggle=False
 isThrow=False
-isTake=False
+isTakeOut=False
+isTakeIn=False
 
 def ondriver_drivercontrol_0():
-    global selectedPosition, hasObject, deadZone, inMotion, isSkill, throwToggle, isThrow, isTake
+    global selectedPosition, hasObject, deadZone, inMotion, isSkill, isThrow, isTakeOut, isTakeIn
     while competition.is_enabled and competition.is_driver_control:
         if controller.axis1.position() > deadZone or controller.axis1.position() < -deadZone:
             drivetrain.turn(RIGHT, controller.axis1.position(), PERCENT)
@@ -41,31 +41,31 @@ def ondriver_drivercontrol_0():
         if controller.buttonA.pressing() and isThrow == False:
             throw.spin(FORWARD, 100, PERCENT)
             isThrow=True
-        elif isThrow:
+        if isThrow and controller.buttonA.pressing() == False:
             throw.stop()
             isThrow=False
-        if controller.buttonR1.pressing() and isTake == False:
+        if controller.buttonR1.pressing() and isTakeOut == False:
             intake.spin(FORWARD, 100, PERCENT)
-            isTake=True
-        elif isTake:
+            isTakeOut=True
+        if isTakeOut and controller.buttonR1.pressing() == False:
             intake.stop()
-            isTake=False
-        if controller.buttonR2.pressing() and isTake == False:
+            isTakeOut=False
+        if controller.buttonR2.pressing() and isTakeIn == False:
             intake.spin(REVERSE, 100, PERCENT)
-            isTake=True
-        elif isTake:
+            isTakeIn=True
+        if isTakeIn and controller.buttonR2.pressing() == False:
             intake.stop()
-            isTake=False
+            isTakeIn=False
         wait(20)
 
 def onauton_autonomous_0():
     global selectedPosition
     if selectedPosition == 'blue_offence' or selectedPosition == 'red_offence':
-        drivetrain.drive_for(FORWARD, 1800, MM)
+        drivetrain.drive_for(FORWARD, 1000, MM)
         drivetrain.turn_for(RIGHT, 45, DEGREES)
         throw.spin_for(FORWARD, 1000, MSEC)
     elif selectedPosition == 'blue_defence' or selectedPosition == 'red_defence':
-        drivetrain.drive_for(FORWARD, 1800, MM)
+        drivetrain.drive_for(FORWARD, 1000, MM)
         drivetrain.turn_for(RIGHT, 45, DEGREES)
         intake.spin_for(REVERSE, 1000, MSEC)
     elif selectedPosition == 'skill':
@@ -80,7 +80,6 @@ def printToBrain(func, err=0):
         brain.screen.new_line()
 
 def chooseTeam():
-    def team_choosing():
     while True:
         if controller.buttonL1.pressing():
             brain.screen.draw_image_from_file( "red_offence.png", 0, 4)
@@ -122,5 +121,5 @@ def vexcode_driver_function():
 
 
 # register the competition functions
-# selectedPosition = chooseTeam()
+selectedPosition = chooseTeam()
 competition = Competition( vexcode_driver_function, vexcode_auton_function )
