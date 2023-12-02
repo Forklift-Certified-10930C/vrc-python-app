@@ -1,7 +1,7 @@
 from vex import *
 
 brain=Brain()
-controller=Controller()
+controller=Controller(PRIMARY)
 motorL=Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
 motorR=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
 motorGroupL=MotorGroup(motorL)
@@ -9,10 +9,10 @@ motorGroupR=MotorGroup(motorR)
 drivetrain=DriveTrain(motorGroupL, motorGroupR)
 motorTop=Motor(Ports.PORT7, GearSetting.RATIO_18_1, True)
 motorBottom=Motor(Ports.PORT5, GearSetting.RATIO_18_1, True)
-motorGroupThrow=MotorGroup(motorTop, motorBottom)
+throw=MotorGroup(motorTop, motorBottom)
 motorFL=Motor(Ports.PORT3, GearSetting.RATIO_18_1, False)
 motorFR=Motor(Ports.PORT8, GearSetting.RATIO_18_1, True)
-frontMotorGroup=MotorGroup(motorFL, motorFR)
+intake=MotorGroup(motorFL, motorFR)
 selectedPosition=True
 hasObject=True
 deadZone=10
@@ -39,22 +39,22 @@ def ondriver_drivercontrol_0():
         if controller.buttonRight.pressing():
             drivetrain.set_stopping(BRAKE)
         if controller.buttonA.pressing() and isThrow == False:
-            motorGroupThrow.spin(FORWARD, 100, PERCENT)
+            throw.spin(FORWARD, 100, PERCENT)
             isThrow=True
         elif isThrow:
-            motorGroupThrow.stop()
+            throw.stop()
             isThrow=False
         if controller.buttonR1.pressing() and isTake == False:
-            frontMotorGroup.spin(FORWARD, 100, PERCENT)
+            intake.spin(FORWARD, 100, PERCENT)
             isTake=True
-        elif isThrow:
-            frontMotorGroup.stop()
+        elif isTake:
+            intake.stop()
             isTake=False
         if controller.buttonR2.pressing() and isTake == False:
-            frontMotorGroup.spin(REVERSE, 100, PERCENT)
+            intake.spin(REVERSE, 100, PERCENT)
             isTake=True
-        elif isThrow:
-            frontMotorGroup.stop()
+        elif isTake:
+            intake.stop()
             isTake=False
         wait(20)
 
@@ -63,13 +63,15 @@ def onauton_autonomous_0():
     if selectedPosition == 'blue_offence' or selectedPosition == 'red_offence':
         drivetrain.drive_for(FORWARD, 1800, MM)
         drivetrain.turn_for(RIGHT, 45, DEGREES)
-        motorGroupThrow.spin_for(FORWARD, 1000, MSEC)
+        throw.spin_for(FORWARD, 1000, MSEC)
     elif selectedPosition == 'blue_defence' or selectedPosition == 'red_defence':
-        pass
+        drivetrain.drive_for(FORWARD, 1800, MM)
+        drivetrain.turn_for(RIGHT, 45, DEGREES)
+        intake.spin_for(REVERSE, 1000, MSEC)
     elif selectedPosition == 'skill':
-        pass
+        printToBrain('onauton_autonomous_0')
 
-def printToBrain(err, func):
+def printToBrain(func, err=0):
     if err == 0:
         brain.screen.print("[ {} ] No errors throw: at <{}>".format(brain.timer.time(MSEC), func))
         brain.screen.new_line()
@@ -120,5 +122,5 @@ def vexcode_driver_function():
 
 
 # register the competition functions
-selectedPosition = chooseTeam()
+# selectedPosition = chooseTeam()
 competition = Competition( vexcode_driver_function, vexcode_auton_function )
