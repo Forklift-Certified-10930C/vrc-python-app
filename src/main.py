@@ -23,7 +23,7 @@ isThrow=False
 isTake=False
 
 def ondriver_drivercontrol_0():
-    global selectedPosition, hasObject, deadZone, inMotion, isSkill, throwToggle, reverse
+    global selectedPosition, hasObject, deadZone, inMotion, isSkill, throwToggle, isThrow, isTake
     while competition.is_enabled and competition.is_driver_control:
         if controller.axis1.position() > deadZone or controller.axis1.position() < -deadZone:
             drivetrain.turn(RIGHT, controller.axis1.position(), PERCENT)
@@ -38,14 +38,32 @@ def ondriver_drivercontrol_0():
             drivetrain.set_stopping(COAST)
         if controller.buttonRight.pressing():
             drivetrain.set_stopping(BRAKE)
-        if controller.buttonR1.pressing() and isThrow == False:
+        if controller.buttonA.pressing() and isThrow == False:
             motorGroupThrow.spin(FORWARD, 100, PERCENT)
+            isThrow=True
+        elif isThrow:
+            motorGroupThrow.stop()
+            isThrow=False
+        if controller.buttonR1.pressing() and isTake == False:
+            frontMotorGroup.spin(FORWARD, 100, PERCENT)
+            isTake=True
+        elif isThrow:
+            frontMotorGroup.stop()
+            isTake=False
+        if controller.buttonR2.pressing() and isTake == False:
+            frontMotorGroup.spin(REVERSE, 100, PERCENT)
+            isTake=True
+        elif isThrow:
+            frontMotorGroup.stop()
+            isTake=False
         wait(20)
 
 def onauton_autonomous_0():
     global selectedPosition
     if selectedPosition == 'blue_offence' or selectedPosition == 'red_offence':
-        pass
+        drivetrain.drive_for(FORWARD, 1800, MM)
+        drivetrain.turn_for(RIGHT, 45, DEGREES)
+        motorGroupThrow.spin_for(FORWARD, 1000, MSEC)
     elif selectedPosition == 'blue_defence' or selectedPosition == 'red_defence':
         pass
     elif selectedPosition == 'skill':
@@ -62,25 +80,29 @@ def printToBrain(err, func):
 def chooseTeam():
     def team_choosing():
     while True:
-        if controller_1.buttonL1.pressing():
+        if controller.buttonL1.pressing():
             brain.screen.draw_image_from_file( "red_offence.png", 0, 4)
-            while controller_1.buttonL1.pressing():
+            while controller.buttonL1.pressing():
                 wait(5, MSEC)
+            brain.screen.clear_screen()
             return "red_offence"
-        elif controller_1.buttonL2.pressing():
+        elif controller.buttonL2.pressing():
             brain.screen.draw_image_from_file( "red_defence.png", 0, 4)
-            while controller_1.buttonL2.pressing():
+            while controller.buttonL2.pressing():
                 wait(5, MSEC)
+            brain.screen.clear_screen()
             return "red_defence"
-        elif controller_1.buttonR1.pressing():
+        elif controller.buttonR1.pressing():
             brain.screen.draw_image_from_file( "blue_offence.png", 0, 4)
-            while controller_1.buttonR1.pressing():
+            while controller.buttonR1.pressing():
                 wait(5, MSEC)
+            brain.screen.clear_screen()
             return "blue_offence"
-        elif controller_1.buttonR2.pressing():
+        elif controller.buttonR2.pressing():
             brain.screen.draw_image_from_file( "blue_defence.png", 0, 4)
-            while controller_1.buttonR2.pressing():
+            while controller.buttonR2.pressing():
                 wait(5, MSEC)
+            brain.screen.clear_screen()
             return "blue_defence"
 
 def vexcode_auton_function():
