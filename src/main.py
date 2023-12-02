@@ -19,7 +19,8 @@ deadZone=10
 inMotion=False
 isSkill=False
 throwToggle=False
-reverse=1
+isThrow=False
+isTake=False
 
 def ondriver_drivercontrol_0():
     global selectedPosition, hasObject, deadZone, inMotion, isSkill, throwToggle, reverse
@@ -37,8 +38,8 @@ def ondriver_drivercontrol_0():
             drivetrain.set_stopping(COAST)
         if controller.buttonRight.pressing():
             drivetrain.set_stopping(BRAKE)
-        if controller.buttonR1.pressing() and True:
-            pass
+        if controller.buttonR1.pressing() and isThrow == False:
+            motorGroupThrow.spin(FORWARD, 100, PERCENT)
         wait(20)
 
 def onauton_autonomous_0():
