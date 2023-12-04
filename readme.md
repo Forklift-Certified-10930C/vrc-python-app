@@ -114,8 +114,7 @@ Distributed under the MIT License. See [LICENSE](https://github.com/Forklift-Cer
 
 ## Authors
 
-* **vx-clutch** - *student* - [vx-clutch](https://github.com/Forklift-Certfied-
-10930C/) - *Lead Dev*
+* **vx-clutch** - *student* - [vx-clutch](https://github.com/Forklift-Certfied-10930C/) - *Lead Dev*
 * **Ponkoncoma** - *student* - *Artist*
 
 ## Acknowledgements
