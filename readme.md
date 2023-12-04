@@ -24,13 +24,12 @@
   </p>
 </p>
 
-![Downloads](https://img.shields.io/github/downloads/Forklift-Certfied-
-10930C/vrc-python-app/total) ![Contributors](https://img.shields.io/github/contributors/Forklift-Certfied-
-10930C/vrc-python-app?color=dark-green) ![Forks](https://img.shields.io/github/forks/Forklift-Certfied-
-10930C/vrc-python-app?style=social) ![Stargazers](https://img.shields.io/github/stars/Forklift-Certfied-
-10930C/vrc-python-app?style=social) ![Issues](https://img.shields.io/github/issues/Forklift-Certfied-
-10930C/vrc-python-app) ![License](https://img.shields.io/github/license/Forklift-Certfied-
-10930C/vrc-python-app) 
+![Downloads](https://img.shields.io/github/downloads/Forklift-Certfied-10930C/vrc-python-app/total)
+![Contributors](https://img.shields.io/github/contributors/Forklift-Certfied-10930C/vrc-python-app?color=dark-green) 
+![Forks](https://img.shields.io/github/forks/Forklift-Certfied-10930C/vrc-python-app?style=social) 
+![Stargazers](https://img.shields.io/github/stars/Forklift-Certfied-10930C/vrc-python-app?style=social) 
+![Issues](https://img.shields.io/github/issues/Forklift-Certfied-10930C/vrc-python-app) 
+![License](https://img.shields.io/github/license/Forklift-Certfied-10930C/vrc-python-app) 
 
 ## Table Of Contents
 
