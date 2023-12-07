@@ -1,4 +1,5 @@
 from vex import *
+import random
 
 brain=Brain()
 controller=Controller(PRIMARY)
@@ -26,7 +27,7 @@ def ondriver_drivercontrol_0():
     global selectedPosition, hasObject, deadZone, inMotion, isSkill, isThrow, isTakeOut, isTakeIn
     while competition.is_enabled and competition.is_driver_control:
         if controller.axis1.position() > deadZone or controller.axis1.position() < -deadZone:
-            drivetrain.turn(RIGHT, controller.axis1.position(), PERCENT)
+            drivetrain.turn(RIGHT, controller.axis1.position()*0.5, PERCENT)
             inMotion=True
         if controller.axis3.position() > deadZone or controller.axis3.position() < -deadZone:
             drivetrain.drive(FORWARD, controller.axis3.position(), PERCENT)
@@ -34,15 +35,13 @@ def ondriver_drivercontrol_0():
         if controller.axis3.position() == 0 and controller.axis1.position() == 0 and inMotion:
             drivetrain.stop()
             inMotion=False
-        if controller.buttonLeft.pressing():
-            drivetrain.set_stopping(COAST)
-        if controller.buttonRight.pressing():
-            drivetrain.set_stopping(BRAKE)
         if controller.buttonA.pressing() and isThrow == False:
-            throw.spin(FORWARD, 100, PERCENT)
+            throw.spin(REVERSE, 100, PERCENT)
+            intake.spin(REVERSE, 100, PERCENT)
             isThrow=True
         if isThrow and controller.buttonA.pressing() == False:
             throw.stop()
+            intake.stop()
             isThrow=False
         if controller.buttonR1.pressing() and isTakeOut == False:
             intake.spin(FORWARD, 100, PERCENT)
@@ -59,17 +58,9 @@ def ondriver_drivercontrol_0():
         wait(20)
 
 def onauton_autonomous_0():
-    global selectedPosition
-    if selectedPosition == 'blue_offence' or selectedPosition == 'red_offence':
-        drivetrain.drive_for(FORWARD, 1000, MM)
-        drivetrain.turn_for(RIGHT, 45, DEGREES)
-        throw.spin_for(FORWARD, 1000, MSEC)
-    elif selectedPosition == 'blue_defence' or selectedPosition == 'red_defence':
-        drivetrain.drive_for(FORWARD, 1000, MM)
-        drivetrain.turn_for(RIGHT, 45, DEGREES)
-        intake.spin_for(REVERSE, 1000, MSEC)
-    elif selectedPosition == 'skill':
-        printToBrain('onauton_autonomous_0')
+    drivetrain.drive_for(FORWARD, 500, MM, 100, PERCENT)
+    intake.__spin_for_time(REVERSE, 1000, MSEC, 100, PERCENT)
+    drivetrain.drive_for(REVERSE, 550, MM, 100, PERCENT)
 
 def printToBrain(func, err=0):
     if err == 0:
@@ -78,33 +69,6 @@ def printToBrain(func, err=0):
     else:
         brain.screen.print("[ {} ] Error {}: at <{}>".format(brain.timer.time(MSEC), err, func))
         brain.screen.new_line()
-
-def chooseTeam():
-    while True:
-        if controller.buttonL1.pressing():
-            brain.screen.draw_image_from_file( "red_offence.png", 0, 4)
-            while controller.buttonL1.pressing():
-                wait(5, MSEC)
-            brain.screen.clear_screen()
-            return "red_offence"
-        elif controller.buttonL2.pressing():
-            brain.screen.draw_image_from_file( "red_defence.png", 0, 4)
-            while controller.buttonL2.pressing():
-                wait(5, MSEC)
-            brain.screen.clear_screen()
-            return "red_defence"
-        elif controller.buttonR1.pressing():
-            brain.screen.draw_image_from_file( "blue_offence.png", 0, 4)
-            while controller.buttonR1.pressing():
-                wait(5, MSEC)
-            brain.screen.clear_screen()
-            return "blue_offence"
-        elif controller.buttonR2.pressing():
-            brain.screen.draw_image_from_file( "blue_defence.png", 0, 4)
-            while controller.buttonR2.pressing():
-                wait(5, MSEC)
-            brain.screen.clear_screen()
-            return "blue_defence"
 
 def vexcode_auton_function():
     auton_task_0 = Thread( onauton_autonomous_0 )
@@ -121,5 +85,4 @@ def vexcode_driver_function():
 
 
 # register the competition functions
-selectedPosition = chooseTeam()
 competition = Competition( vexcode_driver_function, vexcode_auton_function )
