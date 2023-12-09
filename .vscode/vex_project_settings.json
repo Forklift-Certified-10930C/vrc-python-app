@@ -4,7 +4,7 @@
 		"json": 2
 	},
 	"project": {
-		"name": "app.py",
+		"name": "main.py",
 		"description": "vrc-python-app",
 		"creationDate": "9/24/2023, 11:08:52 AM",
 		"platform": "V5",
