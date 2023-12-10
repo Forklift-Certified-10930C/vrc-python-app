@@ -1,22 +1,20 @@
 from vex import *
-import random
 
 brain=Brain()
 controller=Controller(PRIMARY)
-motorL=Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
-motorR=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
-motorGroupL=MotorGroup(motorL)
-motorGroupR=MotorGroup(motorR)
-drivetrain=DriveTrain(motorGroupL, motorGroupR)
-motorTop=Motor(Ports.PORT7, GearSetting.RATIO_18_1, True)
-motorBottom=Motor(Ports.PORT5, GearSetting.RATIO_18_1, True)
-throw=MotorGroup(motorTop, motorBottom)
-motorFL=Motor(Ports.PORT3, GearSetting.RATIO_18_1, False)
-motorFR=Motor(Ports.PORT8, GearSetting.RATIO_18_1, True)
-intake=MotorGroup(motorFL, motorFR)
-selectedPosition=True
+motor_l=Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
+motor_r=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
+motor_group_l=MotorGroup(motor_l)
+motor_group_r=MotorGroup(motor_r)
+drivetrain=DriveTrain(motor_group_l, motor_group_r)
+motor_top=Motor(Ports.PORT7, GearSetting.RATIO_18_1, True)
+motor_bottom=Motor(Ports.PORT5, GearSetting.RATIO_18_1, True)
+motor_group_throw=MotorGroup(motor_top, motor_bottom)
+motor_front_left=Motor(Ports.PORT3, GearSetting.RATIO_18_1, False)
+motor_front_right=Motor(Ports.PORT8, GearSetting.RATIO_18_1, True)
+motor_group_intake=MotorGroup(motor_front_left, motor_front_right)
 hasObject=True
-deadZone=10
+dead_zone=10
 inMotion=False
 isSkill=False
 isThrow=False
@@ -24,42 +22,42 @@ isTakeOut=False
 isTakeIn=False
 
 def ondriver_drivercontrol_0():
-    global selectedPosition, hasObject, deadZone, inMotion, isSkill, isThrow, isTakeOut, isTakeIn
+    global selectedPosition, hasObject, dead_zone, inMotion, isSkill, isThrow, isTakeOut, isTakeIn
     while competition.is_enabled and competition.is_driver_control:
-        if controller.axis1.position() > deadZone or controller.axis1.position() < -deadZone:
+        if controller.axis1.position() > dead_zone or controller.axis1.position() < -dead_zone:
             drivetrain.turn(RIGHT, controller.axis1.position()*0.5, PERCENT)
             inMotion=True
-        if controller.axis3.position() > deadZone or controller.axis3.position() < -deadZone:
+        if controller.axis3.position() > dead_zone or controller.axis3.position() < -dead_zone:
             drivetrain.drive(FORWARD, controller.axis3.position(), PERCENT)
             inMotion=True
         if controller.axis3.position() == 0 and controller.axis1.position() == 0 and inMotion:
             drivetrain.stop()
             inMotion=False
         if controller.buttonA.pressing() and isThrow == False:
-            throw.spin(REVERSE, 100, PERCENT)
-            intake.spin(REVERSE, 100, PERCENT)
+            motor_group_throw.spin(REVERSE, 100, PERCENT)
+            motor_group_intake.spin(REVERSE, 100, PERCENT)
             isThrow=True
         if isThrow and controller.buttonA.pressing() == False:
-            throw.stop()
-            intake.stop()
+            motor_group_throw.stop()
+            motor_group_intake.stop()
             isThrow=False
         if controller.buttonR1.pressing() and isTakeOut == False:
-            intake.spin(FORWARD, 100, PERCENT)
+            motor_group_intake.spin(FORWARD, 100, PERCENT)
             isTakeOut=True
         if isTakeOut and controller.buttonR1.pressing() == False:
-            intake.stop()
+            motor_group_intake.stop()
             isTakeOut=False
         if controller.buttonR2.pressing() and isTakeIn == False:
-            intake.spin(REVERSE, 100, PERCENT)
+            motor_group_intake.spin(REVERSE, 100, PERCENT)
             isTakeIn=True
         if isTakeIn and controller.buttonR2.pressing() == False:
-            intake.stop()
+            motor_group_intake.stop()
             isTakeIn=False
         wait(20)
 
 def onauton_autonomous_0():
     drivetrain.drive_for(FORWARD, 500, MM, 100, PERCENT)
-    intake.__spin_for_time(REVERSE, 1000, MSEC, 100, PERCENT)
+    motor_group_intake.__spin_for_time(REVERSE, 1000, MSEC, 100, PERCENT)
     drivetrain.drive_for(REVERSE, 550, MM, 100, PERCENT)
 
 def printToBrain(func, err=0):
@@ -69,6 +67,9 @@ def printToBrain(func, err=0):
     else:
         brain.screen.print("[ {} ] Error {}: at <{}>".format(brain.timer.time(MSEC), err, func))
         brain.screen.new_line()
+
+def goto(x,y,vel,speed):
+    current_position=None
 
 def vexcode_auton_function():
     auton_task_0 = Thread( onauton_autonomous_0 )
