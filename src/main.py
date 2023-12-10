@@ -1,4 +1,5 @@
 from vex import *
+import math
 
 brain=Brain()
 controller=Controller(PRIMARY)
