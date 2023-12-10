@@ -14,6 +14,15 @@ motor_front_left=Motor(Ports.PORT3, GearSetting.RATIO_18_1, False)
 motor_front_right=Motor(Ports.PORT8, GearSetting.RATIO_18_1, True)
 motor_group_intake=MotorGroup(motor_front_left, motor_front_right)
 
+def printToScreen(func, err):
+    if err == 0:
+        controller.screen.print("[ {} ] No errors throw: at <{}>".format(brain.timer.time(MSEC), func))
+        controller.screen.new_line()
+    else:
+        controller.screen.print("[ {} ] Error {}: at <{}>".format(brain.timer.time(MSEC), err, func))
+        controller.screen.new_line()
+
+
 def main():
     pass
 
