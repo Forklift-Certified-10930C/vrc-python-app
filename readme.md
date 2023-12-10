@@ -11,7 +11,7 @@
     Forklift Certified | 10930C
     <br/>
     <br/>
-    <a href="[https://github.com/Forklift-Certified-10930C"><](https://vx-books.gitbook.io/forklift-certified-or-10930c/)strong>Explore the docs »</strong></a>
+    <a href="[[https://github.com/Forklift-Certified-10930C](https://vx-books.gitbook.io/forklift-certified-or-10930c/)"><strong>Explore the Docs</strong></a>
     <br/>
     <br/>
     <a href="https://www.vexrobotics.com">Organization</a>
