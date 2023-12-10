@@ -22,7 +22,7 @@ isTakeOut=False
 isTakeIn=False
 
 def ondriver_drivercontrol_0():
-    global selectedPosition, hasObject, dead_zone, inMotion, isSkill, isThrow, isTakeOut, isTakeIn
+    global hasObject, dead_zone, inMotion, isSkill, isThrow, isTakeOut, isTakeIn
     while competition.is_enabled and competition.is_driver_control:
         if controller.axis1.position() > dead_zone or controller.axis1.position() < -dead_zone:
             drivetrain.turn(RIGHT, controller.axis1.position()*0.5, PERCENT)
