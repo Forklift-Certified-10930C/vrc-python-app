@@ -2,6 +2,7 @@ from vex import *
 import math
 
 brain=Brain()
+gps=Gps(Ports.PORT22)
 controller=Controller(PRIMARY)
 motor_l=Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
 motor_r=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
@@ -69,8 +70,18 @@ def printToBrain(func, err=0):
         brain.screen.print("[ {} ] Error {}: at <{}>".format(brain.timer.time(MSEC), err, func))
         brain.screen.new_line()
 
-def goto(x,y,vel,speed):
-    current_position=None
+def goto(x_cord, y_cord, speed, wait):
+    b = x_cord - gps.x_position(MM)
+    c = y_cord - gps.y_position(MM)
+    if abs(b) < 1 and abs(c) < 1:
+        pass
+    else:
+        a = math.sqrt(b**2 + c**2)
+        angle = math.asin((math.sin(90 / 180.0 * math.pi) * b) / a) / math.pi * 180
+        if c < 0:
+            angle = 180 - angle
+            drivetrain.turn_to_heading(angle, DEGREES)
+            drivetrain.drive_for(FORWARD, a, MM, speed, PERCENT, wait = wait)
 
 def vexcode_auton_function():
     auton_task_0 = Thread( onauton_autonomous_0 )
