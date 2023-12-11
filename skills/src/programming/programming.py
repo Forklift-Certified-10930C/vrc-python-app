@@ -2,6 +2,8 @@ from vex import *
 
 brain=Brain()
 controller=Controller(PRIMARY)
+gps=Gps(Ports.PORT22)
+inertial=Inertial(Ports.PORT22)
 motor_l=Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
 motor_r=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
 motor_group_l=MotorGroup(motor_l)
@@ -22,6 +24,18 @@ def printToScreen(func, err):
         controller.screen.print("[ {} ] Error {}: at <{}>".format(brain.timer.time(MSEC), err, func))
         controller.screen.new_line()
 
+def goto(x,y,speed,wait):
+    b=x-gps.x_position(MM)
+    c=y-gps.y_position(MM)
+    if abs(b) < 1 and abs(c) < 1:
+        pass
+    else:
+        a=math.sqrt(b**2+c**2)
+        angle=math.asin(((math.sin(90/180.0*math.pi)*b)/a)/math.pi*180)
+        if c<0:
+            angle=180-angle
+            drivetrain.turn_to_heading(angle, DEGREES)
+            drivetrain.drive_for(FORWARD, 1, MM, speed, PERCENT, wait=wait)
 
 def main():
     pass
