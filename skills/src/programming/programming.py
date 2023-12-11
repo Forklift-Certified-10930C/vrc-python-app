@@ -4,6 +4,7 @@ brain=Brain()
 controller=Controller(PRIMARY)
 gps=Gps(Ports.PORT22)
 inertial=Inertial(Ports.PORT22)
+color=Vision(Ports.PORT22)
 motor_l=Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
 motor_r=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
 motor_group_l=MotorGroup(motor_l)
@@ -38,7 +39,9 @@ def goto(x,y,speed,wait):
             drivetrain.drive_for(FORWARD, 1, MM, speed, PERCENT, wait=wait)
 
 def main():
-    pass
+    index=0
+    while index!=40:
+        wait(10,MSEC)
 
 def vexcode_coding_skills():
     skill_task_0 = Thread( main )
