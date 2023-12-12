@@ -86,7 +86,7 @@ def skills():
     printToScreen("skills")
 
 START_TIME=BRAIN.timer.time(MSEC)
-BRAIN.screen.print('Select programming skills by clicking "A" otherwise wait 5 seconds and proceed to main game or driver skills code')
+BRAIN.screen.print('Proceed to skills or wait 5 seconds [Y/N] "A"')
 while (BRAIN.timer.time(MSEC)-START_TIME < 5000):
     if CONTROLLER.buttonA.pressing():
         BRAIN.screen.clear_screen()
