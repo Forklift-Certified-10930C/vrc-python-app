@@ -83,7 +83,7 @@ def vexcode_driver_function():
     driver_control_task_0.stop()
 
 def skills():
-    printToScreen("skills",0)
+    printToScreen("skills")
 
 START_TIME=BRAIN.timer.time(MSEC)
 BRAIN.screen.print('Select programming skills by clicking "A" otherwise wait 5 seconds and proceed to main game or driver skills code')
@@ -93,5 +93,6 @@ while (BRAIN.timer.time(MSEC)-START_TIME < 5000):
         IS_SKILLS=True
         skills()
         break
+BRAIN.screen.clear_screen()
 if IS_SKILLS == False:
     competition = Competition( vexcode_driver_function, vexcode_auton_function )
