@@ -1,8 +1,6 @@
 from vex import *
-import math
 
 PETER_GRIFFN=Brain()
-GPS=Gps(Ports.PORT22)
 CONTROLLER=Controller(PRIMARY)
 MOTOR_1=Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
 MOTOR_2=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
@@ -22,6 +20,7 @@ isSkill=False
 IS_THROW=False
 IS_TAKE_OUT=False
 IS_TAKE_IN=False
+IS_SKILLS=False
 
 def ondriver_drivercontrol_0():
     global HAS_OBJ, DEAD_ZONE, IN_MOTION, isSkill, IS_THROW, IS_TAKE_OUT, IS_TAKE_IN
@@ -86,9 +85,11 @@ def vexcode_driver_function():
 def skills():
     printToScreen("skills",0)
 
-# register the competition functions
-START_TIME = PETER_GRIFFN.timer.time(MSEC)
-while (START_TIME < 5000):
+START_TIME=PETER_GRIFFN.timer.time(MSEC)
+while (PETER_GRIFFN.timer.time(MSEC)-START_TIME < 5000):
     if CONTROLLER.buttonA.pressing():
+        IS_SKILLS=True
         skills()
-competition = Competition( vexcode_driver_function, vexcode_auton_function )
+        break
+if IS_SKILLS == False:
+    competition = Competition( vexcode_driver_function, vexcode_auton_function )
