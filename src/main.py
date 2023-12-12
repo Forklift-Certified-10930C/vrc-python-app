@@ -1,6 +1,6 @@
 from vex import *
 
-PETER_GRIFFN=Brain()
+BRAIN=Brain()
 CONTROLLER=Controller(PRIMARY)
 MOTOR_1=Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
 MOTOR_2=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
@@ -63,10 +63,10 @@ def onauton_autonomous_0():
 
 def printToScreen(func, err=0):
     if err == 0:
-        CONTROLLER.screen.print("[ {} ] No errors throw: at <{}>".format(PETER_GRIFFN.timer.time(MSEC), func))
+        CONTROLLER.screen.print("[ {} ] No errors throw: at <{}>".format(BRAIN.timer.time(MSEC), func))
         CONTROLLER.screen.new_line()
     else:
-        CONTROLLER.screen.print("[ {} ] Error {}: at <{}>".format(PETER_GRIFFN.timer.time(MSEC), err, func))
+        CONTROLLER.screen.print("[ {} ] Error {}: at <{}>".format(BRAIN.timer.time(MSEC), err, func))
         CONTROLLER.screen.new_line()
 
 def vexcode_auton_function():
@@ -85,8 +85,8 @@ def vexcode_driver_function():
 def skills():
     printToScreen("skills",0)
 
-START_TIME=PETER_GRIFFN.timer.time(MSEC)
-while (PETER_GRIFFN.timer.time(MSEC)-START_TIME < 5000):
+START_TIME=BRAIN.timer.time(MSEC)
+while (BRAIN.timer.time(MSEC)-START_TIME < 5000):
     if CONTROLLER.buttonA.pressing():
         IS_SKILLS=True
         skills()
