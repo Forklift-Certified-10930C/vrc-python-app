@@ -83,6 +83,12 @@ def vexcode_driver_function():
         wait( 10, MSEC )
     driver_control_task_0.stop()
 
+def skills():
+    printToScreen("skills",0)
 
 # register the competition functions
+START_TIME = PETER_GRIFFN.timer.time(MSEC)
+while (START_TIME < 5000):
+    if CONTROLLER.buttonA.pressing():
+        skills()
 competition = Competition( vexcode_driver_function, vexcode_auton_function )
