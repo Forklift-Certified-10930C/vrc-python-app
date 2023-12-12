@@ -86,13 +86,13 @@ def skills():
     printToScreen("skills")
 
 START_TIME=BRAIN.timer.time(MSEC)
-BRAIN.screen.print('Proceed to skills or wait 5 seconds [Y/N] "A"')
+BRAIN.screen.print('Proceed to skills or wait 5 seconds [Y/N] "A"; "B"')
+BRAIN.screen.new_line()
 while (BRAIN.timer.time(MSEC)-START_TIME < 5000):
     if CONTROLLER.buttonA.pressing():
-        BRAIN.screen.clear_screen()
         IS_SKILLS=True
         skills()
         break
-BRAIN.screen.clear_screen()
-if IS_SKILLS == False:
-    competition = Competition( vexcode_driver_function, vexcode_auton_function )
+    if CONTROLLER.buttonB.pressing():
+        competition = Competition( vexcode_driver_function, vexcode_auton_function )
+        break
