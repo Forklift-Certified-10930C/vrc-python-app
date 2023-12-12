@@ -63,11 +63,11 @@ def onauton_autonomous_0():
 
 def printToScreen(func, err=0):
     if err == 0:
-        CONTROLLER.screen.print("[ {} ] No errors throw: at <{}>".format(BRAIN.timer.time(MSEC), func))
-        CONTROLLER.screen.new_line()
+        BRAIN.screen.print("[ {} ] No errors throw: at <{}>".format(BRAIN.timer.time(MSEC), func))
+        BRAIN.screen.new_line()
     else:
-        CONTROLLER.screen.print("[ {} ] Error {}: at <{}>".format(BRAIN.timer.time(MSEC), err, func))
-        CONTROLLER.screen.new_line()
+        BRAIN.screen.print("[ {} ] Error {}: at <{}>".format(BRAIN.timer.time(MSEC), err, func))
+        BRAIN.screen.new_line()
 
 def vexcode_auton_function():
     auton_task_0 = Thread( onauton_autonomous_0 )
@@ -86,9 +86,10 @@ def skills():
     printToScreen("skills",0)
 
 START_TIME=BRAIN.timer.time(MSEC)
-CONTROLLER.screen.print('Select programming skills by clicking "A" otherwise wait 5 seconds and proceed to main game or driver skills code')
+BRAIN.screen.print('Select programming skills by clicking "A" otherwise wait 5 seconds and proceed to main game or driver skills code')
 while (BRAIN.timer.time(MSEC)-START_TIME < 5000):
     if CONTROLLER.buttonA.pressing():
+        BRAIN.screen.clear_screen()
         IS_SKILLS=True
         skills()
         break
