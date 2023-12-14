@@ -84,11 +84,20 @@ def vexcode_driver_function():
 
 def skills():
     printToScreen("skills")
+    MOTOR_GROUP_THROW.spin(REVERSE, 100, PERCENT)
+    MOTOR_GROUP_INTAKE.spin(REVERSE, 100, PERCENT)
+    wait(60000,MSEC)
+    MOTOR_GROUP_THROW.stop()
+    MOTOR_GROUP_INTAKE.stop()
+
+
+     
+    
 
 START_TIME=BRAIN.timer.time(MSEC)
-BRAIN.screen.print('Proceed to skills or wait 5 seconds [Y/N] "A"; "B"')
+BRAIN.screen.print('Proceed to skills? [ Y / N ]')
 BRAIN.screen.new_line()
-while (BRAIN.timer.time(MSEC)-START_TIME < 5000):
+while (True):
     if CONTROLLER.buttonA.pressing():
         IS_SKILLS=True
         skills()
