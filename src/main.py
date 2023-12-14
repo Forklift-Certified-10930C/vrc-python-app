@@ -21,9 +21,10 @@ IS_THROW=False
 IS_TAKE_OUT=False
 IS_TAKE_IN=False
 IS_SKILLS=False
+WING_STATUS=False
 
 def ondriver_drivercontrol_0():
-    global HAS_OBJ, DEAD_ZONE, IN_MOTION, isSkill, IS_THROW, IS_TAKE_OUT, IS_TAKE_IN
+    global HAS_OBJ, DEAD_ZONE, IN_MOTION, isSkill, IS_THROW, IS_TAKE_OUT, IS_TAKE_IN, WING_STATUS
     while competition.is_enabled and competition.is_driver_control:
         if CONTROLLER.axis1.position() > DEAD_ZONE or CONTROLLER.axis1.position() < -DEAD_ZONE:
             DRIVETRAIN.turn(RIGHT, CONTROLLER.axis1.position()*0.5, PERCENT)
@@ -42,6 +43,10 @@ def ondriver_drivercontrol_0():
             MOTOR_GROUP_THROW.stop()
             MOTOR_GROUP_INTAKE.stop()
             IS_THROW=False
+        if WING_STATUS == False and CONTROLLER.buttonX.pressing():
+            WING_STATUS=True
+            if WING_STATUS and CONTROLLER.buttonX.pressing():
+            WING_STATUS=False
         if CONTROLLER.buttonR1.pressing() and IS_TAKE_OUT == False:
             MOTOR_GROUP_INTAKE.spin(FORWARD, 100, PERCENT)
             IS_TAKE_OUT=True
