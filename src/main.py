@@ -45,7 +45,7 @@ def ondriver_drivercontrol_0():
             IS_THROW=False
         if WING_STATUS == False and CONTROLLER.buttonX.pressing():
             WING_STATUS=True
-            if WING_STATUS and CONTROLLER.buttonX.pressing():
+        if WING_STATUS and CONTROLLER.buttonX.pressing():
             WING_STATUS=False
         if CONTROLLER.buttonR1.pressing() and IS_TAKE_OUT == False:
             MOTOR_GROUP_INTAKE.spin(FORWARD, 100, PERCENT)
