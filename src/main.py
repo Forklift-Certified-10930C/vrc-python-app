@@ -95,10 +95,6 @@ def skills():
     MOTOR_GROUP_THROW.stop()
     MOTOR_GROUP_INTAKE.stop()
 
-
-     
-    
-
 START_TIME=BRAIN.timer.time(MSEC)
 BRAIN.screen.print('Proceed to skills? [ Y / N ]')
 BRAIN.screen.new_line()
