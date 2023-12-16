@@ -13,6 +13,9 @@ MOTOR_GROUP_THROW=MotorGroup(MOTOR_7, MOTOR_5)
 MOTOR_3=Motor(Ports.PORT3, GearSetting.RATIO_18_1, False)
 MOTOR_8=Motor(Ports.PORT8, GearSetting.RATIO_18_1, True)
 MOTOR_GROUP_INTAKE=MotorGroup(MOTOR_3, MOTOR_8)
+MOTOR_4=Motor(Ports.PORT4)
+MOTOR_9=Motor(Ports.PORT9)
+MOTOR_GROUP_ARMS=(MOTOR_4, MOTOR_9)
 HAS_OBJ=True
 DEAD_ZONE=10
 IN_MOTION=False
@@ -86,6 +89,12 @@ def vexcode_driver_function():
     while( competition.is_driver_control() and competition.is_enabled() ):
         wait( 10, MSEC )
     driver_control_task_0.stop()
+
+def arms(pos):
+    if pos == "out":
+        pass
+    if pos == "in":
+        pass
 
 def skills():
     printToScreen("skills")
