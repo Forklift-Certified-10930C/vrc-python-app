@@ -101,8 +101,10 @@ BRAIN.screen.new_line()
 while (True):
     if CONTROLLER.buttonA.pressing():
         IS_SKILLS=True
+        BRAIN.screen.clear_screen()
         skills()
         break
     if CONTROLLER.buttonB.pressing():
         competition = Competition( vexcode_driver_function, vexcode_auton_function )
+        BRAIN.screen.clear_screen()
         break
