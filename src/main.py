@@ -47,8 +47,10 @@ def ondriver_drivercontrol_0():
             MOTOR_GROUP_INTAKE.stop()
             IS_THROW=False
         if WING_STATUS == False and CONTROLLER.buttonX.pressing():
+            arms(True)
             WING_STATUS=True
         if WING_STATUS and CONTROLLER.buttonX.pressing():
+            arms(False)
             WING_STATUS=False
         if CONTROLLER.buttonR1.pressing() and IS_TAKE_OUT == False:
             MOTOR_GROUP_INTAKE.spin(FORWARD, 100, PERCENT)
@@ -91,9 +93,9 @@ def vexcode_driver_function():
     driver_control_task_0.stop()
 
 def arms(pos):
-    if pos == "out":
+    if pos :
         MOTOR_GROUP_ARMS.spin_for(FORWARD, 100, PERCENT, 90, DEGREES)
-    if pos == "in":
+    else:
         MOTOR_GROUP_ARMS.spin_for(REVERSE, 100, PERCENT, 90, DEGREES)
 
 def skills():
@@ -104,7 +106,7 @@ def skills():
     MOTOR_GROUP_THROW.stop()
     MOTOR_GROUP_INTAKE.stop()
 
-START_TIME=BRAIN.timer.time(MSEC)
+arms(False)
 BRAIN.screen.print('Proceed to skills? [ Y / N ]')
 BRAIN.screen.new_line()
 while (True):
