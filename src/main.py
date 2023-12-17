@@ -92,9 +92,9 @@ def vexcode_driver_function():
 
 def arms(pos):
     if pos == "out":
-        pass
+        MOTOR_GROUP_ARMS.spin_for(FORWARD, 100, PERCENT, 90, DEGREES)
     if pos == "in":
-        pass
+        MOTOR_GROUP_ARMS.spin_for(REVERSE, 100, PERCENT, 90, DEGREES)
 
 def skills():
     printToScreen("skills")
