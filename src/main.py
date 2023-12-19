@@ -109,15 +109,13 @@ def skills():
 
 BRAIN.screen.print('Proceed to skills? [ Y / N ]')
 BRAIN.screen.new_line()
-MOTOR_4.spin_to_position(-35, DEGREES, 25, PERCENT)
-MOTOR_9.spin_to_position(20, DEGREES, 25, PERCENT)
 while (True):
     if CONTROLLER.buttonA.pressing():
         IS_SKILLS=True
-        BRAIN.screen.clear_screen()
+        BRAIN.screen.clear_line()
         skills()
         break
     if CONTROLLER.buttonB.pressing():
         competition = Competition( vexcode_driver_function, vexcode_auton_function )
-        BRAIN.screen.clear_screen()
+        BRAIN.screen.clear_line()
         break
