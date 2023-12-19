@@ -10,12 +10,12 @@ DRIVETRAIN=DriveTrain(MOTOR_GROUP_L, MOTOR_GROUP_R)
 MOTOR_7=Motor(Ports.PORT7, GearSetting.RATIO_18_1, True)
 MOTOR_5=Motor(Ports.PORT5, GearSetting.RATIO_18_1, True)
 MOTOR_GROUP_THROW=MotorGroup(MOTOR_7, MOTOR_5)
-MOTOR_3=Motor(Ports.PORT3, GearSetting.RATIO_18_1, False)
-MOTOR_8=Motor(Ports.PORT8, GearSetting.RATIO_18_1, True)
+MOTOR_3=Motor(Ports.PORT3, GearSetting.RATIO_6_1, False)
+MOTOR_8=Motor(Ports.PORT8, GearSetting.RATIO_6_1, True)
 MOTOR_GROUP_INTAKE=MotorGroup(MOTOR_3, MOTOR_8)
-MOTOR_4=Motor(Ports.PORT4)
-MOTOR_9=Motor(Ports.PORT9)
-MOTOR_GROUP_ARMS=(MOTOR_4, MOTOR_9)
+MOTOR_4=Motor(Ports.PORT4, GearSetting.RATIO_18_1, False)
+MOTOR_9=Motor(Ports.PORT9, GearSetting.RATIO_18_1, True)
+MOTOR_GROUP_ARMS=MotorGroup(MOTOR_4, MOTOR_9)
 HAS_OBJ=True
 DEAD_ZONE=10
 IN_MOTION=False
@@ -94,21 +94,23 @@ def vexcode_driver_function():
 
 def arms(pos):
     if pos :
-        MOTOR_GROUP_ARMS.spin_for(FORWARD, 100, PERCENT, 90, DEGREES)
+        MOTOR_GROUP_ARMS.spin_to_position(90, DEGREES, 100 ,PERCENT)
     else:
-        MOTOR_GROUP_ARMS.spin_for(REVERSE, 100, PERCENT, 90, DEGREES)
+        MOTOR_4.spin_to_position(-35, DEGREES, 25, PERCENT)
+        MOTOR_9.spin_to_position(20, DEGREES, 25, PERCENT)
 
 def skills():
     printToScreen("skills")
-    MOTOR_GROUP_THROW.spin(REVERSE, 100, PERCENT)
-    MOTOR_GROUP_INTAKE.spin(REVERSE, 100, PERCENT)
+    MOTOR_GROUP_THROW.spin(REVERSE, 60, PERCENT)
+    MOTOR_GROUP_INTAKE.spin(REVERSE, 60, PERCENT)
     wait(60000,MSEC)
     MOTOR_GROUP_THROW.stop()
     MOTOR_GROUP_INTAKE.stop()
 
-arms(False)
 BRAIN.screen.print('Proceed to skills? [ Y / N ]')
 BRAIN.screen.new_line()
+MOTOR_4.spin_to_position(-35, DEGREES, 25, PERCENT)
+MOTOR_9.spin_to_position(20, DEGREES, 25, PERCENT)
 while (True):
     if CONTROLLER.buttonA.pressing():
         IS_SKILLS=True
