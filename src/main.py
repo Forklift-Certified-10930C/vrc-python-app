@@ -1,6 +1,6 @@
 from vex import *
 
-BRAIN=Brain()
+BRIAN=Brain()
 CONTROLLER=Controller(PRIMARY)
 MOTOR_1=Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
 MOTOR_2=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
@@ -75,11 +75,11 @@ def onauton_autonomous_0():
 
 def printToScreen(func, err=0):
     if err == 0:
-        BRAIN.screen.print("[ {} ] No errors throw: at <{}>".format(BRAIN.timer.time(MSEC), func))
-        BRAIN.screen.new_line()
+        BRIAN.screen.print("[ {} ] No errors throw: at <{}>".format(BRIAN.timer.time(MSEC), func))
+        BRIAN.screen.new_line()
     else:
-        BRAIN.screen.print("[ {} ] Error {}: at <{}>".format(BRAIN.timer.time(MSEC), err, func))
-        BRAIN.screen.new_line()
+        BRIAN.screen.print("[ {} ] Error {}: at <{}>".format(BRIAN.timer.time(MSEC), err, func))
+        BRIAN.screen.new_line()
 
 def vexcode_auton_function():
     auton_task_0 = Thread( onauton_autonomous_0 )
@@ -96,7 +96,7 @@ def vexcode_driver_function():
 
 def arms(pos):
     global START_ANGLE_4, START_ANGLE_9
-    if pos :
+    if pos:
         MOTOR_GROUP_ARMS.spin_to_position(90, DEGREES, 100 ,PERCENT)
     else:
         MOTOR_4.spin_to_position(START_ANGLE_4, DEGREES, 25, PERCENT)
@@ -116,15 +116,17 @@ def skills():
     MOTOR_GROUP_THROW.stop()
     MOTOR_GROUP_INTAKE.stop()
 
-BRAIN.screen.print('Proceed to skills? [ Y / N ]')
-BRAIN.screen.new_line()
-while (True):
+BRIAN.screen.print('Proceed to skills? [ Y / N ]')
+BRIAN.screen.new_line()
+while True:
     if CONTROLLER.buttonA.pressing():
         IS_SKILLS=True
-        BRAIN.screen.clear_line()
+        BRIAN.screen.clear_line()
+        CONTROLLER.rumble("..--")
         skills()
         break
     if CONTROLLER.buttonB.pressing():
+        CONTROLLER.rumble(".")
         competition = Competition( vexcode_driver_function, vexcode_auton_function )
-        BRAIN.screen.clear_line()
+        BRIAN.screen.clear_line()
         break
