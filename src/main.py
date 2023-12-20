@@ -19,7 +19,7 @@ MOTOR_GROUP_ARMS=MotorGroup(MOTOR_4, MOTOR_9)
 HAS_OBJ=True
 DEAD_ZONE=10
 IN_MOTION=False
-isSkill=False
+IS_SKILL=False
 IS_THROW=False
 IS_TAKE_OUT=False
 IS_TAKE_IN=False
@@ -29,7 +29,7 @@ START_ANGLE_4=0
 START_ANGLE_9=0
 
 def ondriver_drivercontrol_0():
-    global HAS_OBJ, DEAD_ZONE, IN_MOTION, isSkill, IS_THROW, IS_TAKE_OUT, IS_TAKE_IN, WING_STATUS
+    global HAS_OBJ, DEAD_ZONE, IN_MOTION, IS_SKILL, IS_THROW, IS_TAKE_OUT, IS_TAKE_IN, WING_STATUS
     while competition.is_enabled and competition.is_driver_control:
         if CONTROLLER.axis1.position() > DEAD_ZONE or CONTROLLER.axis1.position() < -DEAD_ZONE:
             DRIVETRAIN.turn(RIGHT, CONTROLLER.axis1.position()*0.5, PERCENT)
