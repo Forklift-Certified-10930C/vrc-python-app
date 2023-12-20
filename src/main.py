@@ -16,7 +16,6 @@ MOTOR_GROUP_INTAKE=MotorGroup(MOTOR_3, MOTOR_8)
 MOTOR_4=Motor(Ports.PORT4, GearSetting.RATIO_18_1, False)
 MOTOR_9=Motor(Ports.PORT9, GearSetting.RATIO_18_1, True)
 MOTOR_GROUP_ARMS=MotorGroup(MOTOR_4, MOTOR_9)
-HAS_OBJ=True
 DEAD_ZONE=10
 IN_MOTION=False
 IS_SKILL=False
@@ -29,7 +28,7 @@ START_ANGLE_4=0
 START_ANGLE_9=0
 
 def ondriver_drivercontrol_0():
-    global HAS_OBJ, DEAD_ZONE, IN_MOTION, IS_SKILL, IS_THROW, IS_TAKE_OUT, IS_TAKE_IN, WING_STATUS
+    global DEAD_ZONE, IN_MOTION, IS_SKILL, IS_THROW, IS_TAKE_OUT, IS_TAKE_IN, WING_STATUS
     while competition.is_enabled and competition.is_driver_control:
         if CONTROLLER.axis1.position() > DEAD_ZONE or CONTROLLER.axis1.position() < -DEAD_ZONE:
             DRIVETRAIN.turn(RIGHT, CONTROLLER.axis1.position()*0.5, PERCENT)
@@ -130,3 +129,4 @@ while True:
         competition = Competition( vexcode_driver_function, vexcode_auton_function )
         BRIAN.screen.clear_line()
         break
+
