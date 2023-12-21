@@ -75,6 +75,11 @@ def onauton_autonomous_0():
     MOTOR_GROUP_INTAKE.__spin_for_time(REVERSE, 1000, MSEC, 100, PERCENT)
     DRIVETRAIN.drive_for(REVERSE, 550, MM, 100, PERCENT)
 
+def spinnyweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee():
+    MOTOR_GROUP_THROW.spin_for (FORWARD,30,DEGREES,100,PERCENT)
+    wait(250, MSEC )
+    MOTOR_GROUP_THROW.spin_for (REVERSE,30,DEGREES,70,PERCENT)
+
 def printToScreen(func, err=0):
     if err == 0:
         BRIAN.screen.print("[ {} ] No errors throw: at <{}>".format(BRIAN.timer.time(MSEC), func))
