@@ -29,9 +29,10 @@ IS_SKILLS=False
 WING_STATUS=False
 START_ANGLE_4=0
 START_ANGLE_9=0
+START_TIME=0
 
 def ondriver_drivercontrol_0():
-    global DEAD_ZONE, IN_MOTION, IS_SKILL, IS_THROW, IS_TAKE_OUT, IS_TAKE_IN, WING_STATUS
+    global DEAD_ZONE, IN_MOTION, IS_SKILL, IS_THROW, IS_TAKE_OUT, IS_TAKE_IN, WING_STATUS, START_TIME
     while competition.is_enabled and competition.is_driver_control:
         if CONTROLLER.axis1.position() > DEAD_ZONE or CONTROLLER.axis1.position() < -DEAD_ZONE:
             DRIVETRAIN.turn(RIGHT, CONTROLLER.axis1.position()*0.5, PERCENT)
@@ -51,8 +52,11 @@ def ondriver_drivercontrol_0():
             MOTOR_GROUP_INTAKE.stop()
             IS_THROW=False
         if WING_STATUS == False and CONTROLLER.buttonX.pressing():
+            START_TIME=BRIAN.timer.time(MSEC)
             arms(True)
             WING_STATUS=True
+            while CONTROLLER.buttonX.pressing():
+                wait(10, MSEC)
         if WING_STATUS and CONTROLLER.buttonX.pressing():
             arms(False)
             WING_STATUS=False
@@ -75,7 +79,7 @@ def onauton_autonomous_0():
     MOTOR_GROUP_INTAKE.__spin_for_time(REVERSE, 1000, MSEC, 100, PERCENT)
     DRIVETRAIN.drive_for(REVERSE, 550, MM, 100, PERCENT)
 
-def spinnyweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee():
+def throw():
     MOTOR_GROUP_THROW.spin_for (FORWARD,30,DEGREES,100,PERCENT)
     wait(250, MSEC )
     MOTOR_GROUP_THROW.spin_for (REVERSE,30,DEGREES,70,PERCENT)
