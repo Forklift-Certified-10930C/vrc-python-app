@@ -2,17 +2,18 @@ from vex import *
 
 BRIAN=Brain()
 CONTROLLER=Controller(PRIMARY)
+
 MOTOR_1=Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
-MOTOR_2=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
 MOTOR_3=Motor(Ports.PORT3, GearSetting.RATIO_6_1, False)
 MOTOR_4=Motor(Ports.PORT4, GearSetting.RATIO_18_1, False)
 MOTOR_5=Motor(Ports.PORT5, GearSetting.RATIO_18_1, True)
 MOTOR_7=Motor(Ports.PORT7, GearSetting.RATIO_18_1, True)
 MOTOR_8=Motor(Ports.PORT8, GearSetting.RATIO_6_1, True)
 MOTOR_9=Motor(Ports.PORT9, GearSetting.RATIO_18_1, True)
- 
+MOTOR_10=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
+
 MOTOR_GROUP_L=MotorGroup(MOTOR_1)
-MOTOR_GROUP_R=MotorGroup(MOTOR_2)
+MOTOR_GROUP_R=MotorGroup(MOTOR_10)
 MOTOR_GROUP_THROW=MotorGroup(MOTOR_7, MOTOR_5)
 MOTOR_GROUP_INTAKE=MotorGroup(MOTOR_3, MOTOR_8)
 MOTOR_GROUP_ARMS=MotorGroup(MOTOR_4, MOTOR_9)
