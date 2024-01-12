@@ -1,4 +1,6 @@
-.vscode/settings.json
-.vscode/vex_project_settings.json
+.vscode/
 .github/
 .images/
+.CODE_OF_CONDUCT.md
+.LICENSE
+.readme.md
