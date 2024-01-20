@@ -120,12 +120,9 @@ def calibrate():
 calibrate()
 
 def skills():
-    printToScreen("skills")
-    MOTOR_GROUP_THROW.spin(REVERSE, 60, PERCENT)
-    MOTOR_GROUP_INTAKE.spin(REVERSE, 60, PERCENT)
-    wait(60000,MSEC)
-    MOTOR_GROUP_THROW.stop()
-    MOTOR_GROUP_INTAKE.stop()
+    def skill_task_0():
+        return 0
+    printToScreen(skill_task_0)
 
 BRIAN.screen.print('Proceed to skills? [ Y / N ]')
 BRIAN.screen.new_line()
