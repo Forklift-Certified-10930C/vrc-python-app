@@ -84,7 +84,7 @@ def throw():
     wait(250, MSEC )
     MOTOR_GROUP_THROW.spin_for (REVERSE,30,DEGREES,70,PERCENT)
 
-def printToScreen(func, err=0):
+def printToScreen(err, func):
     if err == 0:
         BRIAN.screen.print("[ {} ] No errors throw: at <{}>".format(BRIAN.timer.time(MSEC), func))
         BRIAN.screen.new_line()
@@ -121,8 +121,11 @@ calibrate()
 
 def skills():
     def skill_task_0():
-        return 0
-    printToScreen(skill_task_0)
+        return 0, skill_task_0.__name__
+    printToScreen(*skill_task_0())
+    def skill_task_1():
+        return 0, skill_task_1.__name__
+    printToScreen(*skill_task_1())
 
 BRIAN.screen.print('Proceed to skills? [ Y / N ]')
 BRIAN.screen.new_line()
