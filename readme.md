@@ -57,21 +57,12 @@ This project was made for the VEX  V5 Python system for robotics competitions.
 
 ## Getting Started
 
-To apply this code to your robot you need a vs code editor with the vex extension installed.
+To get started you can clone the code with `git clone https://github.com/forklift-certified-10930C/vrc-python-app.git`. If you use the visual studio code editor you must have the vex code extention installed for the correct lsp.
 
 ### Prerequisites
 
-* npm
+You need a text editor or IDE that supports vex code, as well as git to clone the repository.
 
-```sh
-npm install npm@latest -g
-```
-* git
-
-```sh
-npm install git
-```
-> For more information go to [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 ### Installation
 
 1. Clone the repo
@@ -113,8 +104,9 @@ Distributed under the MIT License. See [LICENSE](https://github.com/Forklift-Cer
 
 ## Authors
 
-* **vx-clutch** - *student* - [vx-clutch](https://github.com/Forklift-Certfied-10930C/) - *Lead Dev*
+* **vx-clutch** - *student* - [vx-clutch](https://github.com/vx-clutch/vx-clutch) - *Lead Dev*
 * **Ponkoncoma** - *student* - *Artist*
+* **TiredFemboy** - *student* - [TiredFemboy](https://github.com/TiredFemboy) - *Junior Dev*
 
 ## Acknowledgements
 
