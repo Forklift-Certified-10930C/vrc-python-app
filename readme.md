@@ -100,13 +100,13 @@ Contributions are what make the open source community such an amazing place to b
 
 ## License
 
-Distributed under the MIT License. See [LICENSE](https://github.com/Forklift-Certfied-10930C/vrc-python-app/blob/main/LICENSE) for more information.
+Distributed under the GPL 3.0, License. See [LICENSE](https://github.com/Forklift-Certfied-10930C/vrc-python-app/blob/main/LICENSE) for more information.
 
 ## Authors
 
 * **vx-clutch** - *student* - [vx-clutch](https://github.com/vx-clutch/vx-clutch) - *Lead Dev*
 * **Ponkoncoma** - *student* - *Artist*
-* **TiredFemboy** - *student* - [TiredFemboy](https://github.com/TiredFemboy) - *Junior Dev*
+* **TiredFemboy** - *student* - [TiredFemboy](https://github.com/TiredFemboy) - *Junior Dev :3*
 
 ## Acknowledgements
 
