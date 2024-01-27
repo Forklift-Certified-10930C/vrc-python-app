@@ -28,8 +28,8 @@ IS_TAKE_OUT=False
 IS_TAKE_IN=False
 IS_SKILLS=False
 WING_STATUS=False
-START_ANGLE_8=0
-START_ANGLE_18=0
+START_ANGLE_7=0
+START_ANGLE_11=0
 START_TIME=0
 
 def ondriver_drivercontrol_0():
@@ -60,7 +60,7 @@ def ondriver_drivercontrol_0():
             arms(False)
             WING_STATUS=False
         if CONTROLLER.buttonR1.pressing() and IS_TAKE_OUT == False:
-            MOTOR_GROUP_INTAKE.spin(FORWARD, 100, PERCENT)
+            MOTOR_GROUP_INTAKE.spin(REVERSE, 100, PERCENT)
             IS_TAKE_OUT=True
         if IS_TAKE_OUT and CONTROLLER.buttonR1.pressing() == False:
             MOTOR_GROUP_INTAKE.stop()
@@ -75,7 +75,7 @@ def ondriver_drivercontrol_0():
 
 def onauton_autonomous_0():
     DRIVETRAIN.drive_for(FORWARD, 500, MM, 100, PERCENT)
-    MOTOR_GROUP_INTAKE.__spin_for_time(REVERSE, 1000, MSEC, 100, PERCENT)
+    MOTOR_GROUP_INTAKE.__spin_for_time(FORWARD, 1000, MSEC, 100, PERCENT)
     DRIVETRAIN.drive_for(REVERSE, 550, MM, 100, PERCENT)
 
 def throw():
@@ -109,17 +109,19 @@ def vexcode_driver_function():
     driver_control_task_0.stop()
 
 def arms(pos):
-    global START_ANGLE_8, START_ANGLE_18
+    global START_ANGLE_7, START_ANGLE_11
     if pos:
-        MOTOR_GROUP_WINGS.spin_to_position(90, DEGREES, 100 ,PERCENT)
+        # MOTOR_GROUP_WINGS.spin_to_position(45, DEGREES, 100 ,PERCENT)
+        MOTOR_11.spin_to_position(85, DEGREES, 25, PERCENT)
+        MOTOR_7.spin_to_position(40, DEGREES, 25, PERCENT)
     else:
-        MOTOR_18.spin_to_position(START_ANGLE_8, DEGREES, 25, PERCENT)
-        MOTOR_8.spin_to_position(START_ANGLE_18, DEGREES, 25, PERCENT)
+        MOTOR_11.spin_to_position(START_ANGLE_7, DEGREES, 25, PERCENT)
+        MOTOR_7.spin_to_position(START_ANGLE_11, DEGREES, 25, PERCENT)
 
 def calibrate():
-    global START_ANGLE_8, START_ANGLE_18
-    START_ANGLE_8=MOTOR_8.position(DEGREES)
-    START_ANGLE_18=MOTOR_18.position(DEGREES)
+    global START_ANGLE_7, START_ANGLE_11
+    START_ANGLE_7=MOTOR_7.position(DEGREES)
+    START_ANGLE_11=MOTOR_11.position(DEGREES)
 calibrate()
 
 def skills():
@@ -130,17 +132,19 @@ def skills():
         return 0, skill_task_1.__name__
     printErrToScreen(*skill_task_1())
 
-BRIAN.screen.print('Proceed to skills? [ Y / N ]')
-BRIAN.screen.new_line()
-while True:
-    if CONTROLLER.buttonA.pressing():
-        IS_SKILLS=True
-        BRIAN.screen.clear_line()
-        CONTROLLER.rumble("..--")
-        skills()
-        break
-    if CONTROLLER.buttonB.pressing():
-        CONTROLLER.rumble(".")
-        competition = Competition( vexcode_driver_function, vexcode_auton_function )
-        BRIAN.screen.clear_line()
-        break
+# BRIAN.screen.print('Proceed to skills? [ Y / N ]')
+# BRIAN.screen.new_line()
+# while True:
+#     if CONTROLLER.buttonA.pressing():
+#         IS_SKILLS=True
+#         BRIAN.screen.clear_line()
+#         CONTROLLER.rumble("..--")
+#         skills()
+#         break
+#     if CONTROLLER.buttonB.pressing():
+#         CONTROLLER.rumble(".")
+#         competition = Competition( vexcode_driver_function, vexcode_auton_function )
+#         BRIAN.screen.clear_line()
+#         break
+
+competition = Competition( vexcode_driver_function, vexcode_auton_function )
