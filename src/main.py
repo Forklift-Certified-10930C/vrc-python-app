@@ -3,6 +3,7 @@ from vex import *
 BRIAN=Brain()
 CONTROLLER=Controller(PRIMARY)
 
+MOTOR_7=Motor(Ports.PORT7, GearSetting.RATIO_36_1, False)
 MOTOR_8=Motor(Ports.PORT8, GearSetting.RATIO_18_1, True)
 MOTOR_9=Motor(Ports.PORT9, GearSetting.RATIO_6_1, False)
 MOTOR_10=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
@@ -12,9 +13,9 @@ MOTOR_20=Motor(Ports.PORT20, GearSetting.RATIO_18_1, False)
 
 MOTOR_GROUP_L=MotorGroup(MOTOR_20)
 MOTOR_GROUP_R=MotorGroup(MOTOR_10)
-MOTOR_GROUP_THROW=MotorGroup(MOTOR_X,MOTOR_X)
+MOTOR_GROUP_THROW=MotorGroup(MOTOR_7,MOTOR_19)
 MOTOR_GROUP_INTAKE=MotorGroup(MOTOR_9, MOTOR_19)
-MOTOR_GROUP_ARMS=MotorGroup(MOTOR_18, MOTOR_8)
+MOTOR_GROUP_WINGS=MotorGroup(MOTOR_18, MOTOR_8)
 
 DRIVETRAIN=DriveTrain(MOTOR_GROUP_L, MOTOR_GROUP_R)
 
@@ -44,11 +45,9 @@ def ondriver_drivercontrol_0():
             IN_MOTION=False
         if CONTROLLER.buttonA.pressing() and IS_THROW == False:
             MOTOR_GROUP_THROW.spin(REVERSE, 100, PERCENT)
-            MOTOR_GROUP_INTAKE.spin(REVERSE, 100, PERCENT)
             IS_THROW=True
         if IS_THROW and CONTROLLER.buttonA.pressing() == False:
             MOTOR_GROUP_THROW.stop()
-            MOTOR_GROUP_INTAKE.stop()
             IS_THROW=False
         if WING_STATUS == False and CONTROLLER.buttonX.pressing():
             START_TIME=BRIAN.timer.time(MSEC)
@@ -111,7 +110,7 @@ def vexcode_driver_function():
 def arms(pos):
     global START_ANGLE_8, START_ANGLE_18
     if pos:
-        MOTOR_GROUP_ARMS.spin_to_position(90, DEGREES, 100 ,PERCENT)
+        MOTOR_GROUP_WINGS.spin_to_position(90, DEGREES, 100 ,PERCENT)
     else:
         MOTOR_18.spin_to_position(START_ANGLE_8, DEGREES, 25, PERCENT)
         MOTOR_8.spin_to_position(START_ANGLE_18, DEGREES, 25, PERCENT)
