@@ -60,13 +60,13 @@ def ondriver_drivercontrol_0():
             arms(False)
             WING_STATUS=False
         if CONTROLLER.buttonR1.pressing() and IS_TAKE_OUT == False:
-            MOTOR_GROUP_INTAKE.spin(FORWARD, 100, PERCENT)
+            MOTOR_GROUP_INTAKE.spin(REVERSE, 100, PERCENT)
             IS_TAKE_OUT=True
         if IS_TAKE_OUT and CONTROLLER.buttonR1.pressing() == False:
             MOTOR_GROUP_INTAKE.stop()
             IS_TAKE_OUT=False
         if CONTROLLER.buttonR2.pressing() and IS_TAKE_IN == False:
-            MOTOR_GROUP_INTAKE.spin(REVERSE, 100, PERCENT)
+            MOTOR_GROUP_INTAKE.spin(FORWARD, 100, PERCENT)
             IS_TAKE_IN=True
         if IS_TAKE_IN and CONTROLLER.buttonR2.pressing() == False:
             MOTOR_GROUP_INTAKE.stop()
@@ -75,7 +75,7 @@ def ondriver_drivercontrol_0():
 
 def onauton_autonomous_0():
     DRIVETRAIN.drive_for(FORWARD, 500, MM, 100, PERCENT)
-    MOTOR_GROUP_INTAKE.__spin_for_time(REVERSE, 1000, MSEC, 100, PERCENT)
+    MOTOR_GROUP_INTAKE.__spin_for_time(FORWARD, 1000, MSEC, 100, PERCENT)
     DRIVETRAIN.drive_for(REVERSE, 550, MM, 100, PERCENT)
 
 def throw():
@@ -132,17 +132,19 @@ def skills():
         return 0, skill_task_1.__name__
     printErrToScreen(*skill_task_1())
 
-BRIAN.screen.print('Proceed to skills? [ Y / N ]')
-BRIAN.screen.new_line()
-while True:
-    if CONTROLLER.buttonA.pressing():
-        IS_SKILLS=True
-        BRIAN.screen.clear_line()
-        CONTROLLER.rumble("..--")
-        skills()
-        break
-    if CONTROLLER.buttonB.pressing():
-        CONTROLLER.rumble(".")
-        competition = Competition( vexcode_driver_function, vexcode_auton_function )
-        BRIAN.screen.clear_line()
-        break
+# BRIAN.screen.print('Proceed to skills? [ Y / N ]')
+# BRIAN.screen.new_line()
+# while True:
+#     if CONTROLLER.buttonA.pressing():
+#         IS_SKILLS=True
+#         BRIAN.screen.clear_line()
+#         CONTROLLER.rumble("..--")
+#         skills()
+#         break
+#     if CONTROLLER.buttonB.pressing():
+#         CONTROLLER.rumble(".")
+#         competition = Competition( vexcode_driver_function, vexcode_auton_function )
+#         BRIAN.screen.clear_line()
+#         break
+
+competition = Competition( vexcode_driver_function, vexcode_auton_function )
