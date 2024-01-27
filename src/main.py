@@ -28,8 +28,8 @@ IS_TAKE_OUT=False
 IS_TAKE_IN=False
 IS_SKILLS=False
 WING_STATUS=False
-START_ANGLE_8=0
-START_ANGLE_18=0
+START_ANGLE_7=0
+START_ANGLE_11=0
 START_TIME=0
 
 def ondriver_drivercontrol_0():
@@ -109,17 +109,19 @@ def vexcode_driver_function():
     driver_control_task_0.stop()
 
 def arms(pos):
-    global START_ANGLE_8, START_ANGLE_18
+    global START_ANGLE_7, START_ANGLE_11
     if pos:
-        MOTOR_GROUP_WINGS.spin_to_position(90, DEGREES, 100 ,PERCENT)
+        # MOTOR_GROUP_WINGS.spin_to_position(45, DEGREES, 100 ,PERCENT)
+        MOTOR_11.spin_to_position(85, DEGREES, 25, PERCENT)
+        MOTOR_7.spin_to_position(40, DEGREES, 25, PERCENT)
     else:
-        MOTOR_18.spin_to_position(START_ANGLE_8, DEGREES, 25, PERCENT)
-        MOTOR_8.spin_to_position(START_ANGLE_18, DEGREES, 25, PERCENT)
+        MOTOR_11.spin_to_position(START_ANGLE_7, DEGREES, 25, PERCENT)
+        MOTOR_7.spin_to_position(START_ANGLE_11, DEGREES, 25, PERCENT)
 
 def calibrate():
-    global START_ANGLE_8, START_ANGLE_18
-    START_ANGLE_8=MOTOR_8.position(DEGREES)
-    START_ANGLE_18=MOTOR_18.position(DEGREES)
+    global START_ANGLE_7, START_ANGLE_11
+    START_ANGLE_7=MOTOR_7.position(DEGREES)
+    START_ANGLE_11=MOTOR_11.position(DEGREES)
 calibrate()
 
 def skills():
