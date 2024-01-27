@@ -13,7 +13,7 @@ MOTOR_20=Motor(Ports.PORT20, GearSetting.RATIO_18_1, False)
 
 MOTOR_GROUP_L=MotorGroup(MOTOR_20)
 MOTOR_GROUP_R=MotorGroup(MOTOR_10)
-MOTOR_GROUP_THROW=MotorGroup(MOTOR_7,MOTOR_19)
+MOTOR_GROUP_THROW=MotorGroup(MOTOR_7,MOTOR_18)
 MOTOR_GROUP_INTAKE=MotorGroup(MOTOR_9, MOTOR_19)
 MOTOR_GROUP_WINGS=MotorGroup(MOTOR_18, MOTOR_8)
 
@@ -44,7 +44,7 @@ def ondriver_drivercontrol_0():
             DRIVETRAIN.stop()
             IN_MOTION=False
         if CONTROLLER.buttonA.pressing() and IS_THROW == False:
-            MOTOR_GROUP_THROW.spin(FORWARD, 100, PERCENT)
+            MOTOR_GROUP_THROW.spin(FORWARD, 50, PERCENT)
             IS_THROW=True
         if IS_THROW and CONTROLLER.buttonA.pressing() == False:
             MOTOR_GROUP_THROW.stop()
