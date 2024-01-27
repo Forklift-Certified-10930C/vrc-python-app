@@ -3,7 +3,7 @@ from vex import *
 BRIAN=Brain()
 CONTROLLER=Controller(PRIMARY)
 
-MOTOR_7=Motor(Ports.PORT7, GearSetting.RATIO_36_1, False)
+MOTOR_7=Motor(Ports.PORT7, GearSetting.RATIO_36_1, True)
 MOTOR_8=Motor(Ports.PORT8, GearSetting.RATIO_18_1, True)
 MOTOR_9=Motor(Ports.PORT9, GearSetting.RATIO_6_1, False)
 MOTOR_10=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
@@ -44,7 +44,7 @@ def ondriver_drivercontrol_0():
             DRIVETRAIN.stop()
             IN_MOTION=False
         if CONTROLLER.buttonA.pressing() and IS_THROW == False:
-            MOTOR_GROUP_THROW.spin(REVERSE, 100, PERCENT)
+            MOTOR_GROUP_THROW.spin(FORWARD, 100, PERCENT)
             IS_THROW=True
         if IS_THROW and CONTROLLER.buttonA.pressing() == False:
             MOTOR_GROUP_THROW.stop()
