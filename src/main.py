@@ -66,7 +66,7 @@ def ondriver_drivercontrol_0():
             MOTOR_GROUP_INTAKE.stop()
             IS_TAKE_OUT=False
         if CONTROLLER.buttonR2.pressing() and IS_TAKE_IN == False:
-            MOTOR_GROUP_INTAKE.spin(REVERSE, 100, PERCENT)
+            MOTOR_GROUP_INTAKE.spin(FORWARD, 100, PERCENT)
             IS_TAKE_IN=True
         if IS_TAKE_IN and CONTROLLER.buttonR2.pressing() == False:
             MOTOR_GROUP_INTAKE.stop()
