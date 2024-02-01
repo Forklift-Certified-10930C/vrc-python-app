@@ -8,15 +8,16 @@ MOTOR_8=Motor(Ports.PORT8, GearSetting.RATIO_18_1, True)
 MOTOR_9=Motor(Ports.PORT9, GearSetting.RATIO_6_1, False)
 MOTOR_10=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
 MOTOR_11=Motor(Ports.PORT11, GearSetting.RATIO_18_1, False)
+MOTOR_17=Motor(Ports.PORT17, GearSetting.RATIO_18_1, False)
 MOTOR_18=Motor(Ports.PORT18, GearSetting.RATIO_18_1, False)
 MOTOR_19=Motor(Ports.PORT19, GearSetting.RATIO_6_1, True)
 MOTOR_20=Motor(Ports.PORT20, GearSetting.RATIO_18_1, False)
 
 MOTOR_GROUP_L=MotorGroup(MOTOR_20)
 MOTOR_GROUP_R=MotorGroup(MOTOR_10)
-MOTOR_GROUP_THROW=MotorGroup(MOTOR_7,MOTOR_18)
+MOTOR_GROUP_THROW=MotorGroup(MOTOR_7,MOTOR_17)
 MOTOR_GROUP_INTAKE=MotorGroup(MOTOR_9, MOTOR_19)
-MOTOR_GROUP_WINGS=MotorGroup(MOTOR_11, MOTOR_7)
+MOTOR_GROUP_WINGS=MotorGroup(MOTOR_11)
 
 DRIVETRAIN=DriveTrain(MOTOR_GROUP_L, MOTOR_GROUP_R)
 
@@ -34,6 +35,7 @@ START_TIME=0
 
 def ondriver_drivercontrol_0():
     global DEAD_ZONE, IN_MOTION, IS_SKILL, IS_THROW, IS_TAKE_OUT, IS_TAKE_IN, WING_STATUS, START_TIME
+    MOTOR_GROUP_THROW.set_velocity(30, PERCENT)
     while competition.is_enabled and competition.is_driver_control:
         if CONTROLLER.axis1.position() > DEAD_ZONE or CONTROLLER.axis1.position() < -DEAD_ZONE:
             DRIVETRAIN.turn(RIGHT, CONTROLLER.axis1.position()*0.5, PERCENT)
@@ -44,12 +46,12 @@ def ondriver_drivercontrol_0():
         if CONTROLLER.axis3.position() == 0 and CONTROLLER.axis1.position() == 0 and IN_MOTION:
             DRIVETRAIN.stop()
             IN_MOTION=False
-        # if CONTROLLER.buttonA.pressing() and IS_THROW == False:
-        #     MOTOR_GROUP_THROW.spin(FORWARD, 50, PERCENT)
-        #     IS_THROW=True
-        # if IS_THROW and CONTROLLER.buttonA.pressing() == False:
-        #     MOTOR_GROUP_THROW.stop()
-        #     IS_THROW=False
+        if CONTROLLER.buttonA.pressing() and IS_THROW == False:
+            MOTOR_GROUP_THROW.set_velocity(30, PERCENT)
+            IS_THROW=True
+        if IS_THROW and CONTROLLER.buttonA.pressing() == False:
+            MOTOR_GROUP_THROW.stop()
+            IS_THROW=False
         if WING_STATUS == False and CONTROLLER.buttonX.pressing():
             START_TIME=BRIAN.timer.time(MSEC)
             arms(True)
@@ -111,7 +113,6 @@ def vexcode_driver_function():
 def arms(pos):
     global START_ANGLE_7, START_ANGLE_11
     if pos:
-        # MOTOR_GROUP_WINGS.spin_to_position(45, DEGREES, 100 ,PERCENT)
         MOTOR_11.spin_to_position(85, DEGREES, 25, PERCENT)
         MOTOR_7.spin_to_position(40, DEGREES, 25, PERCENT)
     else:
@@ -123,28 +124,5 @@ def calibrate():
     START_ANGLE_7=MOTOR_7.position(DEGREES)
     START_ANGLE_11=MOTOR_11.position(DEGREES)
 calibrate()
-
-def skills():
-    def skill_task_0():
-        return "skill task one not implemented yet", skill_task_0.__name__
-    printMsgToScreen(*skill_task_0())
-    def skill_task_1():
-        return 0, skill_task_1.__name__
-    printErrToScreen(*skill_task_1())
-
-# BRIAN.screen.print('Proceed to skills? [ Y / N ]')
-# BRIAN.screen.new_line()
-# while True:
-#     if CONTROLLER.buttonA.pressing():
-#         IS_SKILLS=True
-#         BRIAN.screen.clear_line()
-#         CONTROLLER.rumble("..--")
-#         skills()
-#         break
-#     if CONTROLLER.buttonB.pressing():
-#         CONTROLLER.rumble(".")
-#         competition = Competition( vexcode_driver_function, vexcode_auton_function )
-#         BRIAN.screen.clear_line()
-#         break
 
 competition = Competition( vexcode_driver_function, vexcode_auton_function )
