@@ -35,7 +35,6 @@ START_TIME=0
 
 def ondriver_drivercontrol_0():
     global DEAD_ZONE, IN_MOTION, IS_SKILL, IS_THROW, IS_TAKE_OUT, IS_TAKE_IN, WING_STATUS, START_TIME
-    MOTOR_GROUP_THROW.set_velocity(30, PERCENT)
     while competition.is_enabled and competition.is_driver_control:
         if CONTROLLER.axis1.position() > DEAD_ZONE or CONTROLLER.axis1.position() < -DEAD_ZONE:
             DRIVETRAIN.turn(RIGHT, CONTROLLER.axis1.position()*0.5, PERCENT)
@@ -47,7 +46,7 @@ def ondriver_drivercontrol_0():
             DRIVETRAIN.stop()
             IN_MOTION=False
         if CONTROLLER.buttonA.pressing() and IS_THROW == False:
-            MOTOR_GROUP_THROW.set_velocity(30, PERCENT)
+            printErrToScreen(0, 'main_drive')
             IS_THROW=True
         if IS_THROW and CONTROLLER.buttonA.pressing() == False:
             MOTOR_GROUP_THROW.stop()
