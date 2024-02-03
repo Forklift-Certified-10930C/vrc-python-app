@@ -21,38 +21,50 @@ MOTOR_GROUP_WINGS=MotorGroup(MOTOR_11)
 
 DRIVETRAIN=DriveTrain(MOTOR_GROUP_L, MOTOR_GROUP_R)
 
+# Settings
 DEAD_ZONE=10
+THROW_VEL=30
+INTAKE_SPEED=100
+TURN_DAMP=0.5
+ARM_SPEED=25
+
+AUTONOMOUS_SPEED=100
+AUTONOMOUS_INTAKE_SPEED=100
+AUTONOMOUS_INTAKE_TIME_MSEC=1000
+AUTONOMOUS_DRIVE_DISTANCE_MM=500
+AUTONOMOUS_DRIVE_DISTANCE_MM_MARGIN=50
+
 IN_MOTION=False
 IS_SKILL=False
 IS_THROW=False
 IS_TAKE_OUT=False
 IS_TAKE_IN=False
-IS_SKILLS=False
 WING_STATUS=False
 START_ANGLE_7=0
 START_ANGLE_11=0
-START_TIME=0
 
 def ondriver_drivercontrol_0():
-    global DEAD_ZONE, IN_MOTION, IS_SKILL, IS_THROW, IS_TAKE_OUT, IS_TAKE_IN, WING_STATUS, START_TIME
+    global DEAD_ZONE, IN_MOTION, IS_SKILL, IS_THROW, IS_TAKE_OUT, IS_TAKE_IN, WING_STATUS
     while competition.is_enabled and competition.is_driver_control:
         if CONTROLLER.axis1.position() > DEAD_ZONE or CONTROLLER.axis1.position() < -DEAD_ZONE:
-            DRIVETRAIN.turn(RIGHT, CONTROLLER.axis1.position()*0.5, PERCENT)
+            DRIVETRAIN.turn(RIGHT, CONTROLLER.axis1.position()*TURN_DAMP, PERCENT)
             IN_MOTION=True
+    
         if CONTROLLER.axis3.position() > DEAD_ZONE or CONTROLLER.axis3.position() < -DEAD_ZONE:
             DRIVETRAIN.drive(FORWARD, CONTROLLER.axis3.position(), PERCENT)
             IN_MOTION=True
         if CONTROLLER.axis3.position() == 0 and CONTROLLER.axis1.position() == 0 and IN_MOTION:
             DRIVETRAIN.stop()
             IN_MOTION=False
+
         if CONTROLLER.buttonA.pressing() and IS_THROW == False:
-            MOTOR_GROUP_THROW.spin(FORWARD, 30, PERCENT)
+            MOTOR_GROUP_THROW.spin(FORWARD, THROW_VEL, PERCENT)
             IS_THROW=True
         if IS_THROW and CONTROLLER.buttonA.pressing() == False:
             MOTOR_GROUP_THROW.stop()
             IS_THROW=False
+        
         if WING_STATUS == False and CONTROLLER.buttonX.pressing():
-            START_TIME=BRIAN.timer.time(MSEC)
             arms(True)
             WING_STATUS=True
             while CONTROLLER.buttonX.pressing():
@@ -60,29 +72,27 @@ def ondriver_drivercontrol_0():
         if WING_STATUS and CONTROLLER.buttonX.pressing():
             arms(False)
             WING_STATUS=False
+        
         if CONTROLLER.buttonR1.pressing() and IS_TAKE_OUT == False:
-            MOTOR_GROUP_INTAKE.spin(REVERSE, 100, PERCENT)
+            MOTOR_GROUP_INTAKE.spin(REVERSE, INTAKE_SPEED, PERCENT)
             IS_TAKE_OUT=True
         if IS_TAKE_OUT and CONTROLLER.buttonR1.pressing() == False:
             MOTOR_GROUP_INTAKE.stop()
             IS_TAKE_OUT=False
+
         if CONTROLLER.buttonR2.pressing() and IS_TAKE_IN == False:
-            MOTOR_GROUP_INTAKE.spin(FORWARD, 100, PERCENT)
+            MOTOR_GROUP_INTAKE.spin(FORWARD, INTAKE_SPEED, PERCENT)
             IS_TAKE_IN=True
         if IS_TAKE_IN and CONTROLLER.buttonR2.pressing() == False:
             MOTOR_GROUP_INTAKE.stop()
             IS_TAKE_IN=False
+
         wait(20)
 
 def onauton_autonomous_0():
-    DRIVETRAIN.drive_for(FORWARD, 500, MM, 100, PERCENT)
-    MOTOR_GROUP_INTAKE.__spin_for_time(FORWARD, 1000, MSEC, 100, PERCENT)
-    DRIVETRAIN.drive_for(REVERSE, 550, MM, 100, PERCENT)
-
-def throw():
-    MOTOR_GROUP_THROW.spin_for (FORWARD,30,DEGREES,100,PERCENT)
-    wait(250, MSEC )
-    MOTOR_GROUP_THROW.spin_for (REVERSE,30,DEGREES,70,PERCENT)
+    DRIVETRAIN.drive_for(FORWARD, AUTONOMOUS_DRIVE_DISTANCE_MM, MM, AUTONOMOUS_SPEED, PERCENT)
+    MOTOR_GROUP_INTAKE.__spin_for_time(FORWARD, AUTONOMOUS_INTAKE_TIME_MSEC, MSEC, AUTONOMOUS_INTAKE_SPEED, PERCENT)
+    DRIVETRAIN.drive_for(REVERSE, (AUTONOMOUS_DRIVE_DISTANCE_MM + AUTONOMOUS_DRIVE_DISTANCE_MM_MARGIN), MM, AUTONOMOUS_SPEED, PERCENT)
 
 def printErrToScreen(err, func):
     if err == 0:
@@ -112,11 +122,11 @@ def vexcode_driver_function():
 def arms(pos):
     global START_ANGLE_7, START_ANGLE_11
     if pos:
-        MOTOR_11.spin_to_position(85, DEGREES, 25, PERCENT)
-        MOTOR_7.spin_to_position(40, DEGREES, 25, PERCENT)
+        MOTOR_11.spin_to_position(85, DEGREES, ARM_SPEED, PERCENT)
+        MOTOR_7.spin_to_position(40, DEGREES, ARM_SPEED, PERCENT)
     else:
-        MOTOR_11.spin_to_position(START_ANGLE_7, DEGREES, 25, PERCENT)
-        MOTOR_7.spin_to_position(START_ANGLE_11, DEGREES, 25, PERCENT)
+        MOTOR_11.spin_to_position(START_ANGLE_7, DEGREES, ARM_SPEED, PERCENT)
+        MOTOR_7.spin_to_position(START_ANGLE_11, DEGREES, ARM_SPEED, PERCENT)
 
 def calibrate():
     global START_ANGLE_7, START_ANGLE_11
