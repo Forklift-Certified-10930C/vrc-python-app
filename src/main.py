@@ -46,7 +46,7 @@ def ondriver_drivercontrol_0():
             DRIVETRAIN.stop()
             IN_MOTION=False
         if CONTROLLER.buttonA.pressing() and IS_THROW == False:
-            printErrToScreen(0, 'main_drive')
+            MOTOR_GROUP_THROW.spin(FORWARD, 30, PERCENT)
             IS_THROW=True
         if IS_THROW and CONTROLLER.buttonA.pressing() == False:
             MOTOR_GROUP_THROW.stop()
