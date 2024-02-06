@@ -27,6 +27,7 @@ THROW_VEL_PERCENT=30
 INTAKE_SPEED_PERCENT=100
 TURN_DAMP_PERCENT=0.5
 ARM_SPEED_PERCENT=25
+
 AUTONOMOUS_SPEED_PERCENT=100
 AUTONOMOUS_INTAKE_SPEED_PERCENT=100
 AUTONOMOUS_INTAKE_TIME_MSEC=1000
@@ -60,7 +61,7 @@ def ondriver_drivercontrol_0():
             MOTOR_GROUP_THROW.spin(FORWARD, THROW_VEL_PERCENT, PERCENT)
             IS_THROW=True
         if IS_THROW and CONTROLLER.buttonA.pressing() == False:
-            MOTOR_GROUP_THROW.stop()
+            MOTOR_GROUP_THROW.stop(COAST)
             IS_THROW=False
         
         if WING_STATUS == False and CONTROLLER.buttonX.pressing():
