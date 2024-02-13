@@ -47,8 +47,6 @@
 
 ## About The Project
 
-<img src="/images/screenshot.png" alt="screen shot" width = "1000">
-
 Welcome to our VRC Python Project! This document serves as a comprehensive guide to understanding our project. We've created this file with the aim of explaining how to control the robot as well as how to navigate this project.
 
 ## Built With
