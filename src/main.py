@@ -1,17 +1,16 @@
 from vex import *
-
+ 
 BRIAN=Brain()
 CONTROLLER=Controller(PRIMARY)
 
 MOTOR_7=Motor(Ports.PORT7, GearSetting.RATIO_36_1, True)
-MOTOR_8=Motor(Ports.PORT8, GearSetting.RATIO_18_1, True)
-MOTOR_9=Motor(Ports.PORT9, GearSetting.RATIO_6_1, False)
+MOTOR_9=Motor(Ports.PORT9, GearSetting.RATIO_6_1, True)  
 MOTOR_10=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
-MOTOR_11=Motor(Ports.PORT11, GearSetting.RATIO_18_1, False)
-MOTOR_17=Motor(Ports.PORT17, GearSetting.RATIO_18_1, False)
-MOTOR_18=Motor(Ports.PORT18, GearSetting.RATIO_18_1, False)
+MOTOR_11=Motor(Ports.PORT11, GearSetting.RATIO_18_1, True)
+MOTOR_17=Motor(Ports.PORT17, GearSetting.RATIO_36_1, True)
 MOTOR_19=Motor(Ports.PORT19, GearSetting.RATIO_6_1, True)
 MOTOR_20=Motor(Ports.PORT20, GearSetting.RATIO_18_1, False)
+
 
 MOTOR_GROUP_L=MotorGroup(MOTOR_20)
 MOTOR_GROUP_R=MotorGroup(MOTOR_10)
@@ -27,6 +26,7 @@ THROW_VEL_PERCENT=30
 INTAKE_SPEED_PERCENT=100
 TURN_DAMP_PERCENT=0.5
 ARM_SPEED_PERCENT=25
+ARM_FLACID_POSITION_DEGREES=135
 
 AUTONOMOUS_SPEED_PERCENT=100
 AUTONOMOUS_INTAKE_SPEED_PERCENT=100
@@ -86,6 +86,9 @@ def ondriver_drivercontrol_0():
         if IS_TAKE_IN and CONTROLLER.buttonR2.pressing() == False:
             MOTOR_GROUP_INTAKE.stop()
             IS_TAKE_IN=False
+
+        if CONTROLLER.buttonUp.pressing():
+            MOTOR_GROUP_THROW.set_position(ARM_FLACID_POSITION_DEGREES, DEGREES)
 
         wait(20)
 
