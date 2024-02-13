@@ -7,7 +7,7 @@ MOTOR_7=Motor(Ports.PORT7, GearSetting.RATIO_36_1, True)
 MOTOR_9=Motor(Ports.PORT9, GearSetting.RATIO_6_1, True)  
 MOTOR_10=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
 MOTOR_11=Motor(Ports.PORT11, GearSetting.RATIO_18_1, True)
-MOTOR_17=Motor(Ports.PORT17, GearSetting.RATIO_36_1, True)
+MOTOR_17=Motor(Ports.PORT17, GearSetting.RATIO_36_1, False)
 MOTOR_19=Motor(Ports.PORT19, GearSetting.RATIO_6_1, True)
 MOTOR_20=Motor(Ports.PORT20, GearSetting.RATIO_18_1, False)
 
