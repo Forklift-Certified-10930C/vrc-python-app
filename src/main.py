@@ -4,7 +4,7 @@ BRIAN=Brain()
 CONTROLLER=Controller(PRIMARY)
 
 MOTOR_7=Motor(Ports.PORT7, GearSetting.RATIO_36_1, True)
-MOTOR_9=Motor(Ports.PORT9, GearSetting.RATIO_6_1, True)  
+MOTOR_9=Motor(Ports.PORT9, GearSetting.RATIO_6_1, False)  
 MOTOR_10=Motor(Ports.PORT10, GearSetting.RATIO_18_1, True)
 MOTOR_11=Motor(Ports.PORT11, GearSetting.RATIO_18_1, True)
 MOTOR_17=Motor(Ports.PORT17, GearSetting.RATIO_36_1, False)
@@ -32,6 +32,7 @@ AUTONOMOUS_INTAKE_SPEED_PERCENT=100
 AUTONOMOUS_INTAKE_TIME_MSEC=1000
 AUTONOMOUS_DRIVE_DISTANCE_MM=500
 AUTONOMOUS_DRIVE_DISTANCE_MM_MARGIN=50
+AUTONOMOUS_ENABLED_BOOL=True
 
 IN_MOTION=False
 IS_SKILL=False
@@ -57,20 +58,20 @@ def ondriver_drivercontrol():
             IN_MOTION=False
 
         if CONTROLLER.buttonA.pressing() and IS_LAUNCHER == False:
-            MOTOR_GROUP_LAUNCHER.spin(FORWARD, THROW_VEL_PERCENT, PERCENT)
+            MOTOR_GROUP_LAUNCHER.spin(FORWARD, LAUNCHER_VEL_PERCENT, PERCENT)
             IS_LAUNCHER=True
         if IS_LAUNCHER and CONTROLLER.buttonA.pressing() == False:
             MOTOR_GROUP_LAUNCHER.stop(COAST)
             IS_LAUNCHER=False
         
-        if WING_STATUS == False and CONTROLLER.buttonX.pressing():
-            wings(True)
-            WING_STATUS=True
-            while CONTROLLER.buttonX.pressing():
-                wait(10, MSEC)
-        if WING_STATUS and CONTROLLER.buttonX.pressing():
-            wings(False)
-            WING_STATUS=False
+        #if WING_STATUS == False and CONTROLLER.buttonX.pressing():
+            #wings(True)
+            #WING_STATUS=True
+            #while CONTROLLER.buttonX.pressing():
+                #wait(10, MSEC)
+        #if WING_STATUS and CONTROLLER.buttonX.pressing():
+            #wings(False)
+            #WING_STATUS=False
         
         if CONTROLLER.buttonR1.pressing() and IS_TAKE_OUT == False:
             MOTOR_GROUP_INTAKE.spin(REVERSE, INTAKE_SPEED_PERCENT, PERCENT)
@@ -90,11 +91,13 @@ def ondriver_drivercontrol():
         # if CONTROLLER.buttonUp.pressing():
             # MOTOR_GROUP_LAUNCHER.set_position(LAUNCHER_DEFAULT_POSITION_DEGREES, DEGREES)
         wait(20)
-
 def onauton_autonomous():
-    DRIVETRAIN.drive_for(FORWARD, AUTONOMOUS_DRIVE_DISTANCE_MM, MM, AUTONOMOUS_SPEED_PERCENT, PERCENT)
-    MOTOR_GROUP_INTAKE.__spin_for_time(FORWARD, AUTONOMOUS_INTAKE_TIME_MSEC, MSEC, AUTONOMOUS_INTAKE_SPEED_PERCENT, PERCENT)
-    DRIVETRAIN.drive_for(REVERSE, (AUTONOMOUS_DRIVE_DISTANCE_MM + AUTONOMOUS_DRIVE_DISTANCE_MM_MARGIN), MM, AUTONOMOUS_SPEED_PERCENT, PERCENT)
+    if AUTONOMOUS_ENABLED_BOOL:
+        DRIVETRAIN.drive_for(FORWARD, AUTONOMOUS_DRIVE_DISTANCE_MM, MM, AUTONOMOUS_SPEED_PERCENT, PERCENT)
+        MOTOR_GROUP_INTAKE.__spin_for_time(FORWARD, AUTONOMOUS_INTAKE_TIME_MSEC, MSEC, AUTONOMOUS_INTAKE_SPEED_PERCENT, PERCENT)
+        DRIVETRAIN.drive_for(REVERSE, (AUTONOMOUS_DRIVE_DISTANCE_MM + AUTONOMOUS_DRIVE_DISTANCE_MM_MARGIN), MM, AUTONOMOUS_SPEED_PERCENT, PERCENT)
+    else:
+        MOTOR_GROUP_LAUNCHER.spin(FORWARD, LAUNCHER_SPEED_PERCENT, PERCENT)
 
 def printErrToScreen(err, func):
     if err == 0:
@@ -109,13 +112,13 @@ def printMsgToScreen(msg, func):
     BRIAN.screen.new_line()
 
 def vexcode_auton_function():
-    auton_task = Thread( onauton_autonomous_0 )
+    auton_task = Thread( onauton_autonomous)
     while( competition.is_autonomous() and competition.is_enabled() ):
         wait( 10, MSEC )
     auton_task.stop()
 
 def vexcode_driver_function():
-    driver_control_task = Thread( ondriver_drivercontrol_0 )
+    driver_control_task = Thread( ondriver_drivercontrol )
 
     while( competition.is_driver_control() and competition.is_enabled() ):
         wait( 10, MSEC )
