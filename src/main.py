@@ -39,9 +39,6 @@ IS_SKILL=False
 IS_LAUNCHER=False
 IS_TAKE_OUT=False
 IS_TAKE_IN=False
-WING_STATUS=False
-START_ANGLE_7=0
-START_ANGLE_11=0
 
 def ondriver_drivercontrol():
     global DEAD_ZONE_PERCENT, IN_MOTION, IS_SKILL, IS_LAUNCHER, IS_TAKE_OUT, IS_TAKE_IN, WING_STATUS
@@ -64,15 +61,6 @@ def ondriver_drivercontrol():
             MOTOR_GROUP_LAUNCHER.stop(COAST)
             IS_LAUNCHER=False
         
-        #if WING_STATUS == False and CONTROLLER.buttonX.pressing():
-            #wings(True)
-            #WING_STATUS=True
-            #while CONTROLLER.buttonX.pressing():
-                #wait(10, MSEC)
-        #if WING_STATUS and CONTROLLER.buttonX.pressing():
-            #wings(False)
-            #WING_STATUS=False
-        
         if CONTROLLER.buttonR1.pressing() and IS_TAKE_OUT == False:
             MOTOR_GROUP_INTAKE.spin(REVERSE, INTAKE_SPEED_PERCENT, PERCENT)
             IS_TAKE_OUT=True
@@ -88,8 +76,6 @@ def ondriver_drivercontrol():
             MOTOR_GROUP_INTAKE.stop()
             IS_TAKE_IN=False
 
-        # if CONTROLLER.buttonUp.pressing():
-            # MOTOR_GROUP_LAUNCHER.set_position(LAUNCHER_DEFAULT_POSITION_DEGREES, DEGREES)
         wait(20)
 def onauton_autonomous():
     if AUTONOMOUS_ENABLED_BOOL:
@@ -124,20 +110,4 @@ def vexcode_driver_function():
         wait( 10, MSEC )
     driver_control_task.stop()
 
-def wings(pos):
-    global START_ANGLE_7, START_ANGLE_11
-    if pos:
-        MOTOR_11.spin_to_position(85, DEGREES, LAUNCHER_SPEED_PERCENT, PERCENT)
-        MOTOR_7.spin_to_position(40, DEGREES, LAUNCHER_SPEED_PERCENT, PERCENT)
-    else:
-        MOTOR_11.spin_to_position(START_ANGLE_7, DEGREES, LAUNCHER_SPEED_PERCENT, PERCENT)
-        MOTOR_7.spin_to_position(START_ANGLE_11, DEGREES, LAUNCHER_SPEED_PERCENT, PERCENT)
-
-def calibrate():
-    global START_ANGLE_7, START_ANGLE_11
-    START_ANGLE_7=MOTOR_7.position(DEGREES)
-    START_ANGLE_11=MOTOR_11.position(DEGREES)
-calibrate()
-
 competition = Competition( vexcode_driver_function, vexcode_auton_function )
-
