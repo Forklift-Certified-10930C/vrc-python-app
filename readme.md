@@ -1,3 +1,6 @@
+# Note: We ended the season at 31th in the Michigan state chamiopnship for 2023-2024. This repository is no longer reciving updates.
+
+
 <br/>
 <p align="center">
   <a href="https://github.com/Forklift-Certfied-
